@@ -1,0 +1,12 @@
+{
+    "name": "appManagementExample",
+    "title": "App Management Example",
+    "caption": "Application which shows the basic features of the app manager",
+    "type": "window",
+    "details": {
+        "url": "http://localhost:8082/AppManagementExample/src/index.html",
+        "mode": "Flat",
+        "width": 400,
+        "height": 400
+    }
+}

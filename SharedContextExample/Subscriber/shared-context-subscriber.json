@@ -1,0 +1,12 @@
+{
+    "name":"contextSubscriber",
+    "title":"Shared context subscriber",
+    "caption": "Context api example application which subscribes for a context",
+    "type": "window",
+    "details":{
+         "url":"http://localhost:8082/SharedContextExample/Subscriber/src/index.html",
+         "mode": "Flat",
+         "width": 400,
+         "height": 400
+    }
+}

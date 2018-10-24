@@ -1,0 +1,15 @@
+{
+  "name": "js-example-apps",
+  "version": "1.0.0",
+  "description": "Example glue-enabled js applications",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/.bin/http-server ./ -p 8082",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}
