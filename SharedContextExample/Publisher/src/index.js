@@ -5,7 +5,7 @@ Glue({
     window.glue = glue;
 
     // Setting an initial value for ExampleContext (set overrides the previous value of the context)
-    glue.contexts.set("ExampleContext", { counter: 0 });
+    return glue.contexts.set("ExampleContext", { counter: 0 });
 }).then(() => {
     let counter = 1;
 
