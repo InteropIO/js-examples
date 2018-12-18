@@ -18,11 +18,12 @@ This is repository contains basic examples of glue-enabled applications. It cont
 
 #### Configurations locations
 These are the locations of all configuration files
--  `./AppManagementExample/app-management-example.json`
--  `./InteropExample/InstrumentDetails/instrument-details-example.json`
--  `./InteropExample/InstrumentList/instrument-list-example.json`
--  `./SharedContextExample/Publisher/shared-context-publisher.json`
--  `./SharedContextExample/Subscriber/shared-context-subscriber.json`
+-  `./app-management-example/app-management-example.json`
+-  `./interop-example/instrument-details/instrument-details-example.json`
+-  `./interop-example/instrument-list/instrument-list-example.json`
+-  `./shared-context-example/publisher/shared-context-publisher.json`
+-  `./shared-context-example/subscriber/shared-context-subscriber.json`
+-  `./streaming/basic-streaming-subscriber.json`
   
 ## Interop example
 
@@ -63,3 +64,6 @@ This is a basic example of two applications that use the contexts api to communi
 Application which creates the *ExampleContext* context and changes it every second.
 ### Subscriber
 Application which listens for changes in *ExampleContext* and visualizes it.
+
+## Streaming example
+Basic example which listens for a stream and logs the received data

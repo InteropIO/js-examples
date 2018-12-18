@@ -4,7 +4,7 @@
     "caption": "Application which shows the basic features of the app manager",
     "type": "window",
     "details": {
-        "url": "http://localhost:8082/AppManagementExample/src/index.html",
+        "url": "http://localhost:8082/app-management-example/src/index.html",
         "mode": "Flat",
         "width": 400,
         "height": 400
