@@ -1,0 +1,131 @@
+<div class="container-fluid sticky-top fixed-size-header mb-3">
+  <div class="row border border-left-0 border-right-0 border-top-0 border-secondary py-3">
+    <div class="col-6">
+      <h3 class="text-truncate">
+        BBG Worksheets Demo
+      </h3>
+    </div>
+    <div class="col-6 text-right" >
+      <!-- Control if button is disabled or not with tick42-icon-button-disabled -->
+      <button type="button" class="tick42-icon-horizontal tick42-square-icon-horizontal" [disabled]="!excelAvailable || currentSecurities.length < 1"
+        (click)="exportWorksheet()">
+        <span class="tick42-icon-nav bg-info tick42-icon-small">
+          <span class="tick42-custom-icon icon-size-16">
+            <i class="icon-file-excel"></i>
+          </span>
+        </span>
+        <span class="tick42-icon-nav-label" >Export to Excel</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row" *ngIf="bloombergAvailable">
+    <div class="col">
+      <div class="card">
+        <!-- Switch card-body when you change tabs -->
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title mt-1 mb-0">Created Worksheets</h5>
+            </div>
+            <div class="col text-right">
+              <button type="button" class="btn btn-primary" data-toggle="modal" (click)="createWorksheet()">
+                Create Worksheet
+              </button>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let worksheet of worksheets" id="{{ worksheet.id }}" [class.active]="worksheet.id === currentWorksheet?.id"
+              (click)="selectWorksheet(worksheet)">
+              {{worksheet.name}}
+            </li>
+          </ul>
+
+        </div>
+
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title mt-1 mb-0">Securities</h5>
+            </div>
+            <div class="col text-right">
+              <!-- <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="true">
+                  Add Entry
+                </button>
+                <div class="dropdown-menu dropdown-menu-right visible" aria-labelledby="dropdownMenuButton"
+                  x-placement="bottom-start" style="right: 0">
+                  <a class="dropdown-item" *ngFor="let security of getSecuritiesToAppend()" (click)="appendSecurityToSheet(security)"
+                    href="#">{{ security }}</a>
+                </div>
+              </div> -->
+              <div ngbDropdown>
+                <button class="btn btn-primary" type="button" id="dropdownMenuButton" [disabled]="!currentWorksheet"
+                  ngbDropdownToggle>
+                  Add Entry
+                </button>
+                <div class="dropdown-menu dropdown-menu-right visible" aria-labelledby="dropdownMenuButton"
+                  ngbDropdownMenu>
+                  <a class="dropdown-item" *ngFor="let security of getSecuritiesToAppend()" (click)="appendSecurityToSheet(security)"
+                    href="#">{{ security }}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush securities">
+            <li class="list-group-item" *ngFor="let security of currentSecurities" (click)="selectSecurity(security)">
+              {{security}}
+              <!-- <i class="icon-cancel text-danger" (click)="removeSecurity(security)"></i> -->
+            </li>
+            <li class="list-group-item" *ngIf="currentSecurities.length < 1 && currentWorksheet">No securities added</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row" *ngIf="!bloombergAvailable">
+    <div class="col-12">
+      <div class="jumbotron">
+        <h1 class="display-4">Bloomberg Bridge not available</h1>
+        <hr class="my-4">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid fixed-bottom" style="background-color: #152327">
+  <div class="row py-2">
+    <div class="col-6">
+      <div class="logo-container"></div>
+    </div>
+    <div class="col-6">
+      <div class="d-flex status-container" style="justify-content: flex-end">
+        <div class="d-inline">
+          <small class="status-connected small">
+            <span class="tick42-custom-icon icon-inherit-color icon-size-12" [ngClass]="{'text-success': bloombergAvailable, 'text-danger': !bloombergAvailable}">
+              <i class="icon-record"></i>
+            </span>
+            Bloomberg
+            <!-- {{glueConnected ? 'Connected' : 'Disconnected'}} -->
+          </small>
+          <small class="status-connected small">
+            <span class="tick42-custom-icon icon-inherit-color icon-size-12" [ngClass]="{'text-success': glueConnected, 'text-danger': !glueConnected}">
+              <i class="icon-record"></i>
+            </span>
+            Glue
+            <!-- {{glueConnected ? 'Connected' : 'Disconnected'}} -->
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

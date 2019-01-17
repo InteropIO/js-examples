@@ -1,0 +1,44 @@
+.container,
+.row {
+    padding-top: 20px;
+}
+
+li:hover {
+    cursor: pointer;
+}
+
+button.btn.btn-primary {
+    margin-left: 15px;
+}
+
+.securities .icon-cancel {
+  opacity: 0;
+  -webkit-transition: all .25s ease;
+  transition: all .25s ease;
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.securities .list-group-item:hover .icon-cancel {
+  opacity: 1;
+}
+
+.list-group-flush .list-group-item {
+  cursor: pointer;
+  -webkit-transition: all .25s ease;
+  transition: all .25s ease;
+}
+
+.list-group-flush .list-group-item:hover {
+  padding-left: 1.5rem;
+  color: #d1da27;
+}
+
+.dropdown-menu-right[style] {
+  right: 0!important;
+  left: unset!important;
+}
+
+
