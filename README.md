@@ -24,6 +24,8 @@ These are the locations of all configuration files
 -  `./shared-context-example/publisher/shared-context-publisher.json`
 -  `./shared-context-example/subscriber/shared-context-subscriber.json`
 -  `./streaming/basic-streaming-subscriber.json`
+-  `./pub-sub-example/subscriber/pub-sub-subscriber.json`
+-  `./pub-sub-example/publisher/pub-sub-publisher.json`
   
 ## Interop example
 
@@ -67,3 +69,6 @@ Application which listens for changes in *ExampleContext* and visualizes it.
 
 ## Streaming example
 Basic example which listens for a stream and logs the received data
+
+## Pub/Sub example
+Basic example which publishes messages on a topic and subscribes for messages published on that topic
