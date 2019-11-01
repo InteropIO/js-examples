@@ -58,6 +58,23 @@ Application which:
 - listens for any added or removed applications
 - listens for any started or stopped instances of applications
 
+
+## Channels Example
+
+This example contains two applications which use *channels* API.
+You can open two instances of the subscriber app and keep them on different channels and play around with the interactions
+
+### Channels publisher app
+
+- lists some symbols
+- publishes symbol name to channel when a symbol is clicked
+- the publisher app becomes a subscriber in it's turn by showing info coming from subscriber app
+
+### Channels subscriber app
+
+- subscribes to channel and displays data passed in
+- the subscriber app becomes a publisher app itself when the **Send back via channels API** button is clicked
+
 ## Shared Contexts example
 This is a basic example of two applications that use the contexts api to communicate.
 ### Publisher

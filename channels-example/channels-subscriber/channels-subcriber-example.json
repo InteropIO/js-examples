@@ -1,0 +1,13 @@
+{
+  "name": "channelsSubscriber",
+  "title": "Channels Subscriber Example",
+  "caption": "Channels Subscriber Example",
+  "type": "window",
+  "details": {
+    "url": "http://localhost:8082/channels-example/channels-subscriber/src/index.html",
+    "mode": "flat",
+    "width": 400,
+    "height": 400,
+    "allowChannels": true
+  }
+}
