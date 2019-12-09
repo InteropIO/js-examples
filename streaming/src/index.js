@@ -7,7 +7,7 @@ Glue({}).then((glue) => {
         }
     };
     const streamName = 'T42.MarketStream.Subscribe';
-    const streamNameElement = document.getElementById("streamName").textContent= streamName;
+    const streamNameElement = document.getElementById("streamName");
     const symbolNameElement = document.getElementById("symbolName");
     symbolNameElement.textContent= symbol;
     streamNameElement.textContent= streamName;
@@ -17,7 +17,7 @@ Glue({}).then((glue) => {
         // Listening for information pushed on the stream
         window.streamSubscription=streamSubscription;
         streamSubscription.onData((msg)=>{
-           const payload = msg.data;
+           const payload = JSON.parse(msg.data.data)[0];
            bidValue.textContent= payload.image.BID
            askValue.textContent= payload.image.ASK
         });

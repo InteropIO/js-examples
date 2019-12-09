@@ -5,7 +5,7 @@
     "type": "window",
     "details": {
         "url": "http://localhost:8082/app-management-example/src/index.html",
-        "mode": "Flat",
+        "mode": "flat",
         "width": 400,
         "height": 400
     }
