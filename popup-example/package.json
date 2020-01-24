@@ -1,0 +1,17 @@
+{
+    "name": "popup-demo",
+    "version": "1.0.0",
+    "description": "Demo app demonstrating popup windows in Glue42 Desktop.",
+    "main": "index.js",
+    "directories": {
+        "lib": "lib"
+    },
+    "scripts": {
+        "start": "http-server -p 4444"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "http-server": "^0.12.0"
+    }
+}

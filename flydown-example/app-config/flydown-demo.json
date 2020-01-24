@@ -1,0 +1,16 @@
+{
+    "name":"flydown-demo",
+    "title":"Flydown Demo",
+    "type": "window",
+    "ignoreSavedLayout": true,
+    "details":{
+        "url":"http://localhost:4445/index.html",
+        "mode": "html",
+        "top": 250,
+        "left": 300,
+        "minWidth": 400,
+        "minHeight": 300,
+        "maxWidth": 400,
+        "maxHeight": 300
+    }
+}

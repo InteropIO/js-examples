@@ -1,0 +1,27 @@
+html {
+    height: 98.5%;
+    overflow-y:hidden
+}
+
+.body {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background-color:#1a1d23;
+    color:#2080d3;
+    text-align: center;
+}
+
+.button {
+    outline: none;
+    width: 250px;
+    padding: 10px;
+    border-style: none;
+    border-radius: 5px;
+    background-color: #2080d3;
+    color: white;
+    font-size: 1.2rem;
+}
