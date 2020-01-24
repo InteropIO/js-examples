@@ -1,0 +1,19 @@
+{
+    "name":"flydown",
+    "title":"Flydown",
+    "type": "window",
+    "ignoreSavedLayout": true,
+    "hidden": true,
+    "autoStart": true,
+    "details":{
+        "url":"http://localhost:4445/flydown-window/index.html",
+        "mode": "html",
+        "hidden": true,
+        "hasMoveAreas": false,
+        "hasSizeAreas": false,
+        "allowClose": false,
+        "allowMinimize": false,
+        "allowMaximize": false,
+        "allowCollapse": false
+    }
+}
