@@ -1,0 +1,12 @@
+{
+    "name": "pubSubPublisher",
+    "title": "Pub/Sub Publisher",
+    "caption": "Pub/Sub Publisher",
+    "type": "window",
+    "details": {
+        "url": "http://localhost:8082/pub-sub-example/publisher/src/index.html",
+        "mode": "flat",
+        "width": 400,
+        "height": 400
+    }
+}
