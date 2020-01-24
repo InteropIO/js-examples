@@ -37,7 +37,7 @@ Glue({
             // Subscribing for a stream only if there isn't an active subscription
             if (!subscription) {
                 // Providing the name of the current instrument so the stream subscription request can be accepted on an appropriate branch
-                glue.agm.subscribe("InstrumentPrice", { arguments: nameElement.textContent }).then((streamSubscription) => {
+                glue.agm.subscribe("InstrumentPrice", { arguments: { name: nameElement.textContent } }).then((streamSubscription) => {
                     subscription = streamSubscription;
                     // Listening for information pushed on the stream
                     subscription.onData((strData) => {
