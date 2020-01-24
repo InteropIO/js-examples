@@ -90,3 +90,11 @@ Make sure you run the Sample Price Publisher app first located at the following 
 ## Pub/Sub Example
 
 Basic example which publishes messages on a topic and subscribes for messages published on that topic.
+
+## Flydown Example
+
+Demo app showing the flydown window functionality in Glue42 Desktop.
+
+## Popup Example
+
+Demo app showing the popup window functionality in Glue42 Desktop.
