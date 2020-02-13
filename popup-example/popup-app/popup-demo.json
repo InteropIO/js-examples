@@ -1,13 +1,13 @@
 {
-    "name":"flydown-demo",
-    "title":"Flydown Demo",
+    "name":"popup-demo",
+    "title":"Popup Demo",
     "type": "window",
     "ignoreSavedLayout": true,
     "details":{
-        "url":"http://localhost:4445/index.html",
+        "url":"http://localhost:4242/popup-example/popup-window/src/index.html",
         "mode": "html",
-        "top": 250,
-        "left": 300,
+        "top": 200,
+        "left": 200,
         "minWidth": 400,
         "minHeight": 300,
         "maxWidth": 400,

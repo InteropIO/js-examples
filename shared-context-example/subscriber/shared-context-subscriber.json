@@ -4,7 +4,7 @@
     "caption": "Context api example application which subscribes for a context",
     "type": "window",
     "details":{
-         "url":"http://localhost:8082/shared-context-example/subscriber/src/index.html",
+         "url":"http://localhost:4242/shared-context-example/subscriber/src/index.html",
          "mode": "flat",
          "width": 400,
          "height": 400
