@@ -1,4 +1,4 @@
-Glue({}).then((glue) => {
+Glue({ bus: true }).then((glue) => {
     window.glue = glue;
 
     setInterval(() => {

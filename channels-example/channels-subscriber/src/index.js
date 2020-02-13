@@ -1,5 +1,5 @@
 Glue({
-  agm: true,
+  channels: true,
 }).then(glue => {
   // Convenient way of using glue throughout your application
   window.glue = glue
