@@ -92,6 +92,22 @@ Basic example which publishes messages on a topic and subscribes for messages pu
 
 Demo app demonstrating the flydown window functionality in **Glue42 Desktop**.
 
+#### Flydown App
+
+The app that will trigger the flydown window.
+
+#### Flydown Window
+
+The window that will be used as a flydown window.
+
 ### Popup Example
 
 Demo app demonstrating the popup window functionality in **Glue42 Desktop**.
+
+#### Popup App
+
+The app that will trigger the popup window.
+
+#### Popup Window
+
+The window that will be used as a popup window.
