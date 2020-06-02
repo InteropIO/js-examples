@@ -1,24 +1,24 @@
-# JavaScript Examples for Glue42 Desktop
+# JavaScript Examples for Glue42 Enterprise
 
 This repository contains basic examples of Glue42 enabled applications.
 
-*For more information on Glue42 Desktop, visit the official product site [glue42.com](https://glue42.com/) or see the [product documentation](https://docs.glue42.com).*
+*For more information on Glue42 Enterprise, visit the official product site [glue42.com](https://glue42.com/) or see the [product documentation](https://docs.glue42.com).*
 
 ## Prerequisites
 
-- Glue42 Desktop
+- Glue42 Enterprise
 - node
 - npm
 
 ## Setup
 
 - Clone the repository.
-- Copy all (or only of the examples you are interested in) `.json` application configuration files from the application folders and paste them in the **Glue42 Desktop** application configuration folder (`%LocalAppData%\Tick42\UserData\<REG>-<ENV>\apps` where you must replace `<REG>-<ENV>` with the region and environment folder name used for the deployment of your **Glue42 Desktop** - e.g., `T42-DEMO`).  
+- Copy all (or only of the examples you are interested in) `.json` application configuration files from the application folders and paste them in the **Glue42 Enterprise** application configuration folder (`%LocalAppData%\Tick42\UserData\<ENV>-<REG>\apps` where you must replace `<ENV>-<REG>` with the region and environment folder name used for the deployment of your **Glue42 Enterprise** - e.g., `T42-DEMO`).  
 - Open a command prompt in the base repo directory and run `npm install` to install all dependencies. 
 - Run `npm start` to start a server at port 4242 where the applications will be hosted.
-- Start **Glue42 Desktop**. 
+- Start **Glue42 Enterprise**. 
 
-Now you should be able to start all registered applications from the **Glue42 Desktop** App Manager Toolbar.
+Now you should be able to start all registered applications from the **Glue42 Enterprise** App Manager Toolbar.
 
 ## Examples
 
@@ -90,7 +90,7 @@ Basic example which publishes messages on a topic and subscribes for messages pu
 
 ### Flydown Example
 
-Demo app demonstrating the flydown window functionality in **Glue42 Desktop**.
+Demo app demonstrating the flydown window functionality in **Glue42 Enterprise**.
 
 #### Flydown App
 
@@ -102,7 +102,7 @@ The window that will be used as a flydown window.
 
 ### Popup Example
 
-Demo app demonstrating the popup window functionality in **Glue42 Desktop**.
+Demo app demonstrating the popup window functionality in **Glue42 Enterprise**.
 
 #### Popup App
 
