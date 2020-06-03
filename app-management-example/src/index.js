@@ -27,6 +27,8 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 /** INITIALIZE GLUE42 **/
 async function initializeGlue42() {
+    // Initializing the Glue42 library with `appManager:"full"`
+    // in order to be able to use the complete Application Management API.
     window.glue = await Glue({ appManager: "full" });
 };
 
