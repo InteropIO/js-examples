@@ -1,0 +1,12 @@
+{
+    "name":"instrumentList",
+    "title":"Instrument list",
+    "caption": "Example interop app",
+    "type": "window",
+    "details":{
+         "url":"http://localhost:4242/interop-example/instrument-list/src/index.html",
+         "mode": "flat",
+         "width": 400,
+         "height": 400
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "name": "appManagementExample",
+    "title": "Application Management Example",
+    "caption": "Application which shows the basic features of the Glue42 Application Management API.",
+    "type": "window",
+    "ignoreSavedLayout": true,
+    "details": {
+        "url": "http://localhost:4242/app-management-example/src/index.html",
+        "mode": "flat",
+        "top": 100,
+        "left": 100,
+        "width": 600,
+        "height": 600,
+        "autoInjectAPI": {
+            "enabled": false
+        }
+    }
+}
