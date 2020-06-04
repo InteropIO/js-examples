@@ -14,8 +14,8 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 px-0 d-flex align-items-center">
-                            <h2 id="channel-name" class="mb-0 mr-3 px-2">Red</h2>
-                            <div id="channel-color" style="min-width: 50px; width: 50px; height: 25px; border-radius: 5px; background-color: red;"></div>
+                            <h2 id="channel-name" class="mb-0 mr-3 px-2">No Channel</h2>
+                            <div id="channel-color" style="min-width: 50px; width: 50px; height: 25px; border-radius: 5px;"></div>
                         </div>
                     </div>
                 </div>
@@ -35,6 +35,7 @@
                         </div>
                         <button type="button" id="publish-current-button" class="btn btn-primary mb-1">Publish to Current Channel</button>
                     </div>
+                    <div id="select-channel-alert" class="alert alert-danger" style="display: none;" >You must select a channel first!</div>
                 </div>
             </div>
         </div>
@@ -47,10 +48,7 @@
                     <div class="row px-3">
                         <div class="form-group">
                             <label for="channel-list">Select Channel:</label>
-                            <select class="form-control" id="channel-list" style="width: 192px;">
-                                <option>Red</option>
-                                <option>Green</option>
-                            </select>
+                            <select class="form-control" id="channel-list" style="width: 192px;"></select>
                         </div>
                     </div>
                     <div class="form-group mb-0 d-flex align-items-center">
@@ -59,7 +57,7 @@
                             <input type="text" class="form-control" id="data-input-selected" aria-describedby="data-help">
                             <small id="data-help" class="form-text text-muted mt-0">Input any data.</small>
                         </div>
-                        <button type="button" id="publish-current-button" class="btn btn-primary mb-1">Publish to Selected Channel</button>
+                        <button type="button" id="publish-selected-button" class="btn btn-primary mb-1">Publish to Selected Channel</button>
                     </div>
                 </div>
             </div>
