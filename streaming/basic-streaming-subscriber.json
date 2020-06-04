@@ -4,7 +4,7 @@
     "caption": "Example subscriber app",
     "type": "window",
     "details":{
-         "url":"http://localhost:4242/streaming-example/src/index.html",
+         "url":"http://localhost:4242/streaming/src/index.html",
          "mode": "flat",
          "width": 400,
          "height": 400

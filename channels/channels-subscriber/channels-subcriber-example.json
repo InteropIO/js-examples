@@ -1,13 +1,18 @@
 {
-  "name": "channelsSubscriber",
-  "title": "Channels Subscriber Example",
-  "caption": "Channels Subscriber Example",
-  "type": "window",
-  "details": {
-    "url": "http://localhost:4242/channels-example/channels-subscriber/src/index.html",
-    "mode": "flat",
-    "width": 400,
-    "height": 400,
-    "allowChannels": true
-  }
+    "name": "channelsSubscriber",
+    "title": "Channels Subscriber",
+    "caption": "Glue42 Channels Subscriber Example",
+    "type": "window",
+    "details": {
+        "url": "http://localhost:4242/channels/channels-subscriber/src/index.html",
+        "mode": "flat",
+        "width": 400,
+        "height": 400,
+        "top": 130,
+        "left": 130,
+        "allowChannels": true,
+        "autoInjectAPI": {
+            "enabled": false
+        }
+    }
 }

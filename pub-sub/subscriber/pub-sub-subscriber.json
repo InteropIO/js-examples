@@ -4,7 +4,7 @@
     "caption": "Pub/Sub Subscriber",
     "type": "window",
     "details": {
-        "url": "http://localhost:4242/pub-sub-example/subscriber/src/index.html",
+        "url": "http://localhost:4242/pub-sub/subscriber/src/index.html",
         "mode": "flat",
         "width": 400,
         "height": 400

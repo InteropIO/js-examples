@@ -6,7 +6,7 @@
     "hidden": true,
     "autoStart": true,
     "details":{
-        "url":"http://localhost:4242/popup-example/popup-window/src/index.html",
+        "url":"http://localhost:4242/popup/popup-window/src/index.html",
         "mode": "html",
         "hidden": true,
         "hasMoveAreas": false,

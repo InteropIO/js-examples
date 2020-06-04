@@ -6,7 +6,7 @@
     "hidden": true,
     "autoStart": true,
     "details":{
-        "url":"http://localhost:4242/flydown-example/flydown-window/src/index.html",
+        "url":"http://localhost:4242/flydown/flydown-window/src/index.html",
         "mode": "html",
         "hidden": true,
         "hasMoveAreas": false,

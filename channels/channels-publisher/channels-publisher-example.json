@@ -1,13 +1,18 @@
 {
-  "name": "channelsPublisher",
-  "title": "Channels Publisher Example",
-  "caption": "Channels Publisher Example",
-  "type": "window",
-  "details": {
-    "url": "http://localhost:4242/channels-example/channels-publisher/src/index.html",
-    "mode": "flat",
-    "width": 400,
-    "height": 400,
-    "allowChannels": true
-  }
+    "name": "channelsPublisher",
+    "title": "Channels Publisher",
+    "caption": "Glue42 Channels Publisher Example",
+    "type": "window",
+    "details": {
+        "url": "http://localhost:4242/channels/channels-publisher/src/index.html",
+        "mode": "flat",
+        "width": 400,
+        "height": 400,
+        "top": 120,
+        "left": 120,
+        "allowChannels": true,
+        "autoInjectAPI": {
+            "enabled": false
+        }
+    }
 }
