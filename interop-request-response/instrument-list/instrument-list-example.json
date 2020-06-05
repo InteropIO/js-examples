@@ -4,7 +4,7 @@
     "caption": "Example interop app",
     "type": "window",
     "details":{
-         "url":"http://localhost:4242/interop/instrument-list/src/index.html",
+         "url":"http://localhost:4242/interop-request-response/instrument-list/src/index.html",
          "mode": "flat",
          "width": 400,
          "height": 400
