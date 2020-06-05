@@ -7,7 +7,10 @@ let channelListItem;
 let selectedChannelInput;
 let publishToSelectedBtn;
 
-window.addEventListener("DOMContentLoaded", async () => {
+/** SET UP THE APPLICATION **/
+window.addEventListener("DOMContentLoaded", initializeApp);
+
+async function initializeApp() {
     channelNameItem = document.getElementById("channel-name");
     channelColorItem = document.getElementById("channel-color");
     currentChannelInput = document.getElementById("data-input-current");
@@ -26,19 +29,22 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     // Get the available channels and fill the select menu with the channel names.
     await createChannelsMenu();
-
+    // Track channel changes.
     trackCurrentChannel();
-
+    // Handle the buttons for publishing data to the channel.
     handleButtonClicks();
-});
+};
 
+/** INITIALIZE GLUE42 **/
 async function initializeGlue42() {
     // Initialize the Glue42 library and enable the Channels API
     // and the Channel Selector UI.
     window.glue = await Glue({ channels: true });
 };
 
+/** FILL THE DROPDOWN MENU WITH ALL AVAILABLE CHANNELS **/
 async function createChannelsMenu() {
+    // Get the names of all available channels.
     const allChannels = await glue.channels.all();
     const optionItem = document.createElement("option");
 
@@ -50,7 +56,10 @@ async function createChannelsMenu() {
     });
 };
 
+/** TRACK APPLICATION MOVEMENT BETWEEN CHANNELS **/
 function trackCurrentChannel() {
+    // The callback passed to the `onChanged()` method will fire
+    // every time the app changes channels.
     glue.channels.onChanged(async newChannelName => {
         if (newChannelName) {
             // Handle switching to another channel.
@@ -67,12 +76,14 @@ function trackCurrentChannel() {
     });
 };
 
+/** HANDLE BUTTON CLICKS **/
 function handleButtonClicks() {
     publishToCurrentBtn.addEventListener("click", publishToCurrent);
     publishToSelectedBtn.addEventListener("click", publishToSelected);
 };
 
 async function publishToCurrent() {
+    // Get the name of the channel the application is currently on.
     const currentChannelName = await glue.channels.my();
 
     if (currentChannelName) {
@@ -81,6 +92,7 @@ async function publishToCurrent() {
         const input = currentChannelInput.value;
         const dataToPublish = { input };
 
+        // Publish data to the current channel.
         glue.channels.publish(dataToPublish);
         currentChannelInput.value = "";
     } else {
@@ -93,6 +105,8 @@ function publishToSelected() {
     const input = selectedChannelInput.value;
     const dataToPublish = { input };
 
+    // Publish data to a specified channel by provide a channel name 
+    // as a second parameter to the `publish()` method.
     glue.channels.publish(dataToPublish, selectedChannelName);
     selectedChannelInput.value = "";
 };

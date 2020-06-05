@@ -3,7 +3,10 @@ let instanceItemTemplate;
 let appContainer;
 let instanceContainer;
 
-window.addEventListener("DOMContentLoaded", async () => {
+/** SET UP THE APPLICATION **/
+window.addEventListener("DOMContentLoaded", initializeApp);
+
+async function initializeApp() {
     
     // Create DOM element templates for the apps and instances.
     createListItemTemplates();
@@ -23,7 +26,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     
     // Start the selected app from the "Availbale Applications" list.
     appContainer.addEventListener("click", openApp);
-});
+};
 
 /** INITIALIZE GLUE42 **/
 async function initializeGlue42() {
@@ -34,9 +37,20 @@ async function initializeGlue42() {
 
 /** HANDLE APP & INSTANCE EVENTS TO UPDATE THE LISTS **/
 function setupAppAndInstanceEvents() {
+    // The callback passed to the `onAppAdded()` method will fire
+    // every time an application definition is added.
     glue.appManager.onAppAdded(updateAppList);
+
+    // The callback passed to the `onAppRemoved()` method will fire
+    // every time an application definition is removed.
     glue.appManager.onAppRemoved(updateAppList);
+
+    // The callback passed to the `onInstanceStarted()` method will fire
+    // every time an application instance is started.
     glue.appManager.onInstanceStarted(addInstanceToList);
+
+    // The callback passed to the `onInstanceStopped()` method will fire
+    // every time an application instance is stopped.
     glue.appManager.onInstanceStopped(removeInstanceFromList);
 };
 
@@ -49,6 +63,8 @@ function openApp(event) {
 };
 
 function updateAppList(app) {
+    // The application object has useful properties for identifying
+    // or sorting applications - `name`, `title`, `hidden`, `instances`, etc. 
     const appToRemove = document.getElementById(app.name);
 
     // Show only the apps visible in the App Manager.
@@ -96,7 +112,7 @@ function removeInstanceFromList(instance) {
     if (instance.application.hidden === false) {
         const instanceToRemove = document.getElementById(`${instance.application.name}-instance`);
 
-        // Get the current count of the application instances.
+        // Get the current number of the application instances.
         const instanceCount = instance.application.instances.length;
 
         // If this is the last application instance, remove it from the list,

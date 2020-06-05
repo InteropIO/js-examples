@@ -8,24 +8,24 @@
 </head>
 <body class="container-fluid" style="overflow:overlay">
     <div class="row">
-        <div class="col-6 px-2">
+        <div class="col-6 pl-2 pr-1">
             <div class="card bg-primary mt-2" style="min-height: 115px;">
                 <h3 class="card-header">Current Channel</h3>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 px-0 d-flex align-items-center">
-                            <h2 id="channel-name" class="mb-0 mr-3 px-2">Red</h2>
-                            <div id="channel-color" style="min-width: 50px; width: 50px; height: 25px; border-radius: 5px; background-color: red;"></div>
+                            <h2 id="channel-name" class="mb-0 mr-3 px-2">No Channel</h2>
+                            <div id="channel-color" style="min-width: 50px; width: 50px; height: 25px; border-radius: 5px;"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-6 px-2">
+        <div class="col-6 pr-2 pl-1">
             <div class="card bg-primary mt-2" style="min-height: 115px;">
                 <h3 class="card-header">Received Data</h3>
                 <div class="card-body">
-                    <p id="channel-data" class="card-title">{ symbol: MSFT }</p>
+                    <p id="channel-data" class="card-title"></p>
                 </div>
             </div>
         </div>
@@ -37,10 +37,7 @@
                 <div class="card-body">
                     <div class="form-group mb-0">
                         <label for="channel-list">Select Channel to Join:</label>
-                        <select class="form-control" id="channel-list-join" style="width: 166px;">
-                            <option>Red</option>
-                            <option>Green</option>
-                        </select>
+                        <select class="form-control" id="channel-list-join" style="width: 166px;"></select>
                         <button type="button" id="join-button" class="btn btn-primary mt-3 mr-4">Join Selected Channel</button>
                         <button type="button" id="leave-button" class="btn btn-warning mt-3">Leave Current Channel</button>
                     </div>
@@ -57,15 +54,12 @@
                         <div class="row">
                             <div class="col-6">
                                 <label for="channel-list">Select Channel:</label>
-                                <select class="form-control" id="channel-list-context" style="width: 166px;">
-                                    <option>Red</option>
-                                    <option>Green</option>
-                                </select>
-                                <button type="button" id="get-button" class="btn btn-success my-3">Get Context</button>
+                                <select class="form-control" id="channel-list-context" style="width: 166px;"></select>
+                                <button type="button" id="get-context-button" class="btn btn-success my-3">Get Context</button>
                             </div>
                             <div class="col-6">
                                 <h3>Channel Context</h3>
-                                <p id="channel-context">{ data: "asdf"}</p>
+                                <p id="channel-context"></p>
                             </div>
                         </div>
                     </div>
