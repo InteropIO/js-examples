@@ -1,30 +1,23 @@
-// initializing the Glue42 library
-Glue().then(glue => {     
-    window.glue = glue;
+/** SET UP THE APPLICATION **/
+window.addEventListener("DOMContentLoaded", initializeApp);
 
-    //reference to the window that will be used as a flydown
-    const flydown = glue.windows.find("flydown");
+async function initializeApp() {
+    // Initialize the Glue42 library.
+    await initializeGlue42()
+        .catch(error => {
+            console.error(error);
+            return
+        });
 
-    // reference to this window
-    const myWindow = glue.windows.my();
-
-    // unique flydown trigger zone identifiers
-    const zoneIDs = {
-        left: "leftZone",
-        top: "topZone",
-        right: "rightZone",
-        bottom: "bottomZone"
-    }
-
-    // reference to the visual zones in the app
+    // Reference to the visual flydown zones in the app.
     const zones = {
-        left: document.getElementsByClassName("vertical-zone")[0],
-        top: document.getElementsByClassName("horizontal-zone")[0],
-        right: document.getElementsByClassName("vertical-zone")[1],
-        bottom: document.getElementsByClassName("horizontal-zone")[1],
+        left: document.getElementById("left-zone"),
+        top: document.getElementById("top-zone"),
+        right: document.getElementById("right-zone"),
+        bottom: document.getElementById("bottom-zone"),
     }
 
-    // calculation of the flydown trigger zones bounds
+    // Calculation of the flydown trigger zones bounds.
     const zonesBounds = {
         leftZone: {
             left: 0,
@@ -51,39 +44,66 @@ Glue().then(glue => {
             height: Math.round(zones.bottom.getBoundingClientRect().height)
         }
     }
+    
+    // Unique flydown trigger zone identifiers.
+    const zoneIDs = {
+        left: "leftZone",
+        top: "topZone",
+        right: "rightZone",
+        bottom: "bottomZone"
+    }
 
-    // creating the flydown window
-    myWindow.createFlydown(
-        {
-            windowId: flydown.id,
-            size: {
-                width: 250,
-                height: 50
+    // Create a flydown window.
+    createFlydownWindow(zonesBounds, zoneIDs);
+};
+
+/** INITIALIZE GLUE42 **/
+async function initializeGlue42() {
+    window.glue = await Glue();
+};
+
+/** CREATE A FLYDOWN **/
+async function createFlydownWindow(zonesBounds, zoneIDs) {
+    //Reference to the window that will be used as a flydown.
+    const flydown = glue.windows.find("flydown");
+    
+    // Reference to this window.
+    const myWindow = glue.windows.my();
+
+    // Options object for the flydown.
+    const flydownOptions = {
+        windowId: flydown.id,
+        size: {
+            width: 250,
+            height: 50
+        },
+        horizontalOffset: 10,
+        verticalOffset: 10,
+        zones: [
+            {
+                id: zoneIDs.left,
+                bounds: zonesBounds.leftZone,
+                targetLocation: "left",
             },
-            horizontalOffset: 10,
-            verticalOffset: 10,
-            zones: [
-                {
-                    id: zoneIDs.left,
-                    bounds: zonesBounds.leftZone,
-                    targetLocation: "left",
-                },
-                {
-                    id: zoneIDs.top,
-                    bounds: zonesBounds.topZone,
-                    targetLocation: "top"
-                },
-                {
-                    id: zoneIDs.right,
-                    bounds: zonesBounds.rightZone,
-                    targetLocation: "right"
-                },
-                {
-                    id: zoneIDs.bottom,
-                    bounds: zonesBounds.bottomZone,
-                    targetLocation: "bottom"
-                }
-            ]
-        }
-    ).then(console.log(`Flydown created at ${new Date().toLocaleTimeString()}.`));
-});
+            {
+                id: zoneIDs.top,
+                bounds: zonesBounds.topZone,
+                targetLocation: "top"
+            },
+            {
+                id: zoneIDs.right,
+                bounds: zonesBounds.rightZone,
+                targetLocation: "right"
+            },
+            {
+                id: zoneIDs.bottom,
+                bounds: zonesBounds.bottomZone,
+                targetLocation: "bottom"
+            }
+        ]
+    };
+    
+    // Creating the flydown window.
+    await myWindow.createFlydown(flydownOptions);
+    console.log(`Flydown created at ${new Date().toLocaleTimeString()}.`);
+};
