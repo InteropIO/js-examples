@@ -1,41 +1,56 @@
-// initializing the Glue42 library
-Glue().then(glue => {     
-    window.glue = glue;
+/** SET UP THE APPLICATION **/
+window.addEventListener("DOMContentLoaded", initializeApp);
 
-    // reference to the window which will be used as a popup
+async function initializeApp() {
+    // Initialize the Glue42 library.
+    await initializeGlue42()
+        .catch(error => {
+            console.error(error);
+            return
+        });
+
+    // Reference to the window which will be used as a popup.
     const popup = glue.windows.find("popup");
-    
-    //reference to the button which will trigger the popup when clicked
-    const button = document.getElementsByClassName("button")[0];
 
-    // reference to this window
+    // Reference to the button which will trigger the popup when clicked.
+    const button = document.getElementById("button");
+
+    // Reference to this window.
     const myWindow = glue.windows.my();
 
-    // bounds of the area around which the popup will appear (top, bottom, left or right)
-    const buttonBounds = { 
+    // Bounds of the area around which the popup will appear.
+    const buttonBounds = {
         left: Math.round(button.getBoundingClientRect().left),
         top: Math.round(button.getBoundingClientRect().top),
         width: Math.round(button.getBoundingClientRect().width),
-        height: Math.round(button.getBoundingClientRect().height) 
+        height: Math.round(button.getBoundingClientRect().height)
     };
 
-    button.addEventListener("click", activatePopup);
+    button.addEventListener("click", () => { 
+        activatePopup(popup, myWindow, buttonBounds) 
+    });
+};
 
-    // function that will activate the popup when the button is clicked
-    function activatePopup() {
-        myWindow.showPopup(
-            {
-                windowId: popup.id, // ID of the popup window
-                targetBounds: buttonBounds, // bounds of the area which will trigger the popup when the user clicks inside it
-                size: {      // popup window size
-                    width: 250,
-                    height: 50
-                },
-                targetLocation: "top", // where (relative to targetBounds) the popup will appear
-                verticalOffset: 150 // offset from the popup area
-            }
-        );
+/** INITIALIZE GLUE42 **/
+async function initializeGlue42() {
+    window.glue = await Glue();
+};
 
-        console.log(`Popup activated at ${new Date().toLocaleTimeString()}.`);
-    }  
-});
+/** SHOWING THE POPUP WINDOW **/
+async function activatePopup(popup, myWindow, buttonBounds) {
+    // Popup options.
+    const popupOptions = {
+        windowId: popup.id,
+        targetBounds: buttonBounds,
+        size: {
+            width: 250,
+            height: 50
+        },
+        targetLocation: "top",
+        verticalOffset: 150
+    };
+
+    // Activate the popup.
+    await myWindow.showPopup(popupOptions);
+    console.log(`Popup activated at ${new Date().toLocaleTimeString()}.`);
+};

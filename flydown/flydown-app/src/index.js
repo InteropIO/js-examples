@@ -15,7 +15,7 @@ async function initializeApp() {
         top: document.getElementById("top-zone"),
         right: document.getElementById("right-zone"),
         bottom: document.getElementById("bottom-zone"),
-    }
+    };
 
     // Calculation of the flydown trigger zones bounds.
     const zonesBounds = {
@@ -43,7 +43,7 @@ async function initializeApp() {
             width: Math.round(zones.bottom.getBoundingClientRect().width),
             height: Math.round(zones.bottom.getBoundingClientRect().height)
         }
-    }
+    };
     
     // Unique flydown trigger zone identifiers.
     const zoneIDs = {
@@ -51,7 +51,7 @@ async function initializeApp() {
         top: "topZone",
         right: "rightZone",
         bottom: "bottomZone"
-    }
+    };
 
     // Create a flydown window.
     createFlydownWindow(zonesBounds, zoneIDs);
