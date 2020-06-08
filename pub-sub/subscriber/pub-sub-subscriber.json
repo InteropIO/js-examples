@@ -1,12 +1,19 @@
 {
     "name": "pubSubSubscriber",
     "title": "Pub/Sub Subscriber",
-    "caption": "Pub/Sub Subscriber",
+    "caption": "GLue42 Pub/Sub Example",
     "type": "window",
+    "ignoreSavedLayout": true,
     "details": {
         "url": "http://localhost:4242/pub-sub/subscriber/src/index.html",
         "mode": "flat",
-        "width": 400,
-        "height": 400
+        "width": 480,
+        "height": 152,
+        "minWidth": 480,
+        "top": 180,
+        "left": 600,
+        "autoInjectAPI": {
+            "enabled": false
+        }
     }
 }
