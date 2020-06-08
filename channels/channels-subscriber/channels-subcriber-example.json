@@ -11,8 +11,8 @@
         "height": 556,
         "minWidth": 440,
         "minHeight": 400,
-        "top": 130,
-        "left": 130,
+        "top": 120,
+        "left": 700,
         "allowChannels": true,
         "autoInjectAPI": {
             "enabled": false

@@ -1,14 +1,14 @@
+let companyItem;
 let instrumentItem;
 let priceItem;
-let companyItem;
 
 /** SET UP THE APPLICATION **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
+    companyItem = document.getElementById("company");
     instrumentItem = document.getElementById("instrument");
     priceItem = document.getElementById("price");
-    companyItem = document.getElementById("company");
 
     // Initialize the Glue42 library.
     await initializeGlue42()
@@ -17,6 +17,7 @@ async function initializeApp() {
             return 
         });
 
+    // Register an Interop method that will show details about a selected instrument.
     registerInteropMethod();
 };
 
@@ -26,21 +27,25 @@ async function initializeGlue42() {
 };
 
 function registerInteropMethod() {
+
+    // Method definition. The only required property is the name of the method.
     const methoDefinition = {
-        name: "ShowInstrumentDetails",
-        description: "Shows information about an instrument - name, price, company.",
-        accepts: "String name, String company"
+        name: "ShowCompanyDetails",
+        description: "Shows information about a company - name, instrument, instrument price.",
+        accepts: "String company, String instrument"
     };
 
+    // Registering an Interop method by passing a method definition and a callback
+    // that will be executed when the registered Interop method is invoked.
     glue.interop.register(methoDefinition, showInstrumentDetails);
 };
 
 function showInstrumentDetails(args) {
-    const instrumentName = args.name;
     const companyName = args.company;
+    const instrumentName = args.instrument;
     const fakePrice = (Math.random() * 100).toFixed(2);
 
-    instrumentItem.innerText = instrumentName;
     companyItem.innerText = companyName;
+    instrumentItem.innerText = instrumentName;
     priceItem.innerText = fakePrice;
 };
