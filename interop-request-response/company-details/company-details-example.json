@@ -9,8 +9,8 @@
          "mode": "flat",
          "width": 400,
          "height": 270,
-         "top": 160,
-         "left": 160,
+         "top": 140,
+         "left": 400,
          "autoInjectAPI": {
              "enabled": false
          }

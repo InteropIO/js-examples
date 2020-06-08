@@ -10,7 +10,7 @@
         "width": 480,
         "height": 152,
         "minWidth": 480,
-        "top": 180,
+        "top": 160,
         "left": 600,
         "autoInjectAPI": {
             "enabled": false
