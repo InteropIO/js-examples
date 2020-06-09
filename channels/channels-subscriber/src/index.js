@@ -1,26 +1,26 @@
-let channelNameItem;
-let channelColorItem;
-let channelDataItem;
-let channelListJoinItem;
+let channelNameElement;
+let channelColorElement;
+let channelDataElement;
+let channelListJoinElement;
 let joinBtn;
 let leaveBtn;
-let channelListGetContextItem;
+let channelListGetContextElement;
 let getContextBtn;
-let channelContextItem;
+let channelContextElement;
 
 /** SET UP THE APPLICATION **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
-    channelNameItem = document.getElementById("channel-name");
-    channelColorItem = document.getElementById("channel-color");
-    channelDataItem = document.getElementById("channel-data");
-    channelListJoinItem = document.getElementById("channel-list-join");
+    channelNameElement = document.getElementById("channel-name");
+    channelColorElement = document.getElementById("channel-color");
+    channelDataElement = document.getElementById("channel-data");
+    channelListJoinElement = document.getElementById("channel-list-join");
     joinBtn = document.getElementById("join-button");
     leaveBtn = document.getElementById("leave-button");
-    channelListGetContextItem = document.getElementById("channel-list-context");
+    channelListGetContextElement = document.getElementById("channel-list-context");
     getContextBtn = document.getElementById("get-context-button");
-    channelContextItem = document.getElementById("channel-context");
+    channelContextElement = document.getElementById("channel-context");
 
     // Initialize the Glue42 library.
     await initializeGlue42()
@@ -50,14 +50,14 @@ async function initializeGlue42() {
 async function createChannelsMenu() {
     // Get the names of all available channels.
     const allChannels = await glue.channels.all();
-    const optionItem = document.createElement("option");
+    const optionElement = document.createElement("option");
 
     allChannels.sort().forEach(channelName => {
-        const currentOption = optionItem.cloneNode();
+        const currentOption = optionElement.cloneNode();
         
         currentOption.innerText = channelName;
-        channelListJoinItem.appendChild(currentOption);
-        channelListGetContextItem.appendChild(currentOption.cloneNode(true));
+        channelListJoinElement.appendChild(currentOption);
+        channelListGetContextElement.appendChild(currentOption.cloneNode(true));
     });
 };
 
@@ -67,7 +67,7 @@ function subscribeToChannel() {
 };
 
 function handleChannelUpdates(newChannelData) {
-    channelDataItem.innerText = JSON.stringify(newChannelData);
+    channelDataElement.innerText = JSON.stringify(newChannelData);
 };
 
 /** TRACK APPLICATION MOVEMENT BETWEEN CHANNELS **/
@@ -79,14 +79,14 @@ function trackCurrentChannel() {
             // Handle switching to another channel.
             const newChannelContext = await glue.channels.get(newChannelName);
 
-            channelNameItem.innerText = newChannelName;
-            channelColorItem.style.backgroundColor = newChannelContext.meta.color;
+            channelNameElement.innerText = newChannelName;
+            channelColorElement.style.backgroundColor = newChannelContext.meta.color;
         } else {
             // Handle the case where the app is not joined to any channel 
             // (e.g., the user has deselected the current channel).
-            channelNameItem.innerText = "No Channel";
-            channelColorItem.style.backgroundColor = "";
-            channelDataItem.innerText = "";
+            channelNameElement.innerText = "No Channel";
+            channelColorElement.style.backgroundColor = "";
+            channelDataElement.innerText = "";
         }
     });
 };
@@ -99,7 +99,7 @@ function handleButtonClicks() {
 };
 
 function joinChannel() {
-    const selectedChannelName = channelListJoinItem[channelListJoinItem.selectedIndex].text;
+    const selectedChannelName = channelListJoinElement[channelListJoinElement.selectedIndex].text;
 
     // Join a channel programmatically (instead of from the Channel Selector UI).
     glue.channels.join(selectedChannelName);
@@ -111,11 +111,11 @@ function leaveChannel() {
 };
 
 async function getChannelContext() {
-    const selectedChannelName = channelListGetContextItem[channelListGetContextItem.selectedIndex].text;
+    const selectedChannelName = channelListGetContextElement[channelListGetContextElement.selectedIndex].text;
     // Get the context of a channel by a channel name.
     const channelContext = await glue.channels.get(selectedChannelName);
     // Extract the actual data from the channel context object (the value of its `data` property).
     const contextData = JSON.stringify(channelContext.data);
 
-    channelContextItem.innerText = contextData;
+    channelContextElement.innerText = contextData;
 };

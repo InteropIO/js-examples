@@ -1,9 +1,9 @@
-let channelNameItem;
-let channelColorItem;
+let channelNameElement;
+let channelColorElement;
 let currentChannelInput;
 let publishToCurrentBtn;
 let selectChannelAlert;
-let channelListItem;
+let channelListElement;
 let selectedChannelInput;
 let publishToSelectedBtn;
 
@@ -11,12 +11,12 @@ let publishToSelectedBtn;
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
-    channelNameItem = document.getElementById("channel-name");
-    channelColorItem = document.getElementById("channel-color");
+    channelNameElement = document.getElementById("channel-name");
+    channelColorElement = document.getElementById("channel-color");
     currentChannelInput = document.getElementById("data-input-current");
     publishToCurrentBtn = document.getElementById("publish-current-button");
     selectChannelAlert = document.getElementById("select-channel-alert");
-    channelListItem = document.getElementById("channel-list");
+    channelListElement = document.getElementById("channel-list");
     selectedChannelInput = document.getElementById("data-input-selected");
     publishToSelectedBtn = document.getElementById("publish-selected-button");
 
@@ -46,13 +46,13 @@ async function initializeGlue42() {
 async function createChannelsMenu() {
     // Get the names of all available channels.
     const allChannels = await glue.channels.all();
-    const optionItem = document.createElement("option");
+    const optionElement = document.createElement("option");
 
     allChannels.sort().forEach(channelName => {
-        const currentOption = optionItem.cloneNode();
+        const currentOption = optionElement.cloneNode();
         
         currentOption.innerText = channelName;
-        channelListItem.appendChild(currentOption);
+        channelListElement.appendChild(currentOption);
     });
 };
 
@@ -65,13 +65,13 @@ function trackCurrentChannel() {
             // Handle switching to another channel.
             const newChannelContext = await glue.channels.get(newChannelName);
 
-            channelNameItem.innerText = newChannelName;
-            channelColorItem.style.backgroundColor = newChannelContext.meta.color;
+            channelNameElement.innerText = newChannelName;
+            channelColorElement.style.backgroundColor = newChannelContext.meta.color;
         } else {
             // Handle the case where the app is not joined to any channel 
             // (e.g., the user has deselected the current channel).
-            channelNameItem.innerText = "No Channel";
-            channelColorItem.style.backgroundColor = "";
+            channelNameElement.innerText = "No Channel";
+            channelColorElement.style.backgroundColor = "";
         }
     });
 };
@@ -101,7 +101,7 @@ async function publishToCurrent() {
 };
 
 function publishToSelected() {
-    const selectedChannelName = channelListItem[channelListItem.selectedIndex].text;
+    const selectedChannelName = channelListElement[channelListElement.selectedIndex].text;
     const input = selectedChannelInput.value;
     const dataToPublish = { input };
 

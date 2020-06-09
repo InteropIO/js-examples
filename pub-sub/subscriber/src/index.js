@@ -1,17 +1,17 @@
 // Topic for messages on which to subscribe.
 const topic = "Time";
 
-let hoursItem;
-let minutesItem;
-let secondsItem;
+let hoursElement;
+let minutesElement;
+let secondsElement;
 
 /** SET UP THE APPLICATION **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
-    hoursItem = document.getElementById("hours");
-    minutesItem = document.getElementById("minutes");
-    secondsItem = document.getElementById("seconds");
+    hoursElement = document.getElementById("hours");
+    minutesElement = document.getElementById("minutes");
+    secondsElement = document.getElementById("seconds");
     
     // Initialize the Glue42 library.
     await initializeGlue42()
@@ -41,7 +41,7 @@ function handleData(data) {
     const minutes = data.minutes;
     const seconds = data.seconds;
 
-    hoursItem.innerText = hours;
-    minutesItem.innerText = minutes;
-    secondsItem.innerText = seconds;
+    hoursElement.innerText = hours;
+    minutesElement.innerText = minutes;
+    secondsElement.innerText = seconds;
 };

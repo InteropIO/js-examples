@@ -1,5 +1,5 @@
-let appItemTemplate;
-let instanceItemTemplate;
+let appElementTemplate;
+let instanceElementTemplate;
 let appContainer;
 let instanceContainer;
 
@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", initializeApp);
 async function initializeApp() {
     
     // Create DOM element templates for the apps and instances.
-    createListItemTemplates();
+    createListElementTemplates();
     
     appContainer = document.getElementById("app-container");
     instanceContainer = document.getElementById("instance-list");
@@ -71,7 +71,7 @@ function updateAppList(app) {
     if (app.hidden === false) {
         // If an app is not in the list, add it, otherwise - remove it.
         if (!appToRemove) {
-            const appToAdd = appItemTemplate.cloneNode(true);
+            const appToAdd = appElementTemplate.cloneNode(true);
     
             appToAdd.id = app.name;
             appToAdd.textContent = app.title;
@@ -83,26 +83,26 @@ function updateAppList(app) {
 };
 
 function addInstanceToList(instance) {
-    const existingInstanceItem = document.getElementById(`${instance.application.name}-instance`);
+    const existingInstanceElement = document.getElementById(`${instance.application.name}-instance`);
 
     // Show only the instances of apps that are visible in the App Manager.
     if (instance.application.hidden === false) {
 
         // If the instance is not on the list, add it, otherwise - increment its count.
-        if (!existingInstanceItem) {
-            const instanceToAdd = instanceItemTemplate.cloneNode(true);
-            const instanceNameItem = instanceToAdd.querySelector("span[name=\"instance\"]");
-            const instanceCountItem = instanceToAdd.querySelector("span[name=\"count\"]");
+        if (!existingInstanceElement) {
+            const instanceToAdd = instanceElementTemplate.cloneNode(true);
+            const instanceNameElement = instanceToAdd.querySelector("span[name=\"instance\"]");
+            const instanceCountElement = instanceToAdd.querySelector("span[name=\"count\"]");
     
             instanceToAdd.id = `${instance.application.name}-instance`;
-            instanceNameItem.innerText = instance.application.title;
-            instanceCountItem.innerText = instance.application.instances.length;
+            instanceNameElement.innerText = instance.application.title;
+            instanceCountElement.innerText = instance.application.instances.length;
     
             instanceContainer.appendChild(instanceToAdd);
 
         } else {
-            const instanceCountItem = existingInstanceItem.querySelector("span[name=\"count\"]");
-            instanceCountItem.innerText = instance.application.instances.length;
+            const instanceCountElement = existingInstanceElement.querySelector("span[name=\"count\"]");
+            instanceCountElement.innerText = instance.application.instances.length;
         }
     }
     
@@ -120,18 +120,18 @@ function removeInstanceFromList(instance) {
         if (instanceCount === 0) {
             instanceToRemove.remove();
         } else {
-            const instanceCountItem = instanceToRemove.querySelector("span[name=\"count\"]");
-            instanceCountItem.innerText = instanceCount;
+            const instanceCountElement = instanceToRemove.querySelector("span[name=\"count\"]");
+            instanceCountElement.innerText = instanceCount;
         };
     }
 };
 
-function createListItemTemplates() {
-    appItemTemplate = document.createElement("button");
-    appItemTemplate.classList.add("list-group-item", "list-group-item-action")
+function createListElementTemplates() {
+    appElementTemplate = document.createElement("button");
+    appElementTemplate.classList.add("list-group-item", "list-group-item-action")
     
-    instanceItemTemplate = document.createElement("li");
-    instanceItemTemplate.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
+    instanceElementTemplate = document.createElement("li");
+    instanceElementTemplate.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
 
     const instanceNameSpan = document.createElement("span");
     instanceNameSpan.setAttribute("name", "instance");
@@ -140,6 +140,6 @@ function createListItemTemplates() {
     instanceCountSpan.classList.add("badge", "badge-primary", "badge-pill");
     instanceCountSpan.setAttribute("name", "count");
 
-    instanceItemTemplate.appendChild(instanceNameSpan);
-    instanceItemTemplate.appendChild(instanceCountSpan);
+    instanceElementTemplate.appendChild(instanceNameSpan);
+    instanceElementTemplate.appendChild(instanceCountSpan);
 };

@@ -1,14 +1,14 @@
-let companyItem;
-let instrumentItem;
-let priceItem;
+let companyElement;
+let instrumentElement;
+let priceElement;
 
 /** SET UP THE APPLICATION **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
-    companyItem = document.getElementById("company");
-    instrumentItem = document.getElementById("instrument");
-    priceItem = document.getElementById("price");
+    companyElement = document.getElementById("company");
+    instrumentElement = document.getElementById("instrument");
+    priceElement = document.getElementById("price");
 
     // Initialize the Glue42 library.
     await initializeGlue42()
@@ -45,7 +45,7 @@ function showInstrumentDetails(args) {
     const instrumentName = args.instrument;
     const fakePrice = (Math.random() * 100).toFixed(2);
 
-    companyItem.innerText = companyName;
-    instrumentItem.innerText = instrumentName;
-    priceItem.innerText = fakePrice;
+    companyElement.innerText = companyName;
+    instrumentElement.innerText = instrumentName;
+    priceElement.innerText = fakePrice;
 };
