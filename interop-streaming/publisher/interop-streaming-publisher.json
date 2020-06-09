@@ -1,0 +1,12 @@
+{
+    "name":"streamPublisher",
+    "title":"Interop Stream Publisher",
+    "caption": "Glue42 Interop Streaming Example",
+    "type": "window",
+    "details":{
+         "url":"http://localhost:4242/interop-streaming/publisher/src/index.html",
+         "mode": "flat",
+         "width": 400,
+         "height": 400
+    }
+}

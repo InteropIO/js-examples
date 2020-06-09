@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../assets/t42bootstrap.bundle.css">
+    <title>Interop Streaming Publisher Demo</title>
+</head>
+
+<body class="container-fluid p-2" style="overflow: overlay;">
+    <div class="card bg-primary mb-2">
+        <h3 class="card-header">Active Subscriptions: <span id="subscription-count">0</span></h3>
+        <div class="card-body">
+            <p class="card-text">
+                Click the <b>Create Stream</b> button to create an Interop stream. 
+                Once the stream has been created, you can click the <b>Close Stream</b> button to close the stream.
+            </p>
+            <button type="button" id="stream-button" streaming="true" class="btn btn-primary">Create Stream</button>
+        </div>
+    </div>
+    <div class="card bg-primary mb-2">
+        <h3 class="card-header">Publish Data</h3>
+        <div class="card-body">
+            <div class="form-group">
+                <input type="text" class="form-control" id="data-input" aria-describedby="data-help">
+                <small id="data-help" class="form-text text-muted">
+                    Data to publish. Click <b>Publish to All</b> to send the data to all subscribers, 
+                    or <b>Publish to Branch</b> to send it only to the subscribers grouped on the stream branch.
+                </small>
+            </div>
+            <button type="button" id="publish-all-button" class="btn btn-primary mr-2">Publish to All</button>
+            <button type="button" id="publish-branch-button" class="btn btn-success">Publish to Branch</button>
+            <div id="no-stream-warning" class="alert alert-danger mt-3" style="display: none;">You must create a stream first!</div>
+        </div>
+    </div>
+    <div class="card bg-primary" style="min-height: 142px;">
+        <h3 class="card-header">Subscription Requests</h3>
+        <div id="subscription-requests" class="card-body px-2 pt-2 pb-0"></div>
+    </div>
+</body>
+
+<script src="../../../node_modules/@glue42/desktop/dist/desktop.umd.js"></script>
+<script src="index.js"></script>
+
+</html>

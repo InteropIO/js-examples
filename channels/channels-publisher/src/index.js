@@ -105,7 +105,7 @@ function publishToSelected() {
     const input = selectedChannelInput.value;
     const dataToPublish = { input };
 
-    // Publish data to a specified channel by provide a channel name 
+    // Publish data to a specified channel by providing a channel name 
     // as a second parameter to the `publish()` method.
     glue.channels.publish(dataToPublish, selectedChannelName);
     selectedChannelInput.value = "";
