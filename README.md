@@ -22,71 +22,27 @@ Now you should be able to start all registered applications from the **Glue42 En
 
 ## Examples
 
-### Interop Example
-
-This example contains two applications which use *methods* and *streams* to communicate.
-
-#### Instrument Details
-
-Application which:
-
-- registers *ShowInstrumentDetails* which visualizes the data sent from Instrument list;
-- subscribes for *InstrumentPrice* and visualizes the received data;
-
-#### Instrument List
-
-Application which:
-
-- invokes *ShowInstrumentDetails* when an instrument is clicked;
-- creates the stream *InstrumentPrice*;
-- accepts different subscribers on different branches and pushes different data to them;
-
 ### Application Management Example
 
 This is an example application which uses the Application Management API to start and list applications.
 
-- lists the names of all registered applications
-- lists the instances of the currently running applications
-- starts application instances
-- listens for any added or removed applications
-- listens for any started or stopped instances of applications
+- lists the names of all registered applications visible in the App Manager;
+- lists the instances of the currently running applications visible in the App Manager;
+- starts application instances;
+- listens for any added or removed applications;
+- listens for any started or stopped instances of applications;
 
 ### Channels Example
 
-This example contains two applications which use the Channels API.
-You can open two instances of the subscriber app and keep them on different channels and play around with the interactions.
+This example contains two applications which use the Channels API. You can open more than one instance of the subscriber app to use different channels.
 
-#### Channels Publisher App
+#### Channels Publisher
 
-- lists some symbols;
-- publishes the symbol name to the channel when a symbol is clicked;
-- the publisher app in turn becomes a subscriber by showing info coming from the subscriber app;
+After selecting a channel, you an publish any data to the current channel or to any other channel.
 
-#### Channels Subscriber App
+#### Channels Subscriber
 
-- subscribes to a channel and displays data passed to it;
-- the subscriber app becomes a publisher app itself when the **Send back via the Channels API** button is clicked;
-
-### Shared Contexts Example
-
-This is a basic example of two applications that use the Shared Contexts API to communicate.
-
-#### Publisher
-
-Application which creates the *ExampleContext* context and changes it every second.
-
-#### Subscriber
-
-Application which listens for changes in *ExampleContext* and visualizes it.
-
-### Streaming Example
-
-Basic example which listens for a stream and logs the received data.
-Make sure you run the Sample Price Publisher app first located [here](https://github.com/Tick42/g4e-tutorial/tree/master/support).
-
-### Pub/Sub Example
-
-Basic example which publishes messages on a topic and subscribes for messages published on that topic.
+Select a channel from the Channel Selector UI or join/leave channels programmatically. Get the context of any channel. The context data of the current channel is also displayed in the app.
 
 ### Flydown Example
 
@@ -100,6 +56,30 @@ The app that will trigger the flydown window.
 
 The window that will be used as a flydown window.
 
+### Interop Example
+
+This example contains two applications which use an Interop method to communicate.
+
+#### Company Details
+
+Registers an Interop method that will show details about a selected company from the Company List app.
+
+#### Company List
+
+Select a company from the list to invoke the Interop method that will show details about the selected company in the Company Details app.
+
+### Interop Streaming Example
+
+Basic Interop Streaming example consisting of an Interop Publisher and an Interop Subscriber app.
+
+#### Interop Publisher
+
+Creates a stream and handles stream subscriptions. Shows publishing stream data to all subscribers and to a specific stream branch.
+
+#### Interop Subscriber
+
+Subscribes to a stream and shows the received stream data.
+
 ### Popup Example
 
 Demo app demonstrating the popup window functionality in **Glue42 Enterprise**.
@@ -111,3 +91,11 @@ The app that will trigger the popup window.
 #### Popup Window
 
 The window that will be used as a popup window.
+
+### Pub/Sub Example
+
+Basic example which publishes messages on a topic and subscribes for messages published on that topic.
+
+### Shared Contexts Example
+
+Example of manipulating a context object that holds information about the current theme of **Glue42 Enterprise**.
