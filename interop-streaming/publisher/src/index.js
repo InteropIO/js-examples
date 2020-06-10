@@ -1,5 +1,7 @@
 // Name for the stream to be created.
 const streamName = "G42.StreamDemo";
+// Name for a stream branch on which to group subscribers.
+const branchName = "Private";
 
 let stream;
 let subscriptionCountElement;
@@ -7,6 +9,7 @@ let streamBtn;
 let dataInput;
 let publishAllBtn;
 let publishBranchBtn;
+let noStreamWarning;
 let subscriptionRequestsContainter;
 let subscriptionRequestTemplate;
 
@@ -19,6 +22,7 @@ async function initializeApp() {
     dataInput = document.getElementById("data-input");
     publishAllBtn = document.getElementById("publish-all-button");
     publishBranchBtn = document.getElementById("publish-branch-button");
+    noStreamWarning = document.getElementById("no-stream-warning");
     subscriptionRequestsContainter = document.getElementById("subscription-requests");
     subscriptionRequestTemplate = createSubscriptionRequestTemplate();
 
@@ -39,88 +43,138 @@ async function initializeGlue42() {
     window.glue = await Glue();
 };
 
-function handleStream() {
-    const streamState = streamBtn.getAttribute("streaming");
-
-    if (streamState === "true") {
-        streamBtn.innerText = "Close Stream";
-        streamBtn.setAttribute("streaming", "false");
-        
-        createInteropStream();
-    } else if (streamState === "false") {
-        streamBtn.innerText = "Create Stream";
-        streamBtn.setAttribute("streaming", "true");
-
-        closeInteropStream();
-    };
-};
-
+/** SUBSCRIPTION AND SUBSCRIPTION REQUEST HANDLERS **/
 const subscriptions = {
+    // Handler for added subscriptions.
     onAdded: (subscription) => {
         const subscriptionCount = subscription.stream.subscriptions().length;
 
         subscriptionCountElement.innerText = subscriptionCount;
     },
+    // Hnadler for removed subscriptions.
     onRemoved: (subscription) => {
         const subscriptionCount = subscription.stream.subscriptions().length;
 
         subscriptionCountElement.innerText = subscriptionCount;
     },
+    // Handler for subscription requests.
     onRequested: (request) => {
         const isntanceID = request.instance.windowId;
         const requestElement = subscriptionRequestTemplate.cloneNode(true);
-        const requestText = requestElement.getElementsByTagName("p")[0];
-        const acceptBtn = requestElement.getElementsByTagName("button")[0];
-        const acceptOnBranchBtn = requestElement.getElementsByTagName("button")[1];
-        const rejectBtn = requestElement.getElementsByTagName("button")[2];
+        const requestTextElement = requestElement.getElementsByTagName("p")[0];
+        const requestButtons = requestElement.getElementsByTagName("button");
+        const acceptBtn = requestButtons[0];
+        const acceptOnBranchBtn = requestButtons[1];
+        const rejectBtn = requestButtons[2];
 
-        requestText.innerText = `Received subscription request by application instance with ID: "${isntanceID}"`;
+        requestTextElement.innerText = `Received subscription request by application instance with ID: "${isntanceID}"`;
 
         acceptBtn.addEventListener("click", acceptHandler);
         acceptOnBranchBtn.addEventListener("click", acceptOnBranchHandler);
         rejectBtn.addEventListener("click", rejectHandler);
 
+        // Subscription requests will fail on the side of the subscriber after 30 seconds (by default) 
+        // if the stream method does not respond within that time frame. 
+        // Set a 30 second timeout to remove the request once it has failed on the side of the subscriber.
+        const timeout = setTimeout(removeSubscriptionRequest, 30000, requestElement);
+
+        function removeSubscriptionRequest(requestElement) {
+            requestElement.remove();
+        };
+
         function acceptHandler() {
+            // Accept the request on the default stream branch.
             request.accept();
+
             this.parentNode.remove();
+            clearTimeout(timeout);
         };
 
         function acceptOnBranchHandler() {
-            request.acceptOnBranch();
+            // Accept the request on a stream branch by specifying a branch key.
+            request.acceptOnBranch(branchName);
+
             this.parentNode.remove();
+            clearTimeout(timeout);
         };
 
         function rejectHandler() {
+            // Reject the request.
             request.reject();
+            
             this.parentNode.remove();
+            clearTimeout(timeout);
         };
 
         subscriptionRequestsContainter.appendChild(requestElement);
     }
 };
 
+/** CREATE OR CLOSE THE STREAM **/
+function handleStream() {
+    const streamState = streamBtn.getAttribute("streaming");
+
+    if (streamState === "false") {
+        createInteropStream();
+
+        streamBtn.innerText = "Close Stream";
+        streamBtn.setAttribute("streaming", "true");  
+    } else if (streamState === "true") {
+        closeInteropStream();
+
+        streamBtn.innerText = "Create Stream";
+        streamBtn.setAttribute("streaming", "false");
+    };
+};
+
 async function createInteropStream() {
+    // Optional subscription and subscription request handlers.
     const streamOptions = {
         subscriptionAddedHandler: subscriptions.onAdded,
         subscriptionRemovedHandler: subscriptions.onRemoved,
         subscriptionRequestHandler: subscriptions.onRequested
     };
 
+    // Creating the stream.
     stream = await glue.interop.createStream(streamName, streamOptions);
+    handleAlert("none");
 };
 
 function closeInteropStream() {
+    // Closing the stream.
     stream.close();
+    stream = undefined;
     subscriptionCountElement.innerText = "0";
     subscriptionRequestsContainter.innerHTML = "";
 };
 
 function publishToAll() {
-
+    if (stream) {
+        const dataToPublish = { data: dataInput.value };
+        
+        stream.push(dataToPublish);
+        handleAlert("none");
+        dataInput.value = "";
+    } else {
+        handleAlert("block");
+    };
 };
 
 function publishToBranch() {
+    if (stream) {
+        const dataToPublish = { data: dataInput.value };
+        
+        stream.push(dataToPublish, branchName);
+        dataInput.value = "";
+        handleAlert("none");
+    } else {
+        handleAlert("block");
+    };
+};
 
+// Show or hide the warning for publishing when the stream has not yet been created.
+function handleAlert(alertState) {
+    noStreamWarning.style.display = alertState;
 };
 
 // Create a template for the subscription requests.
@@ -132,28 +186,26 @@ function createSubscriptionRequestTemplate() {
     const textHolder = document.createElement("p");
 
     textHolder.classList.add("card-text");
-    template.appendChild(textHolder);
 
     const acceptBtn = document.createElement("button");
 
     acceptBtn.innerText = "Accept";
     acceptBtn.setAttribute("type", "button");
     acceptBtn.classList.add("btn", "btn-primary", "mr-2");
-    template.appendChild(acceptBtn);
 
     const acceptOnBranchBtn = acceptBtn.cloneNode(true);
 
     acceptOnBranchBtn.innerText = "Accept on Branch";
     acceptOnBranchBtn.classList.remove("btn-primary");
     acceptOnBranchBtn.classList.add("btn-success");
-    template.appendChild(acceptOnBranchBtn);
 
     const rejectBtn = acceptBtn.cloneNode(true);
 
     rejectBtn.innerText = "Reject";
     rejectBtn.classList.remove("btn-primary");
     rejectBtn.classList.add("btn-danger");
-    template.appendChild(rejectBtn);
+    
+    template.append(textHolder, acceptBtn, acceptOnBranchBtn, rejectBtn);
 
     return template;
 };

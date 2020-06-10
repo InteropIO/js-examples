@@ -1,18 +1,18 @@
 {
-    "name":"streamPublisher",
-    "title":"Interop Stream Publisher",
+    "name":"streamSubscriber",
+    "title":"Interop Streaming Subscriber Demo",
     "caption": "Glue42 Interop Streaming Example",
     "type": "window",
     "ignoreSavedLayout": true,
     "details":{
-         "url":"http://localhost:4242/interop-streaming/publisher/src/index.html",
+         "url":"http://localhost:4242/interop-streaming/subscriber/src/index.html",
          "mode": "flat",
-         "width": 550,
-         "height": 565,
+         "width": 440,
+         "height": 300,
          "minWidth": 400,
-         "minHeight": 400,
+         "minHeight": 250,
          "top": 200,
-         "left": 200,
+         "left": 800,
          "autoInjectAPI": {
              "enabled": false
          }

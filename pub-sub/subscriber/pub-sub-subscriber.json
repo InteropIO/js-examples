@@ -9,7 +9,8 @@
         "mode": "flat",
         "width": 480,
         "height": 152,
-        "minWidth": 480,
+        "minWidth": 450,
+        "minHeight": 100,
         "top": 160,
         "left": 600,
         "autoInjectAPI": {
