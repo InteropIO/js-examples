@@ -1,0 +1,20 @@
+{
+    "name": "myWindow",
+    "title": "My Window Example",
+    "caption": "Glue42 Window Management Example",
+    "type": "window",
+    "ignoreSavedLayout": true,
+    "details": {
+        "url": "http://localhost:4242/window-management/my-window/src/index.html",
+        "mode": "tab",
+        "top": 220,
+        "left": 220,
+        "width": 600,
+        "height": 600,
+        "minWidth": 500,
+        "minHeight": 500,
+        "autoInjectAPI": {
+            "enabled": false
+        }
+    }
+}
