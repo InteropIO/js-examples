@@ -39,39 +39,43 @@ function handleSubscription() {
     };
 };
 
+const subscriptions = {
+    onAccepted: () => {
+        subscriptionBtn.innerText = "Unsubscribe";
+        dataElement.innerText = "Successful subscription! No stream data available yet.";
+    },
+    onData: (streamData) => {
+        const receivedData = streamData.data;
+    
+        dataElement.innerText = JSON.stringify(receivedData);
+    },
+    onClosed: () => {
+        subscriptionBtn.innerText = "Subscribe";
+        subscriptionBtn.setAttribute("subscribed", "false");
+        dataElement.innerText = "The subscription has been closed.";
+    },
+    onFailed: () => {
+        subscriptionBtn.setAttribute("subscribed", "false");
+        dataElement.innerText = "Subscription rejected or failed!";
+    }
+};
+
+// Subscribe to the stream.
 async function subscribeToStream() {
+
+    // Optional subscription handlers.
     const subscriptionParams = {
-        onConnected: handleAcceptedSubscription,
-        onData: handleReceivedData,
-        onClosed: handleClosedSubscription
+        onConnected: subscriptions.onAccepted,
+        onData: subscriptions.onData,
+        onClosed: subscriptions.onClosed
     }
 
+    // Creating the stream subscription.
     subscription = await glue.interop.subscribe(streamName, subscriptionParams)
-        .catch(handleFailedSubscription);
-};
-
-function handleAcceptedSubscription() {
-    subscriptionBtn.innerText = "Unsubscribe";
-    dataElement.innerText = "Successful subscription! No stream data available yet.";
-};
-
-function handleReceivedData(streamData) {
-    const receivedData = streamData.data;
-
-    dataElement.innerText = JSON.stringify(receivedData);
-};
-
-function handleClosedSubscription() {
-    subscriptionBtn.innerText = "Subscribe";
-    subscriptionBtn.setAttribute("subscribed", "false");
-    dataElement.innerText = "The subscription has been closed.";
-};
-
-function handleFailedSubscription() {
-    subscriptionBtn.setAttribute("subscribed", "false");
-    dataElement.innerText = "Subscription rejected or failed!";
+        .catch(subscriptions.onFailed);
 };
 
 function closeSubscription() {
+    // Closing the subscription.
     subscription.close();
 };

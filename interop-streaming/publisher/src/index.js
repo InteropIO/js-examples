@@ -75,7 +75,8 @@ const subscriptions = {
 
         // Subscription requests will fail on the side of the subscriber after 30 seconds (by default) 
         // if the stream method does not respond within that time frame. 
-        // Set a 30 second timeout to remove the request once it has failed on the side of the subscriber.
+        // Set a 30 second timeout to remove the request if it is not accepted or rejected within that period
+        // and therefore fails on the side of the subscriber.
         const timeout = setTimeout(removeSubscriptionRequest, 30000, requestElement);
 
         function removeSubscriptionRequest(requestElement) {
@@ -152,7 +153,9 @@ function publishToAll() {
     if (stream) {
         const dataToPublish = { data: dataInput.value };
         
+        // Push data to all stream subscribers.
         stream.push(dataToPublish);
+
         handleAlert("none");
         dataInput.value = "";
     } else {
@@ -164,7 +167,9 @@ function publishToBranch() {
     if (stream) {
         const dataToPublish = { data: dataInput.value };
         
+        // Push data only to the subscribers grouped on the specified stream branch.
         stream.push(dataToPublish, branchName);
+        
         dataInput.value = "";
         handleAlert("none");
     } else {
