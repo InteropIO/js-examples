@@ -8,9 +8,17 @@
     <title>Window Management Demo</title>
 </head>
 
-<body class="container-fluid p-2" style="overflow: hidden;">
+<body class="container-fluid px-1 py-2" style="overflow: hidden;">
+    <!-- Invalid input alert. -->
+    <div id="alert" class="alert alert-danger alert-dismissible fade show" style="position: fixed; left: 20vw; right: 20vw; top: 45vh; display: none;">
+        <span></span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+
     <div class="row m-0">
-        <div class="col-8 p-0" style="height: 97.5vh; overflow-y: scroll; overflow-x: hidden;">
+        <div class="col-9 px-1  " style="height: calc(100vh - 16px); overflow-y: scroll; overflow-x: hidden;">
             <div class="card bg-primary mb-2">
                 <h3 class="card-header">Opening Windows</h3>
                 <div class="card-body p-2">
@@ -54,11 +62,11 @@
                         <div class="mr-4">
                             <p class="mb-1">Select window mode:</p>
                             <div class="form-check form-check-inline mt-1">
-                                <input class="form-check-input" type="radio" name="html-window" id="html-window" value="html" checked>
+                                <input class="form-check-input" type="radio" name="html-window" value="html" checked>
                                 <label class="form-check-label mr-2" for="html-window">html</label>
-                                <input class="form-check-input" type="radio" name="flat-window" id="flat-window" value="flat">
+                                <input class="form-check-input" type="radio" name="flat-window" value="flat">
                                 <label class="form-check-label mr-2" for="flat-window">flat</label>
-                                <input class="form-check-input" type="radio" name="tab-window" id="tab-window" value="tab">
+                                <input class="form-check-input" type="radio" name="tab-window" value="tab">
                                 <label class="form-check-label" for="tab-window">tab</label>
                             </div>
                         </div>
@@ -69,8 +77,34 @@
                 </div>
             </div>
             <div class="card bg-primary">
-                <h3 class="card-header">Controlling the Current Window</h3>
+                <h3 class="card-header">Controlling a Specific Window</h3>
                 <div class="card-body p-1">
+                    <div class="row m-0">
+                        <div class="card bg-secondary flex-fill mb-1 mr-1">
+                            <div class="card-body d-flex flex-column p-2">
+                                <h4 class="card-title">Existing Window IDs</h4>
+                                <p id="window-ids" class="card-text">Click the button to get the IDs of all existing visible windows.</p>
+                                <div class="row m-0 flex-grow-1 align-items-end">
+                                    <button type="button" id="get-ids-button" class="btn btn-primary">Get Window IDs</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card bg-secondary flex-fill mb-1">
+                            <div class="card-body p-2">
+                                <h4 class="card-title">Find Window by ID</h4>
+                                <p class="card-text">Enter a window ID to select a window to control.</p>
+                                <div class="row m-0 align-items-end">
+                                    <div class="form-group mb-0 mr-2">
+                                        <label for="window-id">Window ID</label>
+                                        <input type="text" class="form-control" id="window-id" placeholder="21596_18">
+                                    </div>
+                                    <div>
+                                        <button type="button" id="find-button" class="btn btn-primary">Find Window</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row m-0">
                         <div class="card bg-secondary flex-fill mb-1 mr-1">
                             <div class="card-body p-2">
@@ -126,10 +160,11 @@
                         </div> 
                         <div class="card bg-secondary flex-fill mb-1">
                             <div class="card-body p-2">
-                                <h4 class="card-title">Zoom</h4>
-                                <p class="card-text">Use the buttons to change the zoom factor.</p>
-                                <button type="button" id="zoom-in-button" class="btn btn-primary mr-2">Zoom In</button>
-                                <button type="button" id="zoom-out-button" class="btn btn-primary">Zoom Out</button>
+                                <h4 class="card-title">Maximize, Minimize, Restore</h4>
+                                <p class="card-text">Use the buttons to maximize, minimize or restore the window.</p>
+                                <button type="button" id="maximize-button" class="btn btn-primary mr-2">Maximize</button>
+                                <button type="button" id="minimize-button" class="btn btn-primary mr-2">Minimize</button>
+                                <button type="button" id="restore-button" class="btn btn-primary">Restore</button>
                             </div>
                         </div> 
                     </div>
@@ -152,59 +187,20 @@
                             <div class="card-body p-2">
                                 <h4 class="card-title">Hide or Show Tab Header</h4>
                                 <p class="card-text">Use the button to hide or show the window tab header.</p>
-                                <button type="button" id="tab-header-button" class="btn btn-primary mr-2">Hide</button>
+                                <button type="button" id="tab-header-button" class="btn btn-primary mr-2">Toggle Tab Header Visibility</button>
                             </div>
                         </div> 
-                    </div>
-                    <div class="row m-0">
-                        <div class="card bg-secondary flex-fill">
-                            <div class="card-body p-2">
-                                <h4 class="card-title">Attach or Detach Tabs</h4>
-                                <p class="card-text">
-                                    Open one or more <b>tab</b> windows from the <b>Window Manipulation</b> example and use the form below to get their IDs. 
-                                    Enter the ID of a tab window and attach it to the current window. Enter the ID of an already attached tab window to detach it.
-                                    Works only for tab windows.
-                                </p>
-                                <div class="row m-0">
-                                    <div class="col-6 px-0">
-                                        <div class="card">
-                                            <div class="card-body p-2">
-                                                <h4 class="card-title">Tab Window IDs</h4>
-                                                <p class="card-text">Click the button to retrieve the IDs of all opened tab windows.</p>
-                                                <button type="button" id="get-ids-button" class="btn btn-primary">Get Tab IDs</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 d-flex flex-row align-items-end">
-                                        <div class="form-group mb-0 mr-2">
-                                            <label for="window-id">Tab Window ID</label>
-                                            <input type="text" style="width: 150px" class="form-control" id="window-id" placeholder="21596_18">
-                                        </div>
-                                        <div>
-                                            <button type="button" id="attach-button" class="btn btn-primary mr-2">Attach</button>
-                                            <button type="button" id="detach-button" class="btn btn-primary">Detach</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-4 d-flex pl-1 pr-0" style="height: 97.5vh; overflow-y: scroll; overflow-x: hidden;">
+        <div class="col-3 d-flex px-1" style="height: calc(100vh - 16px); overflow-y: scroll; overflow-x: hidden;">
             <div class="card bg-primary flex-grow-1">
-                <div class="card-header d-flex justify-content-between align-items-center py-2"><h3 class="mb-0">Window Event Log</h3><button type="button" id="clear-button" class="btn btn-primary">Clear Logs</button></div>
-                <div class="card-body">
-                    <p class="card-text mb-2">Click the button to retrieve the IDs of all opened tab windows.</p>
-                    <p class="card-text mb-2">Click the button to retrieve the IDs of all opened tab windows.</p>
-                    <p class="card-text mb-2">Click the button to retrieve the IDs of all opened tab windows.</p>
-                    <p class="card-text mb-2">Click the button to retrieve the IDs of all opened tab windows.</p>
-                    <p class="card-text mb-2">Click the button to retrieve the IDs of all opened tab windows.</p>
-                    <p class="card-text mb-2">Click the button to retrieve the IDs of all opened tab windows.</p>
-                    <p class="card-text mb-2">Click the button to retrieve the IDs of all opened tab windows.</p>
-                    <p class="card-text mb-2">Click the button to retrieve the IDs of all opened tab windows.</p>
+                <div class="card-header d-flex justify-content-between align-items-center py-2">
+                    <h3 class="mb-0">Event Log</h3>
+                    <button type="button" id="clear-button" class="btn btn-primary">Clear Logs</button>
                 </div>
+                <div id="event-log" class="card-body"></div>
             </div>
         </div>
     </div>
