@@ -7,12 +7,10 @@
     "details": {
         "url": "http://localhost:4242/window-management/my-window/src/index.html",
         "mode": "tab",
-        "top": 220,
-        "left": 220,
-        "width": 600,
-        "height": 600,
-        "minWidth": 500,
-        "minHeight": 500,
+        "top": 150,
+        "left": 150,
+        "width": 840,
+        "height": 688,
         "autoInjectAPI": {
             "enabled": false
         }
