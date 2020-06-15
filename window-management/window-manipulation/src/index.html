@@ -62,12 +62,16 @@
                         <div class="mr-4">
                             <p class="mb-1">Select window mode:</p>
                             <div class="form-check form-check-inline mt-1">
-                                <input class="form-check-input" type="radio" name="html-window" value="html" checked>
-                                <label class="form-check-label mr-2" for="html-window">html</label>
-                                <input class="form-check-input" type="radio" name="flat-window" value="flat">
-                                <label class="form-check-label mr-2" for="flat-window">flat</label>
-                                <input class="form-check-input" type="radio" name="tab-window" value="tab">
-                                <label class="form-check-label" for="tab-window">tab</label>
+                                <input class="form-check-input" type="radio" value="html" checked>
+                                <label class="form-check-label" name="window-mode">html</label>
+                            </div>
+                            <div class="form-check form-check-inline mt-1">
+                                <input class="form-check-input" type="radio" value="flat">
+                                <label class="form-check-label" name="window-mode">flat</label>
+                            </div>
+                            <div class="form-check form-check-inline mt-1">
+                                <input class="form-check-input" type="radio" value="tab">
+                                <label class="form-check-label" name="window-mode">tab</label>
                             </div>
                         </div>
                         <div>
@@ -99,7 +103,7 @@
                                         <input type="text" class="form-control" id="window-id" placeholder="21596_18">
                                     </div>
                                     <div>
-                                        <button type="button" id="find-button" class="btn btn-primary">Find Window</button>
+                                        <button type="button" id="select-button" class="btn btn-primary">Select Window</button>
                                     </div>
                                 </div>
                             </div>
@@ -200,7 +204,9 @@
                     <h3 class="mb-0">Event Log</h3>
                     <button type="button" id="clear-button" class="btn btn-primary">Clear Logs</button>
                 </div>
-                <div id="event-log" class="card-body"></div>
+                <div id="event-log" class="card-body">
+                    aadfhadajfj
+                </div>
             </div>
         </div>
     </div>

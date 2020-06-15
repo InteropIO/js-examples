@@ -1,7 +1,7 @@
 const buttons = {
     open: undefined,
     getWindowIDs: undefined,
-    find: undefined,
+    select: undefined,
     resize: undefined,
     move: undefined,
     setTitle: undefined,
@@ -37,6 +37,7 @@ const inputs = {
 };
 
 let radioButtons;
+let selectedWindowMode;
 let windowIDsContainer;
 let logContainer;
 let invalidInputAlert;
@@ -60,7 +61,7 @@ async function initializeApp() {
     const handlers = {
         openWindow: openWindow,
         getWindowIDs: getWindowIDs,
-        findWindow: findWindow,
+        selectWindow: selectWindow,
         resizeWindow: resizeWindow,
         moveWindow: moveWindow,
         setWindowTitle: setWindowTitle,
@@ -103,7 +104,7 @@ function extractWindowIDs(windowIDs, window) {
     return windowIDs;
 };
 
-function findWindow() {
+function selectWindow() {
 
 };
 
@@ -187,11 +188,19 @@ function setTabHeaderVisibility() {
 };
 
 function clearLogs() {
-
+    logContainer.innerText = "";
 };
 
-function selectWindowMode() {
+function selectWindowMode(event) {
+    const selectedButton = event.target.previousElementSibling;
+    selectedWindowMode = selectedButton.value;
 
+    radioButtons.forEach((element) => {
+        const button = element.previousElementSibling;
+        button.checked = false;
+    });
+
+    selectedButton.checked = true;
 };
 
 /** DOM Element Manipulations **/
@@ -199,7 +208,7 @@ function getDOMElements() {
     // Buttons.
     buttons.open = document.getElementById("open-button");
     buttons.getWindowIDs = document.getElementById("get-ids-button");
-    buttons.find = document.getElementById("find-button");
+    buttons.select = document.getElementById("select-button");
     buttons.resize = document.getElementById("resize-button");
     buttons.move = document.getElementById("move-button");
     buttons.setTitle = document.getElementById("set-title-button");
@@ -226,7 +235,7 @@ function getDOMElements() {
     inputs.title = document.getElementById("set-title");
     inputs.frameColor = document.getElementById("set-frame-color");
 
-    radioButtons = document.querySelectorAll("input[type=\"radio\"]");
+    radioButtons = document.querySelectorAll("label[name='window-mode']");
     windowIDsContainer = document.getElementById("window-ids");
     logContainer = document.getElementById("event-log");
     invalidInputAlert = document.getElementById("alert");
@@ -235,7 +244,7 @@ function getDOMElements() {
 function attachEventHandlers(handlers) {
     buttons.open.addEventListener("click", handlers.openWindow);
     buttons.getWindowIDs.addEventListener("click", handlers.getWindowIDs);
-    buttons.find.addEventListener("click", handlers.findWindow);
+    buttons.select.addEventListener("click", handlers.selectWindow);
     buttons.resize.addEventListener("click", handlers.resizeWindow);
     buttons.move.addEventListener("click", handlers.moveWindow);
     buttons.setTitle.addEventListener("click", handlers.setWindowTitle);
