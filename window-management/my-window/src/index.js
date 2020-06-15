@@ -268,7 +268,7 @@ function detachTabFromWindow() {
     };
 };
 
-/** DOM Element Manipulations **/
+/** DOM ELEMENT MANIPULATIONS **/
 function getDOMElements() {
     // Buttons.
     buttons.resize = document.getElementById("resize-button");
@@ -320,4 +320,4 @@ function showAlert(message) {
 
 function hideAlert() {
     invalidInputAlert.style.display = "none";
-}
+};

@@ -17,20 +17,13 @@ let subscriptionRequestTemplate;
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
-    subscriptionCountElement = document.getElementById("subscription-count");
-    streamBtn = document.getElementById("stream-button");
-    dataInput = document.getElementById("data-input");
-    publishAllBtn = document.getElementById("publish-all-button");
-    publishBranchBtn = document.getElementById("publish-branch-button");
-    noStreamWarning = document.getElementById("no-stream-warning");
-    subscriptionRequestsContainter = document.getElementById("subscription-requests");
-    subscriptionRequestTemplate = createSubscriptionRequestTemplate();
+    getDOMElements();
 
     // Initialize the Glue42 library.
     await initializeGlue42()
-        .catch(error => { 
+        .catch((error) => { 
             console.error(error); 
-            return 
+            return;
         });
 
     streamBtn.addEventListener("click", handleStream);
@@ -175,6 +168,18 @@ function publishToBranch() {
     } else {
         handleAlert("block");
     };
+};
+
+/** DOM ELEMENT MANIPULATIONS **/
+function getDOMElements() {
+    subscriptionCountElement = document.getElementById("subscription-count");
+    streamBtn = document.getElementById("stream-button");
+    dataInput = document.getElementById("data-input");
+    publishAllBtn = document.getElementById("publish-all-button");
+    publishBranchBtn = document.getElementById("publish-branch-button");
+    noStreamWarning = document.getElementById("no-stream-warning");
+    subscriptionRequestsContainter = document.getElementById("subscription-requests");
+    subscriptionRequestTemplate = createSubscriptionRequestTemplate();
 };
 
 // Show or hide the warning for publishing when the stream has not yet been created.

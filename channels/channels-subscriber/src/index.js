@@ -12,21 +12,13 @@ let channelContextElement;
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
-    channelNameElement = document.getElementById("channel-name");
-    channelColorElement = document.getElementById("channel-color");
-    channelDataElement = document.getElementById("channel-data");
-    channelListJoinElement = document.getElementById("channel-list-join");
-    joinBtn = document.getElementById("join-button");
-    leaveBtn = document.getElementById("leave-button");
-    channelListGetContextElement = document.getElementById("channel-list-context");
-    getContextBtn = document.getElementById("get-context-button");
-    channelContextElement = document.getElementById("channel-context");
+    getDOMElements();
 
     // Initialize the Glue42 library.
     await initializeGlue42()
-        .catch(error => { 
+        .catch((error) => { 
             console.error(error); 
-            return 
+            return;
         });
 
     // Get the available channels and fill the select menus with the channel names.
@@ -46,21 +38,6 @@ async function initializeGlue42() {
     window.glue = await Glue({ channels: true });
 };
 
-/** FILL THE DROPDOWN MENU WITH ALL AVAILABLE CHANNELS **/
-async function createChannelsMenu() {
-    // Get the names of all available channels.
-    const allChannels = await glue.channels.all();
-    const optionElement = document.createElement("option");
-
-    allChannels.sort().forEach(channelName => {
-        const currentOption = optionElement.cloneNode();
-        
-        currentOption.innerText = channelName;
-        channelListJoinElement.appendChild(currentOption);
-        channelListGetContextElement.appendChild(currentOption.cloneNode(true));
-    });
-};
-
 /** SUBSCRIBE TO THE CURRENT CHANNEL **/
 function subscribeToChannel() {
     return glue.channels.subscribe(handleChannelUpdates);
@@ -74,7 +51,7 @@ function handleChannelUpdates(newChannelData) {
 function trackCurrentChannel() {
     // The callback passed to the `onChanged()` method will fire
     // every time the app changes channels.
-    glue.channels.onChanged(async newChannelName => {
+    glue.channels.onChanged(async (newChannelName) => {
         if (newChannelName) {
             // Handle switching to another channel.
             const newChannelContext = await glue.channels.get(newChannelName);
@@ -87,17 +64,11 @@ function trackCurrentChannel() {
             channelNameElement.innerText = "No Channel";
             channelColorElement.style.backgroundColor = "";
             channelDataElement.innerText = "";
-        }
+        };
     });
 };
 
-/** HANDLE BUTTON CLICKS **/
-function handleButtonClicks() {
-    joinBtn.addEventListener("click", joinChannel);
-    leaveBtn.addEventListener("click", leaveChannel);
-    getContextBtn.addEventListener("click", getChannelContext);
-};
-
+/** CHANNEL OPERATIONS **/
 function joinChannel() {
     const selectedChannelName = channelListJoinElement[channelListJoinElement.selectedIndex].text;
 
@@ -118,4 +89,39 @@ async function getChannelContext() {
     const contextData = JSON.stringify(channelContext.data);
 
     channelContextElement.innerText = contextData;
+};
+
+/** DOM ELEMENT MANIPULATIONS **/
+function getDOMElements() {
+    channelNameElement = document.getElementById("channel-name");
+    channelColorElement = document.getElementById("channel-color");
+    channelDataElement = document.getElementById("channel-data");
+    channelListJoinElement = document.getElementById("channel-list-join");
+    joinBtn = document.getElementById("join-button");
+    leaveBtn = document.getElementById("leave-button");
+    channelListGetContextElement = document.getElementById("channel-list-context");
+    getContextBtn = document.getElementById("get-context-button");
+    channelContextElement = document.getElementById("channel-context");
+};
+
+// Fill the dropdown menus with all available channels.
+async function createChannelsMenu() {
+    // Get the names of all available channels.
+    const allChannels = await glue.channels.all();
+    const optionElement = document.createElement("option");
+
+    allChannels.sort().forEach(channelName => {
+        const currentOption = optionElement.cloneNode();
+        
+        currentOption.innerText = channelName;
+        channelListJoinElement.appendChild(currentOption);
+        channelListGetContextElement.appendChild(currentOption.cloneNode(true));
+    });
+};
+
+// Handle button clicks.
+function handleButtonClicks() {
+    joinBtn.addEventListener("click", joinChannel);
+    leaveBtn.addEventListener("click", leaveChannel);
+    getContextBtn.addEventListener("click", getChannelContext);
 };

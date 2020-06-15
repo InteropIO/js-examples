@@ -14,9 +14,9 @@ async function initializeApp() {
 
     // Initialize the Glue42 library.
     await initializeGlue42()
-        .catch(error => { 
+        .catch((error) => { 
             console.error(error); 
-            return 
+            return; 
         });
 
     subscriptionBtn.addEventListener("click", handleSubscription);
@@ -68,7 +68,7 @@ async function subscribeToStream() {
         onConnected: subscriptions.onAccepted,
         onData: subscriptions.onData,
         onClosed: subscriptions.onClosed
-    }
+    };
 
     // Creating the stream subscription.
     subscription = await glue.interop.subscribe(streamName, subscriptionParams)

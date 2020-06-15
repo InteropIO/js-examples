@@ -96,7 +96,7 @@ async function initializeGlue42() {
     window.glue = await Glue();
 };
 
-/** DOM EVENT HANDLERS **/
+/** EVENT HANDLERS **/
 function openWindow() {
     const name = inputs.window.name.value;
     const URL = inputs.window.URL.value;

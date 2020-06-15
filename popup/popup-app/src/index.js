@@ -4,9 +4,9 @@ window.addEventListener("DOMContentLoaded", initializeApp);
 async function initializeApp() {
     // Initialize the Glue42 library.
     await initializeGlue42()
-        .catch(error => {
+        .catch((error) => {
             console.error(error);
-            return
+            return;
         });
 
     // Reference to the window which will be used as a popup.
@@ -27,7 +27,7 @@ async function initializeApp() {
     };
 
     button.addEventListener("click", () => { 
-        activatePopup(popup, myWindow, buttonBounds) 
+        activatePopup(popup, myWindow, buttonBounds);
     });
 };
 

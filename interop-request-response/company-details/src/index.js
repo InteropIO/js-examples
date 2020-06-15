@@ -12,9 +12,9 @@ async function initializeApp() {
 
     // Initialize the Glue42 library.
     await initializeGlue42()
-        .catch(error => { 
+        .catch((error) => { 
             console.error(error); 
-            return 
+            return; 
         });
 
     // Register an Interop method that will show details about a selected instrument.

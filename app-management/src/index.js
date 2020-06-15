@@ -7,7 +7,6 @@ let instanceContainer;
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
-    
     // Create DOM element templates for the apps and instances.
     createListElementTemplates();
     
@@ -16,9 +15,9 @@ async function initializeApp() {
 
     // Initialize the Glue42 library.
     await initializeGlue42()
-        .catch(error => { 
+        .catch((error) => { 
             console.error(error); 
-            return 
+            return;
         });
 
     // Handle adding and removing apps and instances.
@@ -91,8 +90,8 @@ function addInstanceToList(instance) {
         // If the instance is not on the list, add it, otherwise - increment its count.
         if (!existingInstanceElement) {
             const instanceToAdd = instanceElementTemplate.cloneNode(true);
-            const instanceNameElement = instanceToAdd.querySelector("span[name=\"instance\"]");
-            const instanceCountElement = instanceToAdd.querySelector("span[name=\"count\"]");
+            const instanceNameElement = instanceToAdd.querySelector("span[name='instance']");
+            const instanceCountElement = instanceToAdd.querySelector("span[name='count']");
     
             instanceToAdd.id = `${instance.application.name}-instance`;
             instanceNameElement.innerText = instance.application.title;
@@ -101,11 +100,10 @@ function addInstanceToList(instance) {
             instanceContainer.appendChild(instanceToAdd);
 
         } else {
-            const instanceCountElement = existingInstanceElement.querySelector("span[name=\"count\"]");
+            const instanceCountElement = existingInstanceElement.querySelector("span[name='count']");
             instanceCountElement.innerText = instance.application.instances.length;
-        }
-    }
-    
+        };
+    };
 };
 
 function removeInstanceFromList(instance) {
@@ -120,15 +118,15 @@ function removeInstanceFromList(instance) {
         if (instanceCount === 0) {
             instanceToRemove.remove();
         } else {
-            const instanceCountElement = instanceToRemove.querySelector("span[name=\"count\"]");
+            const instanceCountElement = instanceToRemove.querySelector("span[name='count']");
             instanceCountElement.innerText = instanceCount;
         };
-    }
+    };
 };
 
 function createListElementTemplates() {
     appElementTemplate = document.createElement("button");
-    appElementTemplate.classList.add("list-group-item", "list-group-item-action")
+    appElementTemplate.classList.add("list-group-item", "list-group-item-action");
     
     instanceElementTemplate = document.createElement("li");
     instanceElementTemplate.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");

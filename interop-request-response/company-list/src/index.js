@@ -1,22 +1,26 @@
 // Company database.
-const companies = {
-    Google: {
+const companies = [
+    {
         name: "Google LLC",
+        displayName: "Google",
         instrument: "GOOG"
     },
-    Microsoft: {
+    {
         name: "Microsoft Corp.",
+        displayName: "Microsoft",
         instrument: "MSFT"
     },
-    Apple: {
+    {
         name: "Apple Inc.",
+        displayName: "Apple",
         instrument: "AAPL"
     },
-    Tick42: {
-        name: "Tick42",
+    {
+        name: "Tick42 LLC",
+        displayName: "Tick42",
         instrument: "TICK"
     }
-}
+];
 
 // Name of the Interop method to invoke.
 const methodName = "ShowCompanyDetails";
@@ -25,12 +29,11 @@ const methodName = "ShowCompanyDetails";
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
-
     // Initialize the Glue42 library.
     await initializeGlue42()
-    .catch(error => { 
+    .catch((error) => { 
         console.error(error); 
-        return 
+        return;
     });
 
     document.body.addEventListener("click", invokeInteropMethod);
@@ -45,8 +48,8 @@ async function initializeGlue42() {
 function invokeInteropMethod(event) {
     if (event.target.nodeName === "BUTTON") {
         const selectedCompany = event.target.textContent;
-        const company = companies[selectedCompany].name;
-        const instrument = companies[selectedCompany].instrument;
+        const company = companies.find(company => company.displayName === selectedCompany).name;
+        const instrument = company.instrument;
         // The arguments must be wrapped in an object.
         const arguments = { company, instrument };
 

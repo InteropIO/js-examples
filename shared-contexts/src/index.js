@@ -9,25 +9,22 @@ let getContextBtn;
 
 /** SET UP THE APPLICATION **/
 window.addEventListener("DOMContentLoaded", initializeApp);
-    htmlElement = document.documentElement;
-    inputElement = document.getElementById("theme-input");
-    updateBtn = document.getElementById("update-button");
-    themesContextElement = document.getElementById("themes-context");
-    getContextBtn = document.getElementById("get-context-button");
 
-    async function initializeApp() {
+async function initializeApp() {
+    getDOMElements();
+
     // Initialize the Glue42 library.
     await initializeGlue42()
-        .catch(error => { 
+        .catch((error) => { 
             console.error(error); 
-            return 
+            return; 
         });
 
     // Subscribe for updates to the context.
     await subscribeForContext()
-        .catch(error => { 
+        .catch((error) => { 
             console.error(error); 
-            return 
+            return;
         });
 
     updateBtn.addEventListener("click", updateContext);
@@ -54,9 +51,9 @@ function updateContext() {
 
 async function getContext() {
     const currentContext = await glue.contexts.get(contextName)
-        .catch(error => { 
+        .catch((error) => { 
             console.error(error); 
-            return
+            return;
         });
 
     themesContextElement.innerText = JSON.stringify(currentContext);
@@ -67,4 +64,13 @@ function changeTheme(contextData) {
 
     htmlElement.classList = "";
     htmlElement.classList.add(newTheme);
+};
+
+/** DOM ELEMENT MANIPULATIONS **/
+function getDOMElements() {
+    htmlElement = document.documentElement;
+    inputElement = document.getElementById("theme-input");
+    updateBtn = document.getElementById("update-button");
+    themesContextElement = document.getElementById("themes-context");
+    getContextBtn = document.getElementById("get-context-button");
 };

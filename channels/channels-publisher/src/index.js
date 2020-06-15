@@ -11,20 +11,13 @@ let publishToSelectedBtn;
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
-    channelNameElement = document.getElementById("channel-name");
-    channelColorElement = document.getElementById("channel-color");
-    currentChannelInput = document.getElementById("data-input-current");
-    publishToCurrentBtn = document.getElementById("publish-current-button");
-    selectChannelAlert = document.getElementById("select-channel-alert");
-    channelListElement = document.getElementById("channel-list");
-    selectedChannelInput = document.getElementById("data-input-selected");
-    publishToSelectedBtn = document.getElementById("publish-selected-button");
+    getDOMElements();
 
     // Initialize the Glue42 library.
     await initializeGlue42()
-        .catch(error => { 
+        .catch((error) => { 
             console.error(error); 
-            return 
+            return;
         });
 
     // Get the available channels and fill the select menu with the channel names.
@@ -42,25 +35,11 @@ async function initializeGlue42() {
     window.glue = await Glue({ channels: true });
 };
 
-/** FILL THE DROPDOWN MENU WITH ALL AVAILABLE CHANNELS **/
-async function createChannelsMenu() {
-    // Get the names of all available channels.
-    const allChannels = await glue.channels.all();
-    const optionElement = document.createElement("option");
-
-    allChannels.sort().forEach(channelName => {
-        const currentOption = optionElement.cloneNode();
-        
-        currentOption.innerText = channelName;
-        channelListElement.appendChild(currentOption);
-    });
-};
-
 /** TRACK APPLICATION MOVEMENT BETWEEN CHANNELS **/
 function trackCurrentChannel() {
     // The callback passed to the `onChanged()` method will fire
     // every time the app changes channels.
-    glue.channels.onChanged(async newChannelName => {
+    glue.channels.onChanged(async (newChannelName) => {
         if (newChannelName) {
             // Handle switching to another channel.
             const newChannelContext = await glue.channels.get(newChannelName);
@@ -72,16 +51,11 @@ function trackCurrentChannel() {
             // (e.g., the user has deselected the current channel).
             channelNameElement.innerText = "No Channel";
             channelColorElement.style.backgroundColor = "";
-        }
+        };
     });
 };
 
-/** HANDLE BUTTON CLICKS **/
-function handleButtonClicks() {
-    publishToCurrentBtn.addEventListener("click", publishToCurrent);
-    publishToSelectedBtn.addEventListener("click", publishToSelected);
-};
-
+/** PUBLISHING CHANNEL DATA **/
 async function publishToCurrent() {
     // Get the name of the channel the application is currently on.
     const currentChannelName = await glue.channels.my();
@@ -109,4 +83,36 @@ function publishToSelected() {
     // as a second parameter to the `publish()` method.
     glue.channels.publish(dataToPublish, selectedChannelName);
     selectedChannelInput.value = "";
+};
+
+/** DOM ELEMENT MANIPULATIONS **/
+function getDOMElements() {
+    channelNameElement = document.getElementById("channel-name");
+    channelColorElement = document.getElementById("channel-color");
+    currentChannelInput = document.getElementById("data-input-current");
+    publishToCurrentBtn = document.getElementById("publish-current-button");
+    selectChannelAlert = document.getElementById("select-channel-alert");
+    channelListElement = document.getElementById("channel-list");
+    selectedChannelInput = document.getElementById("data-input-selected");
+    publishToSelectedBtn = document.getElementById("publish-selected-button");
+};
+
+// Fill the dropdown menu with all available channels.
+async function createChannelsMenu() {
+    // Get the names of all available channels.
+    const allChannels = await glue.channels.all();
+    const optionElement = document.createElement("option");
+
+    allChannels.sort().forEach((channelName) => {
+        const currentOption = optionElement.cloneNode();
+        
+        currentOption.innerText = channelName;
+        channelListElement.appendChild(currentOption);
+    });
+};
+
+// Handle button clicks.
+function handleButtonClicks() {
+    publishToCurrentBtn.addEventListener("click", publishToCurrent);
+    publishToSelectedBtn.addEventListener("click", publishToSelected);
 };
