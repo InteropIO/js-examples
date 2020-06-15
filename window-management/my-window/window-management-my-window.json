@@ -7,8 +7,7 @@
     "details": {
         "url": "http://localhost:4242/window-management/my-window/src/index.html",
         "mode": "tab",
-        "top": 150,
-        "left": 150,
+        "startLocation": "center",
         "width": 840,
         "height": 688,
         "autoInjectAPI": {

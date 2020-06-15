@@ -26,9 +26,25 @@ const inputs = {
     tabID: undefined
 };
 
+// Button event handlers.
+const handlers = {
+    resizeWindow,
+    moveWindow,
+    setWindowTitle,
+    setWindowFrameColor,
+    zoomIn,
+    zoomOut,
+    resetZoom,
+    setTabHeaderVisibility,
+    getTabIDs,
+    attachTabToWindow,
+    detachTabFromWindow
+};
+
 let tabIDsContainer;
 let invalidInputAlert;
 
+// Reference to the current window.
 let myWindow;
 
 /** SET UP THE APPLICATION **/
@@ -39,30 +55,15 @@ async function initializeApp() {
 
     // Initialize the Glue42 library.
     await initializeGlue42()
-        .catch(error => { 
+        .catch((error) => { 
             console.error(error); 
-            return 
+            return;
         });
 
     // Reference to this window.
     myWindow = glue.windows.my();
 
-    // Button handlers.
-    const handlers = {
-        resizeWindow: resizeWindow,
-        moveWindow: moveWindow,
-        setWindowTitle: setWindowTitle,
-        setWindowFrameColor: setWindowFrameColor,
-        zoomIn: myWindow.zoomIn,
-        zoomOut: myWindow.zoomOut,
-        resetZoom: resetZoom,
-        setTabHeaderVisibility: setTabHeaderVisibility,
-        getTabIDs: getTabIDs,
-        attachTabToWindow: attachTabToWindow,
-        detachTabFromWindow: detachTabFromWindow
-    };
-
-    attachEventHandlers(handlers);
+    attachEventHandlers();
 };
 
 /** INITIALIZE GLUE42 **/
@@ -97,13 +98,13 @@ function setWindowTitle() {
     const title = inputs.title.value;
 
     if (title !== "") {
-
         // Changing the title of the current window.
         myWindow.setTitle(title);
 
         inputs.title.value = "";
     } else {
         const message = "You must enter a title first!";
+
         showAlert(message);
     };
 };
@@ -112,24 +113,35 @@ function setWindowFrameColor() {
     const frameColor = inputs.frameColor.value;
 
     if(frameColor !== "") {
-
         // Changing the frame color of the current window.
         myWindow.setFrameColor(frameColor)
             .catch(() => {
+                // Handles only the case where the provided value is not a valid color.
                 const message = `The value "${frameColor}" is not a valid color!`;
+
                 showAlert(message);
                 return;
             });
 
         inputs.frameColor.value = "";
     } else {
-        const message = "You must enter a color name or color code first!"
+        const message = "You must enter a color name or color code first!";
+
         showAlert(message);
     }
 };
 
-function resetZoom() {
+function zoomIn() {
+    // Zoom in the current window.
+    myWindow.zoomIn();
+};
 
+function zoomOut() {
+    // Zoom out the current window.
+    myWindow.zoomOut();
+};
+
+function resetZoom() {
     // Change the zoom factor of the current window to a specific value.
     myWindow.setZoomFactor(100);
 };
@@ -149,15 +161,25 @@ function getTabIDs() {
     const tabIDs = glue.windows.list()
         .reduce(extractTabIDs, []);
 
-    const formattedOutput = tabIDs.join(", ");
-    tabIDsContainer.innerText = formattedOutput;
+    if (tabIDs.length > 0) {
+        const formattedOutput = tabIDs.join(", ");
+        tabIDsContainer.innerText = formattedOutput;
+    } else {
+        const message = "No tab windows have been opened yet!";
+
+        showAlert(message);
+    };
 };
 
 function extractTabIDs(tabIDs, window) {
+    const windowID = window.id;
     // Filter all tab windows excluding the current window.
-    if (window.mode === "tab" && window.id !== myWindow.id) {
-        tabIDs.push(window.id);
+    const isTargetedID = window.mode === "tab" && windowID !== myWindow.id
+
+    if (isTargetedID) {
+        tabIDs.push(windowID);
     };
+
     return tabIDs;
 };
 
@@ -165,11 +187,12 @@ function attachTabToWindow() {
     const tabID = inputs.tabID.value;
 
     if (tabID !== "") {
-        // Find a window by ID.
+        // Find a Glue42 Window by ID.
         const tab = glue.windows.findById(tabID);
 
         if (!tab) {
             const message = `A tab with ID "${tabID}" does not exist!`;
+
             showAlert(message);
             return;
         };
@@ -179,18 +202,21 @@ function attachTabToWindow() {
 
         if (isTabAttached) {
             const message = `The tab with ID "${tabID}" is already attached to this window!`;
+
             showAlert(message);
             return;
-        } else {
-            // Attach a tab to the current window.
-            myWindow.attachTab(tab)
-                .catch(() => {
-                    const message = `Error attaching tab with ID "${tabID}"!`;
-                    showAlert(message);
-                });
         };
+
+        // Attach a tab to the current window.
+        myWindow.attachTab(tab)
+            .catch(() => {
+                const message = `Error attaching tab with ID "${tabID}"!`;
+                showAlert(message);
+            });
+
     } else {
-        const message = "You must enter a tab ID first!"
+        const message = "You must enter a tab ID first!";
+
         showAlert(message);
     };
 };
@@ -211,29 +237,33 @@ function detachTabFromWindow() {
         // Check whether this tab is in the tab group of the current window.
         const isTabAttached = myWindow.tabs.includes(tab);
 
-        if (isTabAttached) {
-            // Optional settings for the detached tab.
-            const detachOptions = {
-                bounds: {
-                    width: 400,
-                    height: 400,
-                    top: 300,
-                    left: 300
-                }
-            };
+        if (!isTabAttached) {
+            const message = "The tab is not in the tab group of this window!";
 
-            // Detach the tab from the tab group.
-            tab.detachTab(detachOptions)
-                .catch(() => {
-                    const message = `Error detaching tab with ID "${tabID}"!`;
-                    showAlert(message);
-                });
-        } else {
-            const message = `The tab with ID "${tabID}" is not attached to this window!`;
             showAlert(message);
+            return;
         };
+
+        // Optional settings for the detached tab.
+        const detachOptions = {
+            bounds: {
+                width: 400,
+                height: 400,
+                top: 300,
+                left: 300
+            }
+        };
+
+        // Detach the tab from the tab group.
+        tab.detachTab(detachOptions)
+            .catch(() => {
+                const message = `Error detaching tab with ID "${tabID}"!`;
+                
+                showAlert(message);
+            });
     } else {
-        const message = "You must enter a tab ID first!"
+        const message = "You must enter a tab ID first!";
+
         showAlert(message);
     };
 };
@@ -262,11 +292,12 @@ function getDOMElements() {
     inputs.frameColor = document.getElementById("set-frame-color");
     inputs.tabID = document.getElementById("tab-id");
 
+    // Other.
     tabIDsContainer = document.getElementById("tab-ids");
     invalidInputAlert = document.getElementById("alert");
 };
 
-function attachEventHandlers(handlers) {
+function attachEventHandlers() {
     buttons.resize.addEventListener("click", handlers.resizeWindow);
     buttons.move.addEventListener("click", handlers.moveWindow);
     buttons.setTitle.addEventListener("click", handlers.setWindowTitle);

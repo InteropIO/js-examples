@@ -7,11 +7,10 @@
     "details": {
         "url": "http://localhost:4242/window-management/window-manipulation/src/index.html",
         "mode": "flat",
-        "top": 220,
-        "left": 220,
-        "width": 600,
-        "height": 600,
-        "minWidth": 500,
+        "startLocation": "center",
+        "width": 1060,
+        "height": 768,
+        "minWidth": 800,
         "minHeight": 500,
         "autoInjectAPI": {
             "enabled": false

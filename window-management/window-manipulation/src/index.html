@@ -190,7 +190,7 @@
                         <div class="card bg-secondary flex-fill mb-1">
                             <div class="card-body p-2">
                                 <h4 class="card-title">Hide or Show Tab Header</h4>
-                                <p class="card-text">Use the button to hide or show the window tab header.</p>
+                                <p class="card-text">Use the button to hide or show the window tab header. <br>Works only for tab windows.</p>
                                 <button type="button" id="tab-header-button" class="btn btn-primary mr-2">Toggle Tab Header Visibility</button>
                             </div>
                         </div> 
@@ -198,15 +198,13 @@
                 </div>
             </div>
         </div>
-        <div class="col-3 d-flex px-1" style="height: calc(100vh - 16px); overflow-y: scroll; overflow-x: hidden;">
+        <div class="col-3 d-flex px-1" style="height: calc(100vh - 16px);">
             <div class="card bg-primary flex-grow-1">
                 <div class="card-header d-flex justify-content-between align-items-center py-2">
-                    <h3 class="mb-0">Event Log</h3>
-                    <button type="button" id="clear-button" class="btn btn-primary">Clear Logs</button>
+                    <h3 class="mb-0 text-truncate">Event Log</h3>
+                    <button type="button" id="clear-button" class="btn btn-primary">Clear</button>
                 </div>
-                <div id="event-log" class="card-body">
-                    aadfhadajfj
-                </div>
+                <div id="event-log" class="card-body" style="overflow-y: scroll;"></div>
             </div>
         </div>
     </div>

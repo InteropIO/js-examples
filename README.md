@@ -99,3 +99,15 @@ Basic example which publishes messages on a topic and subscribes for messages pu
 ### Shared Contexts Example
 
 Example of manipulating a context object that holds information about the current theme of **Glue42 Enterprise**.
+
+### Window Management Example
+
+Example of controlling the current or other Glue42 Windows.
+
+#### My Window
+
+Application demonstrating controlling the current Glue42 Window.
+
+#### Window Manipulation
+
+Application demonstrating opening and controlling Glue42 Windows.
