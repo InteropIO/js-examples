@@ -96,11 +96,10 @@ function addInstanceToList(instance) {
             instanceToAdd.id = `${instance.application.name}-instance`;
             instanceNameElement.innerText = instance.application.title;
             instanceCountElement.innerText = instance.application.instances.length;
-    
             instanceContainer.appendChild(instanceToAdd);
-
         } else {
             const instanceCountElement = existingInstanceElement.querySelector("span[name='count']");
+            
             instanceCountElement.innerText = instance.application.instances.length;
         };
     };
