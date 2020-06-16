@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../assets/t42bootstrap.bundle.css">
+    <title>Client List Demo</title>
+</head>
+<body class="container-fluid p-1" style="overflow:overlay">
+    <div class="card">
+        <h2 class="card-header p-2">Client List</h2>
+        <div class="card-body p-2">
+            <p class="card-text">Select a client to open a portfolio.</p>
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>Client Name</th>
+                        <th>Portfolio Value</th>
+                    </tr>
+                </thead>
+                <tbody id="clients-table" style="cursor: pointer;">
+                    <tr id="1">
+                        <!-- VOD:LN, BARC:LN -->
+                        <td>Vernon Mullen</td> 
+                        <td>2996.32‬</td>
+                    </tr>
+                    <tr id="2">
+                        <!-- VOD:LN, BMW:GR -->
+                        <td>Sutton Edwards</td>
+                        <td>4591.64</td>
+                    </tr>
+                    <tr id="3">
+                        <!-- AAL:LN, TSCO:LN -->
+                        <td>Decker Norris</td>
+                        <td>2786.42</td>
+                    </tr>
+                    <tr id="4">
+                        <!-- BARC:LN, NTES:US -->
+                        <td>Socorro Brown</td>
+                        <td>505.66‬</td>
+                    </tr>
+                    <tr id="5">
+                        <!-- VOD:LN, BMW:GR -->
+                        <td>Koch Oneal</td>
+                        <td>1209.64</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+<script src="../../../node_modules/@glue42/desktop/dist/desktop.umd.js"></script>
+<script src="index.js"></script>
+
+</html>

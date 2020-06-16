@@ -1,0 +1,27 @@
+{
+    "name": "intentsClientPortfolio",
+    "title": "Intents Client Portfolio",
+    "caption": "Glue42 Intents Example",
+    "type": "window",
+    "ignoreSavedLayout": true,
+    "details": {
+        "url": "http://localhost:4242/intents/client-portfolio/src/index.html",
+        "mode": "flat",
+        "width": 517,
+        "height": 592,
+        "minWidth": 200,
+        "minHeight": 200,
+        "top": 200,
+        "left": 600,
+        "autoInjectAPI": {
+            "enabled": false
+        }
+    },
+    "intents": [
+        {
+            "name": "DisplayPortfolio",
+            "displayName": "Show Client Portfolio",
+            "contexts": ["Client"]
+        }
+    ]
+}
