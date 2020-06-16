@@ -26,7 +26,7 @@ async function initializeGlue42() {
 };
 
 // Find the targeted intent handler and raise an intent if it exists.
-function openPortfolio(event) {
+async function openPortfolio(event) {
     const clickedElement = event.target;
 
     if (clickedElement.nodeName !== "TD") {
@@ -35,19 +35,21 @@ function openPortfolio(event) {
 
     const clientID = clickedElement.parentNode.id;
     // Context for the raised intent.
-    const context = { type: contextType, data: clientID };
+    const context = { type: contextType, data: { clientID } };
     // Filter with which to find the targeted intent.
     const intentFilter = { name: intent, contextType };
     // Finding an intent by name and context type.
-    const targetedIntent = glue.intents.find(intentFilter);
-    // Check whether the targeted handler is among the handlers of the targeted intent.
+    const targetedIntent = await glue.intents.find(intentFilter);
+    // Check whether the desired handler is among the handlers of the targeted intent.
     const target = targetedIntent.handlers.find(handler => handler.applicationName === targetedHandlerName);
+    console.log(target);
     
-    if (intentHandler) {
+    if (target) {
         // Intent request object. The only required property is the intent name.
-        const intentRequest = { intent, context, target };
+        const intentRequest = { intent, context, target: targetedHandlerName };
 
         // Raising an intent.
-        glue.intents.raise(intentRequest);
+        glue.intents.raise(intentRequest)
+            .catch(console.error);
     };
 };

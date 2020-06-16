@@ -1,17 +1,17 @@
-let channelNameElement;
-let channelColorElement;
-let currentChannelInput;
-let publishToCurrentBtn;
-let selectChannelAlert;
-let channelListElement;
-let selectedChannelInput;
-let publishToSelectedBtn;
+import { clients } from "./clients-db.js";
+
+const intent = "DisplayPortfolio";
+
+let clientNameElement;
+let portfolioContainer;
+let context;
 
 /** SET UP THE APPLICATION **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
-    getDOMElements();
+    clientNameElement = document.getElementById("client-name");
+    portfolioContainer = document.getElementById("portfolio-table");
 
     // Initialize the Glue42 library.
     await initializeGlue42()
@@ -20,99 +20,52 @@ async function initializeApp() {
             return;
         });
 
-    // Get the available channels and fill the select menu with the channel names.
-    await createChannelsMenu();
-    // Track channel changes.
-    trackCurrentChannel();
-    // Handle the buttons for publishing data to the channel.
-    handleButtonClicks();
+    context = glue.windows.my().context;
+
+    const clientID = context.data.clientID;
+
+    displayPortfolio(clientID);
+
+    glue.intents.addIntentListener(intent, (context) => {
+        const clientID = context.data.clientID;
+        
+        displayPortfolio(clientID);
+    });
 };
 
 /** INITIALIZE GLUE42 **/
 async function initializeGlue42() {
-    // Initialize the Glue42 library and enable the Channels API
-    // and the Channel Selector UI.
-    window.glue = await Glue({ channels: true });
+    window.glue = await Glue();
 };
 
-/** TRACK APPLICATION MOVEMENT BETWEEN CHANNELS **/
-function trackCurrentChannel() {
-    // The callback passed to the `onChanged()` method will fire
-    // every time the app changes channels.
-    glue.channels.onChanged(async (newChannelName) => {
-        if (newChannelName) {
-            // Handle switching to another channel.
-            const newChannelContext = await glue.channels.get(newChannelName);
+function displayPortfolio(clientID) {
+    if (!clientID) {
+        return;
+    };
 
-            channelNameElement.innerText = newChannelName;
-            channelColorElement.style.backgroundColor = newChannelContext.meta.color;
-        } else {
-            // Handle the case where the app is not joined to any channel 
-            // (e.g., the user has deselected the current channel).
-            channelNameElement.innerText = "No Channel";
-            channelColorElement.style.backgroundColor = "";
-        };
-    });
+    const client = clients.find(client => client.id === clientID);
+    const clientName = client.name;
+    const clientPortfolio = client.portfolio;
+    const instrumentRows = clientPortfolio.map(createInstrumentRows);
+
+    portfolioContainer.innerText = "";
+    clientNameElement.innerText = clientName;
+    portfolioContainer.append(...instrumentRows);
 };
 
-/** PUBLISHING CHANNEL DATA **/
-async function publishToCurrent() {
-    // Get the name of the channel the application is currently on.
-    const currentChannelName = await glue.channels.my();
+function createInstrumentRows(asset) {
+    const instrument = asset.instrument;
+    const shares = asset.shares;
+    const price = asset.price;
+    const instrumentRow = document.createElement("tr");
+    const nameColumn = document.createElement("td");
+    const sharesColumn = nameColumn.cloneNode();
+    const priceColumn = nameColumn.cloneNode();
 
-    if (currentChannelName) {
-        selectChannelAlert.style.display = "none";
+    nameColumn.innerText = instrument;
+    sharesColumn.innerText = shares;
+    priceColumn.innerText = price;
+    instrumentRow.append(nameColumn, sharesColumn, priceColumn);
 
-        const input = currentChannelInput.value;
-        const dataToPublish = { input };
-
-        // Publish data to the current channel.
-        glue.channels.publish(dataToPublish);
-        currentChannelInput.value = "";
-    } else {
-        selectChannelAlert.style.display = "block";
-    }
-};
-
-function publishToSelected() {
-    const selectedChannelName = channelListElement[channelListElement.selectedIndex].text;
-    const input = selectedChannelInput.value;
-    const dataToPublish = { input };
-
-    // Publish data to a specified channel by providing a channel name 
-    // as a second parameter to the `publish()` method.
-    glue.channels.publish(dataToPublish, selectedChannelName);
-    selectedChannelInput.value = "";
-};
-
-/** DOM ELEMENT MANIPULATIONS **/
-function getDOMElements() {
-    channelNameElement = document.getElementById("channel-name");
-    channelColorElement = document.getElementById("channel-color");
-    currentChannelInput = document.getElementById("data-input-current");
-    publishToCurrentBtn = document.getElementById("publish-current-button");
-    selectChannelAlert = document.getElementById("select-channel-alert");
-    channelListElement = document.getElementById("channel-list");
-    selectedChannelInput = document.getElementById("data-input-selected");
-    publishToSelectedBtn = document.getElementById("publish-selected-button");
-};
-
-// Fill the dropdown menu with all available channels.
-async function createChannelsMenu() {
-    // Get the names of all available channels.
-    const allChannels = await glue.channels.all();
-    const optionElement = document.createElement("option");
-
-    allChannels.sort().forEach((channelName) => {
-        const currentOption = optionElement.cloneNode();
-        
-        currentOption.innerText = channelName;
-        channelListElement.appendChild(currentOption);
-    });
-};
-
-// Handle button clicks.
-function handleButtonClicks() {
-    publishToCurrentBtn.addEventListener("click", publishToCurrent);
-    publishToSelectedBtn.addEventListener("click", publishToSelected);
+    return instrumentRow;
 };

@@ -1,6 +1,6 @@
 {
     "name": "intentsClientList",
-    "title": "Client List",
+    "title": "Intents Client List",
     "caption": "Glue42 Intents Example",
     "type": "window",
     "ignoreSavedLayout": true,

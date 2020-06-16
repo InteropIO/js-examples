@@ -7,10 +7,10 @@
     "details": {
         "url": "http://localhost:4242/intents/client-portfolio/src/index.html",
         "mode": "flat",
-        "width": 517,
-        "height": 592,
+        "width": 360,
+        "height": 194,
         "minWidth": 200,
-        "minHeight": 200,
+        "minHeight": 150,
         "top": 200,
         "left": 600,
         "autoInjectAPI": {
