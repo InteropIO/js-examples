@@ -103,12 +103,17 @@ async function createChannelsMenu() {
     const allChannels = await glue.channels.all();
     const optionElement = document.createElement("option");
 
-    allChannels.sort().forEach((channelName) => {
+    const createOptionInMenu = async (channelName) => {
         const currentOption = optionElement.cloneNode();
-        
+        const channelContext = await glue.channels.get(channelName)
+        const channelColor = channelContext.meta.color;
+
         currentOption.innerText = channelName;
+        currentOption.style.color = channelColor;
         channelListElement.appendChild(currentOption);
-    });
+    };
+    
+    allChannels.sort().forEach(createOptionInMenu);
 };
 
 // Handle button clicks.

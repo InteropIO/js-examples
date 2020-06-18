@@ -47,9 +47,10 @@ async function initializeGlue42() {
 // Function for invoking the Interop method when a button is clicked.
 function invokeInteropMethod(event) {
     if (event.target.nodeName === "BUTTON") {
-        const selectedCompany = event.target.textContent;
-        const company = companies.find(company => company.displayName === selectedCompany).name;
-        const instrument = company.instrument;
+        const selectedCompanyName = event.target.textContent;
+        const selectedCompany = companies.find(company => company.displayName === selectedCompanyName);
+        const company = selectedCompany.name;
+        const instrument = selectedCompany.instrument;
         // The arguments must be wrapped in an object.
         const arguments = { company, instrument };
 
