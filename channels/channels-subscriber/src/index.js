@@ -107,12 +107,14 @@ function getDOMElements() {
 // Fill the dropdown menus with all available channels.
 async function createChannelsMenu() {
     // Get the names of all available channels.
-    const allChannels = await glue.channels.all();
+    const allChannels = await glue.channels.list();
     const optionElement = document.createElement("option");
 
-    const createOptionInMenu = async (channelName) => {
+    const sortChannelsByName = (a, b) => a.name.localeCompare(b.name);
+    
+    const createOptionInMenu = (channelContext) => {
         const currentOption = optionElement.cloneNode();
-        const channelContext = await glue.channels.get(channelName)
+        const channelName = channelContext.name;
         const channelColor = channelContext.meta.color;
 
         currentOption.innerText = channelName;
@@ -121,7 +123,7 @@ async function createChannelsMenu() {
         channelListGetContextElement.appendChild(currentOption.cloneNode(true));
     };
 
-    allChannels.sort().forEach(createOptionInMenu);
+    allChannels.sort(sortChannelsByName).forEach(createOptionInMenu);
 };
 
 // Handle button clicks.
