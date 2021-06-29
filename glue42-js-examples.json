@@ -1,0 +1,358 @@
+[
+    {
+        "name": "app-management",
+        "title": "Application Management",
+        "caption": "Glue42 Application Management Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details": {
+            "url": "http://localhost:4242/app-management/index.html",
+            "mode": "flat",
+            "top": 100,
+            "left": 100,
+            "width": 600,
+            "height": 600
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        }
+    },
+    {
+        "name": "channels-publisher",
+        "title": "Channels Publisher",
+        "caption": "Glue42 Channels Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details": {
+            "url": "http://localhost:4242/channels/channels-publisher/index.html",
+            "mode": "flat",
+            "width": 517,
+            "height": 592,
+            "minWidth": 500,
+            "minHeight": 400,
+            "top": 120,
+            "left": 120,
+            "allowChannels": true
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        }
+    },
+    {
+        "name": "channels-subscriber",
+        "title": "Channels Subscriber",
+        "caption": "Glue42 Channels Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details": {
+            "url": "http://localhost:4242/channels/channels-subscriber/index.html",
+            "mode": "flat",
+            "width": 440,
+            "height": 548,
+            "minWidth": 400,
+            "minHeight": 400,
+            "top": 120,
+            "left": 700,
+            "allowChannels": true
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        }
+    },
+    {
+        "name":"flydown-demo",
+        "title":"Flydown Demo",
+        "caption": "Glue42 Flydown Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details":{
+            "url":"http://localhost:4242/flydown/flydown-app/index.html",
+            "mode": "html",
+            "top": 250,
+            "left": 300,
+            "minWidth": 400,
+            "minHeight": 300,
+            "maxWidth": 400,
+            "maxHeight": 300
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        }
+    },
+    {
+        "name":"flydown-window",
+        "title":"Flydown",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "hidden": true,
+        "autoStart": true,
+        "details":{
+            "url":"http://localhost:4242/flydown/flydown-window/index.html",
+            "mode": "html",
+            "hidden": true,
+            "hasMoveAreas": false,
+            "hasSizeAreas": false,
+            "allowClose": false,
+            "allowMinimize": false,
+            "allowMaximize": false,
+            "allowCollapse": false
+        }
+    },
+    {
+        "name": "intents-client-list",
+        "title": "Intents Client List",
+        "caption": "Glue42 Intents Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details": {
+            "url": "http://localhost:4242/intents/client-list/index.html",
+            "mode": "flat",
+            "width": 360,
+            "height": 282,
+            "minWidth": 300,
+            "minHeight": 200,
+            "top": 200,
+            "left": 200
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        }
+    },
+    {
+        "name": "intents-client-portfolio",
+        "title": "Intents Client Portfolio",
+        "caption": "Glue42 Intents Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details": {
+            "url": "http://localhost:4242/intents/client-portfolio/index.html",
+            "mode": "flat",
+            "width": 360,
+            "height": 194,
+            "minWidth": 200,
+            "minHeight": 150,
+            "top": 200,
+            "left": 600
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        },
+        "intents": [
+            {
+                "name": "DisplayPortfolio",
+                "displayName": "Show Client Portfolio",
+                "contexts": ["Client"]
+            }
+        ]
+    },
+    {
+        "name":"interop-response",
+        "title":"Interop Response",
+        "caption": "Glue42 Interop Request/Response Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details":{
+             "url":"http://localhost:4242/interop-request-response/interop-response/index.html",
+             "mode": "flat",
+             "width": 400,
+             "height": 270,
+             "top": 140,
+             "left": 400
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        }
+    },
+    {
+        "name":"interop-request",
+        "title":"Interop Request",
+        "caption": "Glue42 Interop Request/Response Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details":{
+             "url":"http://localhost:4242/interop-request-response/interop-request/index.html",
+             "mode": "flat",
+             "width": 230,
+             "height": 200,
+             "top": 140,
+             "left": 140
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        }
+    },
+    {
+        "name":"stream-publisher",
+        "title":"Interop Stream Publisher",
+        "caption": "Glue42 Interop Streaming Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details":{
+             "url":"http://localhost:4242/interop-streaming/publisher/index.html",
+             "mode": "flat",
+             "width": 550,
+             "height": 565,
+             "minWidth": 400,
+             "minHeight": 400,
+             "top": 200,
+             "left": 200
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        }
+    },
+    {
+        "name":"stream-subscriber",
+        "title":"Interop Stream Subscriber",
+        "caption": "Glue42 Interop Streaming Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details":{
+             "url":"http://localhost:4242/interop-streaming/subscriber/index.html",
+             "mode": "flat",
+             "width": 440,
+             "height": 300,
+             "minWidth": 400,
+             "minHeight": 250,
+             "top": 200,
+             "left": 800
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        }
+    },
+    {
+        "name":"popup-demo",
+        "title":"Popup Demo",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details":{
+            "url":"http://localhost:4242/popup/popup-app/index.html",
+            "mode": "html",
+            "top": 200,
+            "left": 200,
+            "minWidth": 400,
+            "minHeight": 300,
+            "maxWidth": 400,
+            "maxHeight": 300
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        }
+    },
+    {
+        "name":"popup-window",
+        "title":"Popup",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "hidden": true,
+        "autoStart": true,
+        "details":{
+            "url":"http://localhost:4242/popup/popup-window/index.html",
+            "mode": "html",
+            "hidden": true,
+            "hasMoveAreas": false,
+            "hasSizeAreas": false,
+            "allowClose": false,
+            "allowMinimize": false,
+            "allowMaximize": false,
+            "allowCollapse": false
+        }
+    },
+    {
+        "name": "pub-sub-publisher",
+        "title": "Pub/Sub Publisher",
+        "caption": "Glue42 Pub/Sub Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details": {
+            "url": "http://localhost:4242/pub-sub/publisher/index.html",
+            "mode": "flat",
+            "width": 350,
+            "height": 250,
+            "minWidth": 300,
+            "minHeight": 200,
+            "top": 160,
+            "left": 160
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        }
+    },
+    {
+        "name": "pub-sub-subscriber",
+        "title": "Pub/Sub Subscriber",
+        "caption": "GLue42 Pub/Sub Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details": {
+            "url": "http://localhost:4242/pub-sub/subscriber/index.html",
+            "mode": "flat",
+            "width": 480,
+            "height": 152,
+            "minWidth": 450,
+            "minHeight": 100,
+            "top": 160,
+            "left": 600
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        }
+    },
+    {
+        "name": "shared-contexts",
+        "title": "Shared Contexts",
+        "caption": "Glue42 Shared Contexts Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details": {
+            "url": "http://localhost:4242/shared-contexts/index.html",
+            "mode": "flat",
+            "width": 400,
+            "height": 396,
+            "minWidth": 350,
+            "minHeight": 300,
+            "top": 180,
+            "left": 180
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        }
+    },
+    {
+        "name": "my-window",
+        "title": "My Window Example",
+        "caption": "Glue42 Window Management Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details": {
+            "url": "http://localhost:4242/window-management/my-window/index.html",
+            "mode": "tab",
+            "startLocation": "center",
+            "width": 840,
+            "height": 688
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        }
+    },
+    {
+        "name": "window-manipulation",
+        "title": "Window Manipulation Example",
+        "caption": "Glue42 Window Management Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details": {
+            "url": "http://localhost:4242/window-management/window-manipulation/index.html",
+            "mode": "flat",
+            "startLocation": "center",
+            "width": 1060,
+            "height": 768,
+            "minWidth": 800,
+            "minHeight": 500
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        }
+    }
+]

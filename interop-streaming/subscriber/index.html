@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../node_modules/@glue42/theme/dist/t42bootstrap.bundle.css">
+    <title>Interop Streaming Subscriber Demo</title>
+</head>
+
+<body class="container-fluid p-2" style="overflow: overlay;">
+    <div class="card bg-primary mb-2">
+        <div class="card-body">
+            <p class="card-text">
+                Click the <b>Subscribe</b> button to subscribe for the "G42.StreamDemo" stream. 
+                Once the subscription has been accepted, you can click the <b>Unsubscribe</b> button to cancel it.
+            </p>
+            <button type="button" id="subscription-button" subscribed="false" class="btn btn-primary">Subscribe</button>
+        </div>
+    </div>
+    <div class="card bg-primary">
+        <h3 class="card-header">Received Data</h3>
+        <div class="card-body">
+            <p id="data" class="card-text" style="min-height: 20px;">No subscription.</p>
+        </div>
+    </div>
+</body>
+
+<script src="../../node_modules/@glue42/desktop/dist/desktop.umd.js"></script>
+<script src="index.js"></script>
+
+</html>

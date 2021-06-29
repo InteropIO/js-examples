@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../node_modules/@glue42/theme/dist/t42bootstrap.bundle.css">
+    <title>Flydown Demo</title>
+</head>
+
+<body class="container-fluid overflow-hidden">
+    <div class="row">
+        <div id="top-zone" class="card" style="width: 100%; height: 15vmin"></div>
+    </div>
+    <div class="row">
+        <div id="left-zone" class="card" style="width: 15vmin; height: calc(100vh - 30vmin)"></div>
+        <div class="row m-0 p-4 justify-content-center align-items-center text-center" style="width: calc(100vw - 30vmin)">
+            <h2>Hover over the zones on the sides to trigger the flydown window.</h2>
+        </div>
+        <div id="right-zone" class="card" style="width: 15vmin; height: calc(100vh - 30vmin);"></div>
+    </div>
+    <div class="row">
+        <div id="bottom-zone"class="card" style="width: 100%; height: 15vmin"></div>
+    </div>
+</body>
+<script src="../../node_modules/@glue42/desktop/dist/desktop.umd.js"></script>
+<script src="index.js"></script>
+
+</html>
