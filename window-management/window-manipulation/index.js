@@ -5,7 +5,7 @@ const buttons = {
     resize: undefined,
     move: undefined,
     setTitle: undefined,
-    setFrameColor: undefined,
+    place: undefined,
     maximize: undefined,
     minimize: undefined,
     restore: undefined,
@@ -33,7 +33,10 @@ const inputs = {
         left: undefined
     },
     title: undefined,
-    frameColor: undefined
+    place: {
+        vertical: undefined,
+        horizontal: undefined
+    }
 };
 
 // Button event handlers.
@@ -44,7 +47,7 @@ const handlers = {
     resizeWindow,
     moveWindow,
     setWindowTitle,
-    setWindowFrameColor,
+    placeWindow,
     maximizeWindow,
     minimizeWindow,
     restoreWindow,
@@ -81,9 +84,7 @@ async function initializeApp() {
 
     // Initialize the Glue42 library.
     await initializeGlue42().catch(console.error);
-    
     attachEventHandlers();
-
     handleGlue42WindowEvents();
 };
 
@@ -93,7 +94,7 @@ async function initializeGlue42() {
 };
 
 /** EVENT HANDLERS **/
-function openWindow() {
+async function openWindow() {
     const name = inputs.window.name.value;
     const URL = inputs.window.URL.value;
 
@@ -111,11 +112,7 @@ function openWindow() {
     };
 
     // Get the value for the window mode.
-    const windowMode = [...radioButtons].find(element => {
-        const button = element.previousElementSibling;
-
-        return button.checked === true;
-    }).previousElementSibling.value;
+    const windowMode = [...radioButtons].find(button => button.checked === true).value;
 
     // Optional settings for the new window.
     const windowOptions = {
@@ -127,7 +124,7 @@ function openWindow() {
     };
 
     // Opening a new window.
-    glue.windows.open(name, URL, windowOptions)
+    await glue.windows.open(name, URL, windowOptions)
         .catch(() => {
             // Handles only the case where a window with the specified name has already been opened.
             const message = `A window with name "${name}" already exists!`;
@@ -153,13 +150,17 @@ function getWindowIDs() {
 
 function extractWindowIDs(windowIDs, window) {
     const windowID = window.id;
+
     // Get the current window.
     const currentWindowID = glue.windows.my().id;
+
     // Exclude the IDs of the current window and the embedded shell application.
-    const isTargetedID = window.isVisible && windowID !== currentWindowID && window.name !== "embeddedShell";
+    const isTargetedID = window.isVisible && windowID !== currentWindowID && window.name !== "glue42-application-manager";
+
     if (isTargetedID) {
         windowIDs.push(windowID);
     };
+
     return windowIDs;
 };
 
@@ -180,6 +181,7 @@ function selectWindow() {
         const message = "Window selected successfully! You can now control the selected window."
 
         showAlert(message, alertState.success);
+
         inputs.windowID.value = "";
     } else {
         const message = `A window with ID "${windowID}" does not exist!`;
@@ -192,14 +194,22 @@ function resizeWindow() {
     const windowHasBeenSelected = checkForSelectedWindow();
 
     if (windowHasBeenSelected) {
-        const width = inputs.resize.width.value;
-        const height = inputs.resize.height.value;
+        const width = Number(inputs.resize.width.value);
+        const height = Number(inputs.resize.height.value);
+        const isValidWidth = !Number.isNaN(width) && width > 0;
+        const isValidHeight = !Number.isNaN(height) && height > 0;
 
-        // Resizing the selected window.
-        selectedWindow.resizeTo(width, height);
+        if (!isValidWidth || !isValidHeight) {
+            const message = "You must enter a valid number!";
 
-        inputs.resize.width.value = "";
-        inputs.resize.height.value = "";
+            showAlert(message, alertState.error);
+        } else {
+            // Resizing the selected window.
+            selectedWindow.resizeTo(width, height);
+        
+            inputs.resize.width.value = "";
+            inputs.resize.height.value = "";
+        };
     };
 };
 
@@ -207,14 +217,29 @@ function moveWindow() {
     const windowHasBeenSelected = checkForSelectedWindow();
 
     if (windowHasBeenSelected) {
-        const top = inputs.move.top.value;
-        const left = inputs.move.left.value;
-
-        // Moving the selected window.
-        selectedWindow.moveTo(top, left);
-
-        inputs.move.top.value = "";
-        inputs.move.left.value = "";
+        if (inputs.move.top.value === "" || inputs.move.left.value === "") {
+            const message = "You must enter a valid number!";
+    
+            showAlert(message, alertState.error);
+            return;
+        };
+    
+        const top = Number(inputs.move.top.value);
+        const left = Number(inputs.move.left.value);
+        const isValidTop = !Number.isNaN(top);
+        const isValidLeft = !Number.isNaN(left);
+    
+        if (!isValidTop || !isValidLeft) {
+            const message = "You must enter a valid number!";
+    
+            showAlert(message, alertState.error);
+        } else {
+            // Moving the selected window.
+            selectedWindow.moveTo(top, left);
+        
+            inputs.move.top.value = "";
+            inputs.move.left.value = "";    
+        };
     };
 };
 
@@ -238,28 +263,21 @@ function setWindowTitle() {
     };
 };
 
-function setWindowFrameColor() {
+async function placeWindow() {
     const windowHasBeenSelected = checkForSelectedWindow();
 
     if (windowHasBeenSelected) {
-        const frameColor = inputs.frameColor.value;
+        const verticalAlignment = inputs.place.vertical.value;
+        const horizontalAlignment = inputs.place.horizontal.value;
+        // The `snapped` property is required.
+        const placementSetings = { snapped: true, verticalAlignment, horizontalAlignment };
 
-        if (frameColor !== "") {
-
-            // Changing the frame color of the selected window.
-            selectedWindow.setFrameColor(frameColor)
-                .catch(() => {
-                    const message = `The value "${frameColor}" is not a valid color!`;
-                    showAlert(message, alertState.error);
-                    return;
-                });
-
-            inputs.frameColor.value = "";
-        } else {
-            const message = "You must enter a color name or color code first!";
-
+        // Place the window at the specified location.
+        await selectedWindow.place(placementSetings).catch(() => {
+            const message = `The combination of vertical alignment "${verticalAlignment}" and horizontal alignment "${horizontalAlignment}" is currently not supported!`;
+            
             showAlert(message, alertState.error);
-        };
+        });
     };
 };
 
@@ -367,6 +385,7 @@ function checkForSelectedWindow() {
         const message = "You must select a window first!";
 
         showAlert(message, alertState.error);
+
         return false;
     };
 };
@@ -380,7 +399,7 @@ function getDOMElements() {
     buttons.resize = document.getElementById("resize-button");
     buttons.move = document.getElementById("move-button");
     buttons.setTitle = document.getElementById("set-title-button");
-    buttons.setFrameColor = document.getElementById("set-frame-color-button");
+    buttons.place = document.getElementById("place-window-button");
     buttons.maximize = document.getElementById("maximize-button");
     buttons.minimize = document.getElementById("minimize-button");
     buttons.restore = document.getElementById("restore-button");
@@ -401,10 +420,11 @@ function getDOMElements() {
     inputs.move.top = document.getElementById("move-top");
     inputs.move.left = document.getElementById("move-left");
     inputs.title = document.getElementById("set-title");
-    inputs.frameColor = document.getElementById("set-frame-color");
+    inputs.place.vertical = document.getElementById("place-vertical");
+    inputs.place.horizontal = document.getElementById("place-horizontal");
 
     // Other.
-    radioButtons = document.querySelectorAll("label[name='window-mode']");
+    radioButtons = [...document.querySelectorAll("label[name='window-mode']")].map(e => e.previousElementSibling);
     windowIDsContainer = document.getElementById("window-ids");
     logContainer = document.getElementById("event-log");
     inputAlert = document.getElementById("alert");
@@ -417,26 +437,24 @@ function attachEventHandlers() {
     buttons.resize.addEventListener("click", handlers.resizeWindow);
     buttons.move.addEventListener("click", handlers.moveWindow);
     buttons.setTitle.addEventListener("click", handlers.setWindowTitle);
-    buttons.setFrameColor.addEventListener("click", handlers.setWindowFrameColor);
+    buttons.place.addEventListener("click", handlers.placeWindow);
     buttons.maximize.addEventListener("click", handlers.maximizeWindow);
     buttons.minimize.addEventListener("click", handlers.minimizeWindow);
     buttons.restore.addEventListener("click", handlers.restoreWindow);
     buttons.tabHeader.addEventListener("click", handlers.setTabHeaderVisibility);
     buttons.clear.addEventListener("click", handlers.clearLogs);
 
-    radioButtons.forEach(button => button.addEventListener("click", handlers.selectWindowMode));
+    radioButtons.forEach(button => button.nextElementSibling.addEventListener("click", handlers.selectWindowMode));
     inputAlert.addEventListener("click", hideAlert);
 };
 
 // Selecting and deselecting radio buttons when choosing a window mode.
 function selectWindowMode(event) {
     const selectedButton = event.target.previousElementSibling;
+
     selectedWindowMode = selectedButton.value;
 
-    radioButtons.forEach((element) => {
-        const button = element.previousElementSibling;
-        button.checked = false;
-    });
+    radioButtons.forEach(button => button.checked = false);
 
     selectedButton.checked = true;
 };

@@ -1,5 +1,4 @@
 const intent = "DisplayPortfolio";
-const targetedHandlerName = "intentsClientPortfolio";
 const contextType = "Client";
 
 let clientsTable;
@@ -8,11 +7,10 @@ let clientsTable;
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
-    clientsTable = document.getElementById("clients-table");
-
     // Initialize the Glue42 library.
     await initializeGlue42().catch(console.error);
-
+    
+    clientsTable = document.getElementById("clients-table");
     clientsTable.addEventListener("click", openPortfolio);
 };
 
@@ -21,7 +19,7 @@ async function initializeGlue42() {
     window.glue = await Glue();
 };
 
-// Find the targeted intent handler and raise an intent if it exists.
+// Find the targeted Intent and raise it.
 async function openPortfolio(event) {
     const clickedElement = event.target;
 
@@ -30,22 +28,21 @@ async function openPortfolio(event) {
     };
 
     const clientID = clickedElement.parentNode.id;
-    // Context for the raised intent.
-    const context = { type: contextType, data: { clientID } };
-    // Filter with which to find the targeted intent.
-    const intentFilter = { name: intent, contextType };
-    // Finding an intent by name and context type.
-    const targetedIntent = await glue.intents.find(intentFilter);
-    // Check whether the desired handler is among the handlers of the targeted intent.
-    const target = targetedIntent.handlers.find(handler => handler.applicationName === targetedHandlerName);
-    console.log(target);
-    
-    if (target) {
-        // Intent request object. The only required property is the intent name.
-        const intentRequest = { intent, context, target: targetedHandlerName };
 
-        // Raising an intent.
-        glue.intents.raise(intentRequest)
-            .catch(console.error);
+    // Context for the raised Intent.
+    const context = { type: contextType, data: { clientID } };
+
+    // Filter with which to find the targeted Intent.
+    const intentFilter = { name: intent, contextType };
+
+    // Finding an Intent by name and context type.
+    const targetedIntent = await glue.intents.find(intentFilter);
+ 
+    if (targetedIntent) {
+        // Intent request object. The only required property is the Intent name. 
+        const intentRequest = { intent, context, target: "reuse" };
+
+        // Raising an Intent.
+        await glue.intents.raise(intentRequest).catch(console.error);
     };
 };

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../node_modules/@glue42/theme/dist/t42bootstrap.bundle.css">
-    <title>Window Management Demo</title>
+    <title>Window Manipulation Demo</title>
 </head>
 
 <body class="container-fluid px-1 py-2" style="overflow: hidden;">
@@ -84,7 +84,7 @@
                 <h3 class="card-header">Controlling a Specific Window</h3>
                 <div class="card-body p-1">
                     <div class="row m-0">
-                        <div class="card bg-secondary flex-fill mb-1 mr-1">
+                        <div class="card bg-secondary flex-fill m-1">
                             <div class="card-body d-flex flex-column p-2">
                                 <h4 class="card-title">Existing Window IDs</h4>
                                 <p id="window-ids" class="card-text">Click the button to get the IDs of all existing visible windows.</p>
@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card bg-secondary flex-fill mb-1">
+                        <div class="card bg-secondary flex-fill m-1">
                             <div class="card-body p-2">
                                 <h4 class="card-title">Find Window by ID</h4>
                                 <p class="card-text">Enter a window ID to select a window to control.</p>
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                     <div class="row m-0">
-                        <div class="card bg-secondary flex-fill mb-1 mr-1">
+                        <div class="card bg-secondary flex-fill m-1">
                             <div class="card-body p-2">
                                 <h4 class="card-title">Resize</h4>
                                 <div class="row m-0 align-items-end">
@@ -128,7 +128,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card bg-secondary flex-fill mb-1">
+                        <div class="card bg-secondary flex-fill m-1">
                             <div class="card-body p-2">
                                 <h4 class="card-title">Move</h4>
                                 <div class="row m-0 align-items-end">
@@ -148,7 +148,7 @@
                         </div>
                     </div>
                     <div class="row m-0">
-                        <div class="card bg-secondary flex-fill mb-1 mr-1">
+                        <div class="card bg-secondary flex-fill m-1">
                             <div class="card-body d-flex flex-column p-2">
                                 <h4 class="card-title">Set Title</h4>
                                 <div class="row m-0 flex-grow-1 align-items-end">
@@ -162,7 +162,7 @@
                                 </div>
                             </div>
                         </div> 
-                        <div class="card bg-secondary flex-fill mb-1">
+                        <div class="card bg-secondary flex-fill m-1">
                             <div class="card-body p-2">
                                 <h4 class="card-title">Maximize, Minimize, Restore</h4>
                                 <p class="card-text">Use the buttons to maximize, minimize or restore the window.</p>
@@ -173,25 +173,42 @@
                         </div> 
                     </div>
                     <div class="row m-0">
-                        <div class="card bg-secondary flex-fill mb-1 mr-1">
+                        <div class="card bg-secondary flex-fill m-1">
                             <div class="card-body d-flex flex-column p-2">
-                                <h4 class="card-title">Set Frame Color</h4>
+                                <h4 class="card-title">Place</h4>
+                                <p class="card-text">Choose placement settings and place the window to the desired location.</p>
                                 <div class="row m-0 flex-grow-1 align-items-end">
-                                    <div class="form-group mb-0 mr-2">
-                                        <label for="set-frame-color">Frame Color</label>
-                                        <input type="text" style="width: 250px" class="form-control" id="set-frame-color" placeholder="&quot;red&quot; or &quot;#FF0000&quot;">
+                                    <div class="form-group mb-0 mr-2" style="width: 160px;">
+                                        <label for="place">Vertical alignment:</label>
+                                        <select class="form-control" id="place-vertical">
+                                            <option value="top">top</option>
+                                            <option value="bottom">bottom</option>
+                                            <option value="center">center</option>
+                                            <option value="stretch">stretch</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-0 mr-2" style="width: 160px;">
+                                        <label for="place">Horizontal alignment:</label>
+                                        <select class="form-control" id="place-horizontal">
+                                            <option value="left">left</option>
+                                            <option value="right">right</option>
+                                            <option value="center">center</option>
+                                            <option value="stretch">stretch</option>
+                                        </select>
                                     </div>
                                     <div>
-                                        <button type="button" id="set-frame-color-button" class="btn btn-primary">Set Frame Color</button>
+                                        <button type="button" id="place-window-button" class="btn btn-primary mt-2">Place</button>
                                     </div>
                                 </div>
                             </div>
                         </div> 
-                        <div class="card bg-secondary flex-fill mb-1">
-                            <div class="card-body p-2">
+                        <div class="card bg-secondary flex-fill m-1">
+                            <div class="card-body d-flex flex-column p-2">
                                 <h4 class="card-title">Hide or Show Tab Header</h4>
                                 <p class="card-text">Use the button to hide or show the window tab header. <br>Works only for tab windows.</p>
-                                <button type="button" id="tab-header-button" class="btn btn-primary mr-2">Toggle Tab Header Visibility</button>
+                                <div class="row m-0 flex-grow-1 align-items-end">
+                                    <button type="button" id="tab-header-button" class="btn btn-primary mr-2">Toggle Tab Header Visibility</button>
+                                </div>
                             </div>
                         </div> 
                     </div>
@@ -210,7 +227,6 @@
     </div>
 </body>
 
-<script src="../../node_modules/@glue42/desktop/dist/desktop.umd.js"></script>
 <script src="index.js"></script>
 
 </html>

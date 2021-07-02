@@ -2,7 +2,7 @@ const buttons = {
     resize: undefined,
     move: undefined,
     setTitle: undefined,
-    setFrameColor: undefined,
+    place: undefined,
     zoomIn: undefined,
     zoomOut: undefined,
     resetZoom: undefined,
@@ -22,7 +22,10 @@ const inputs = {
         left: undefined
     },
     title: undefined,
-    frameColor: undefined,
+    place: {
+        vertical: undefined,
+        horizontal: undefined
+    },
     tabID: undefined
 };
 
@@ -31,7 +34,7 @@ const handlers = {
     resizeWindow,
     moveWindow,
     setWindowTitle,
-    setWindowFrameColor,
+    placeWindow,
     zoomIn,
     zoomOut,
     resetZoom,
@@ -69,25 +72,48 @@ async function initializeGlue42() {
 
 /** EVENT HANDLERS **/
 function resizeWindow() {
-    const width = inputs.resize.width.value;
-    const height = inputs.resize.height.value;
+    const width = Number(inputs.resize.width.value);
+    const height = Number(inputs.resize.height.value);
+    const isValidWidth = !Number.isNaN(width) && width > 0;
+    const isValidHeight = !Number.isNaN(height) && height > 0;
 
-    // Resizing the current window.
-    myWindow.resizeTo(width, height);
+    if (!isValidWidth || !isValidHeight) {
+        const message = "You must enter a valid number!";
 
-    inputs.resize.width.value = "";
-    inputs.resize.height.value = "";
+        showAlert(message);
+    } else {
+        // Resizing the current window.
+        myWindow.resizeTo(width, height);
+    
+        inputs.resize.width.value = "";
+        inputs.resize.height.value = "";
+    };
 };
 
 function moveWindow() {
-    const top = inputs.move.top.value;
-    const left = inputs.move.left.value;
+    if (inputs.move.top.value === "" || inputs.move.left.value === "") {
+        const message = "You must enter a valid number!";
 
-    // Moving the current window.
-    myWindow.moveTo(top, left);
+        showAlert(message);
+        return;
+    };
 
-    inputs.move.top.value = "";
-    inputs.move.left.value = "";
+    const top = Number(inputs.move.top.value);
+    const left = Number(inputs.move.left.value);
+    const isValidTop = !Number.isNaN(top);
+    const isValidLeft = !Number.isNaN(left);
+
+    if (!isValidTop || !isValidLeft) {
+        const message = "You must enter a valid number!";
+
+        showAlert(message);
+    } else {
+        // Moving the current window.
+        myWindow.moveTo(top, left);
+    
+        inputs.move.top.value = "";
+        inputs.move.left.value = "";    
+    };
 };
 
 function setWindowTitle() {
@@ -105,26 +131,18 @@ function setWindowTitle() {
     };
 };
 
-function setWindowFrameColor() {
-    const frameColor = inputs.frameColor.value;
+async function placeWindow() {
+    const verticalAlignment = inputs.place.vertical.value;
+    const horizontalAlignment = inputs.place.horizontal.value;
+    // The `snapped` property is required.
+    const placementSetings = { snapped: true, verticalAlignment, horizontalAlignment };
 
-    if(frameColor !== "") {
-        // Changing the frame color of the current window.
-        myWindow.setFrameColor(frameColor)
-            .catch(() => {
-                // Handles only the case where the provided value is not a valid color.
-                const message = `The value "${frameColor}" is not a valid color!`;
-
-                showAlert(message);
-                return;
-            });
-
-        inputs.frameColor.value = "";
-    } else {
-        const message = "You must enter a color name or color code first!";
-
+    // Place the window at the specified location.
+    await myWindow.place(placementSetings).catch(() => {
+        const message = `The combination of vertical alignment "${verticalAlignment}" and horizontal alignment "${horizontalAlignment}" is currently not supported!`;
+        
         showAlert(message);
-    }
+    });
 };
 
 function zoomIn() {
@@ -170,7 +188,7 @@ function getTabIDs() {
 function extractTabIDs(tabIDs, window) {
     const windowID = window.id;
     // Filter all tab windows excluding the current window.
-    const isTargetedID = window.mode === "tab" && windowID !== myWindow.id
+    const isTargetedID = window.mode === "tab" && windowID !== myWindow.id;
 
     if (isTargetedID) {
         tabIDs.push(windowID);
@@ -270,7 +288,7 @@ function getDOMElements() {
     buttons.resize = document.getElementById("resize-button");
     buttons.move = document.getElementById("move-button");
     buttons.setTitle = document.getElementById("set-title-button");
-    buttons.setFrameColor = document.getElementById("set-frame-color-button");
+    buttons.place = document.getElementById("place-window-button");
     buttons.zoomIn = document.getElementById("zoom-in-button");
     buttons.zoomOut = document.getElementById("zoom-out-button");
     buttons.resetZoom = document.getElementById("reset-zoom-button");
@@ -285,7 +303,8 @@ function getDOMElements() {
     inputs.move.top = document.getElementById("move-top");
     inputs.move.left = document.getElementById("move-left");
     inputs.title = document.getElementById("set-title");
-    inputs.frameColor = document.getElementById("set-frame-color");
+    inputs.place.vertical = document.getElementById("place-vertical");
+    inputs.place.horizontal = document.getElementById("place-horizontal");
     inputs.tabID = document.getElementById("tab-id");
 
     // Other.
@@ -297,7 +316,7 @@ function attachEventHandlers() {
     buttons.resize.addEventListener("click", handlers.resizeWindow);
     buttons.move.addEventListener("click", handlers.moveWindow);
     buttons.setTitle.addEventListener("click", handlers.setWindowTitle);
-    buttons.setFrameColor.addEventListener("click", handlers.setWindowFrameColor);
+    buttons.place.addEventListener("click", handlers.placeWindow);
     buttons.zoomIn.addEventListener("click", handlers.zoomIn);
     buttons.zoomOut.addEventListener("click", handlers.zoomOut);
     buttons.resetZoom.addEventListener("click", handlers.resetZoom);

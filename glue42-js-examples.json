@@ -1,7 +1,7 @@
 [
     {
         "name": "app-management",
-        "title": "Application Management",
+        "title": "Application Management Demo",
         "caption": "Glue42 Application Management Example",
         "type": "window",
         "ignoreSavedLayout": true,
@@ -19,7 +19,7 @@
     },
     {
         "name": "channels-publisher",
-        "title": "Channels Publisher",
+        "title": "Channels Publisher Demo",
         "caption": "Glue42 Channels Example",
         "type": "window",
         "ignoreSavedLayout": true,
@@ -27,7 +27,7 @@
             "url": "http://localhost:4242/channels/channels-publisher/index.html",
             "mode": "flat",
             "width": 517,
-            "height": 592,
+            "height": 594,
             "minWidth": 500,
             "minHeight": 400,
             "top": 120,
@@ -40,7 +40,7 @@
     },
     {
         "name": "channels-subscriber",
-        "title": "Channels Subscriber",
+        "title": "Channels Subscriber Demo",
         "caption": "Glue42 Channels Example",
         "type": "window",
         "ignoreSavedLayout": true,
@@ -48,7 +48,7 @@
             "url": "http://localhost:4242/channels/channels-subscriber/index.html",
             "mode": "flat",
             "width": 440,
-            "height": 548,
+            "height": 550,
             "minWidth": 400,
             "minHeight": 400,
             "top": 120,
@@ -100,7 +100,7 @@
     },
     {
         "name": "intents-client-list",
-        "title": "Intents Client List",
+        "title": "Intents Client List Demo",
         "caption": "Glue42 Intents Example",
         "type": "window",
         "ignoreSavedLayout": true,
@@ -120,7 +120,7 @@
     },
     {
         "name": "intents-client-portfolio",
-        "title": "Intents Client Portfolio",
+        "title": "Intents Client Portfolio Demo",
         "caption": "Glue42 Intents Example",
         "type": "window",
         "ignoreSavedLayout": true,
@@ -128,7 +128,7 @@
             "url": "http://localhost:4242/intents/client-portfolio/index.html",
             "mode": "flat",
             "width": 360,
-            "height": 194,
+            "height": 198,
             "minWidth": 200,
             "minHeight": 150,
             "top": 200,
@@ -147,7 +147,7 @@
     },
     {
         "name":"interop-response",
-        "title":"Interop Response",
+        "title":"Interop Response Demo",
         "caption": "Glue42 Interop Request/Response Example",
         "type": "window",
         "ignoreSavedLayout": true,
@@ -155,7 +155,7 @@
              "url":"http://localhost:4242/interop-request-response/interop-response/index.html",
              "mode": "flat",
              "width": 400,
-             "height": 270,
+             "height": 275,
              "top": 140,
              "left": 400
         },
@@ -165,7 +165,7 @@
     },
     {
         "name":"interop-request",
-        "title":"Interop Request",
+        "title":"Interop Request Demo",
         "caption": "Glue42 Interop Request/Response Example",
         "type": "window",
         "ignoreSavedLayout": true,
@@ -182,8 +182,8 @@
         }
     },
     {
-        "name":"stream-publisher",
-        "title":"Interop Stream Publisher",
+        "name":"interop-stream-publisher",
+        "title":"Interop Stream Publisher Demo",
         "caption": "Glue42 Interop Streaming Example",
         "type": "window",
         "ignoreSavedLayout": true,
@@ -191,7 +191,7 @@
              "url":"http://localhost:4242/interop-streaming/publisher/index.html",
              "mode": "flat",
              "width": 550,
-             "height": 565,
+             "height": 568,
              "minWidth": 400,
              "minHeight": 400,
              "top": 200,
@@ -202,8 +202,8 @@
         }
     },
     {
-        "name":"stream-subscriber",
-        "title":"Interop Stream Subscriber",
+        "name":"interop-stream-subscriber",
+        "title":"Interop Stream Subscriber Demo",
         "caption": "Glue42 Interop Streaming Example",
         "type": "window",
         "ignoreSavedLayout": true,
@@ -211,7 +211,7 @@
              "url":"http://localhost:4242/interop-streaming/subscriber/index.html",
              "mode": "flat",
              "width": 440,
-             "height": 300,
+             "height": 301,
              "minWidth": 400,
              "minHeight": 250,
              "top": 200,
@@ -261,7 +261,7 @@
     },
     {
         "name": "pub-sub-publisher",
-        "title": "Pub/Sub Publisher",
+        "title": "Pub/Sub Publisher Demo",
         "caption": "Glue42 Pub/Sub Example",
         "type": "window",
         "ignoreSavedLayout": true,
@@ -281,7 +281,7 @@
     },
     {
         "name": "pub-sub-subscriber",
-        "title": "Pub/Sub Subscriber",
+        "title": "Pub/Sub Subscriber Demo",
         "caption": "GLue42 Pub/Sub Example",
         "type": "window",
         "ignoreSavedLayout": true,
@@ -289,7 +289,7 @@
             "url": "http://localhost:4242/pub-sub/subscriber/index.html",
             "mode": "flat",
             "width": 480,
-            "height": 152,
+            "height": 157,
             "minWidth": 450,
             "minHeight": 100,
             "top": 160,
@@ -301,7 +301,7 @@
     },
     {
         "name": "shared-contexts",
-        "title": "Shared Contexts",
+        "title": "Shared Contexts Demo",
         "caption": "Glue42 Shared Contexts Example",
         "type": "window",
         "ignoreSavedLayout": true,
@@ -309,7 +309,7 @@
             "url": "http://localhost:4242/shared-contexts/index.html",
             "mode": "flat",
             "width": 400,
-            "height": 396,
+            "height": 397,
             "minWidth": 350,
             "minHeight": 300,
             "top": 180,
@@ -321,7 +321,7 @@
     },
     {
         "name": "my-window",
-        "title": "My Window Example",
+        "title": "My Window Demo",
         "caption": "Glue42 Window Management Example",
         "type": "window",
         "ignoreSavedLayout": true,
@@ -329,8 +329,8 @@
             "url": "http://localhost:4242/window-management/my-window/index.html",
             "mode": "tab",
             "startLocation": "center",
-            "width": 840,
-            "height": 688
+            "width": 871,
+            "height": 722
         },
         "customProperties": {
             "folder": "Glue42 JavaScript Examples"
@@ -338,7 +338,7 @@
     },
     {
         "name": "window-manipulation",
-        "title": "Window Manipulation Example",
+        "title": "Window Manipulation Demo",
         "caption": "Glue42 Window Management Example",
         "type": "window",
         "ignoreSavedLayout": true,
@@ -346,8 +346,8 @@
             "url": "http://localhost:4242/window-management/window-manipulation/index.html",
             "mode": "flat",
             "startLocation": "center",
-            "width": 1060,
-            "height": 768,
+            "width": 1155,
+            "height": 667,
             "minWidth": 800,
             "minHeight": 500
         },

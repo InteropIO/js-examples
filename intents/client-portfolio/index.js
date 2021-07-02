@@ -1,7 +1,7 @@
 // Client database.
 import { clients } from "./clients-db.js";
 
-// The name of the intent for which to listen.
+// The name of the Intent for which to listen.
 const intent = "DisplayPortfolio";
 
 let clientNameElement;
@@ -21,12 +21,11 @@ async function initializeApp() {
 
     // Get the context of this window.
     context = glue.windows.my().context;
-    const clientID = context.data && context.data.clientID;
+    const clientID = context.data?.clientID;
 
     displayPortfolio(clientID);
     
-    // Add an intent listener, so that when an intent targeted at this application is raised,
-    // it will be handled by the currently running instance (no new instances of this application will be started).
+    // Add an Intent listener to handle an intent request targeted at this application.
     glue.intents.addIntentListener(intent, updateContext);
 };
 
@@ -35,7 +34,7 @@ async function initializeGlue42() {
     window.glue = await Glue();
 };
 
-// Handler for the intent listener. Receives the new context from the raised intent.
+// Handler for the Intent listener. Receives the new context from the raised Intent.
 function updateContext(newContext) {
     const clientID = newContext.data.clientID;
     
