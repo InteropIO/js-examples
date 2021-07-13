@@ -320,6 +320,26 @@
         }
     },
     {
+        "name": "themes-demo",
+        "title": "Themes Demo",
+        "caption": "Glue42 Themes Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details": {
+            "url": "http://localhost:4242/themes/index.html",
+            "mode": "flat",
+            "width": 350,
+            "height": 540,
+            "minWidth": 350,
+            "minHeight": 400,
+            "top": 200,
+            "left": 200
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        }
+    },
+    {
         "name": "my-window",
         "title": "My Window Demo",
         "caption": "Glue42 Window Management Example",

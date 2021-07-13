@@ -17,11 +17,7 @@ async function initializeApp() {
     await initializeGlue42().catch(console.error);
 
     // Subscribe for updates to the context.
-    await subscribeForContext()
-        .catch((error) => { 
-            console.error(error); 
-            return;
-        });
+    await subscribeForContext().catch(console.error);
 
     updateBtn.addEventListener("click", updateContext);
     getContextBtn.addEventListener("click", getContext);
@@ -36,21 +32,18 @@ async function subscribeForContext() {
     return glue.contexts.subscribe(contextName, changeTheme);
 };
 
-function updateContext() {
+async function updateContext() {
     const selected = inputElement.value;
 
     if (selected === "dark" || selected === "light") {
         const update = { selected };
-        glue.contexts.update(contextName, update);
+
+        await glue.contexts.update(contextName, update);
     };
 };
 
 async function getContext() {
-    const currentContext = await glue.contexts.get(contextName)
-        .catch((error) => { 
-            console.error(error); 
-            return;
-        });
+    const currentContext = await glue.contexts.get(contextName).catch(console.error);
 
     themesContextElement.innerText = JSON.stringify(currentContext);
 };
