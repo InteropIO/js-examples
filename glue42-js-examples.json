@@ -18,6 +18,24 @@
         }
     },
     {
+        "name": "app-preferences",
+        "title": "Application Preferences Demo",
+        "caption": "Glue42 Application Preferences Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details": {
+            "url": "http://localhost:4242/app-preferences/index.html",
+            "mode": "flat",
+            "top": 110,
+            "left": 110,
+            "width": 400,
+            "height": 402
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        }
+    },
+    {
         "name": "channels-publisher",
         "title": "Channels Publisher Demo",
         "caption": "Glue42 Channels Example",
@@ -48,7 +66,7 @@
             "url": "http://localhost:4242/channels/channels-subscriber/index.html",
             "mode": "flat",
             "width": 440,
-            "height": 550,
+            "height": 553,
             "minWidth": 400,
             "minHeight": 400,
             "top": 120,
@@ -173,7 +191,7 @@
              "url":"http://localhost:4242/interop-request-response/interop-request/index.html",
              "mode": "flat",
              "width": 230,
-             "height": 200,
+             "height": 202,
              "top": 140,
              "left": 140
         },
@@ -211,7 +229,7 @@
              "url":"http://localhost:4242/interop-streaming/subscriber/index.html",
              "mode": "flat",
              "width": 440,
-             "height": 301,
+             "height": 302,
              "minWidth": 400,
              "minHeight": 250,
              "top": 200,
@@ -351,7 +369,7 @@
             "url": "http://localhost:4242/themes/index.html",
             "mode": "flat",
             "width": 350,
-            "height": 540,
+            "height": 500,
             "minWidth": 350,
             "minHeight": 400,
             "top": 200,
@@ -372,7 +390,7 @@
             "mode": "tab",
             "startLocation": "center",
             "width": 871,
-            "height": 722
+            "height": 726
         },
         "customProperties": {
             "folder": "Glue42 JavaScript Examples"
