@@ -6,10 +6,8 @@
     "scripts": {
         "start": "http-server -p 4242"
     },
-    "author": "",
-    "license": "ISC",
     "dependencies": {
-        "@glue42/theme": "^3.2.6",
+        "@glue42/theme": "^3.2.7",
         "http-server": "^0.12.3"
     }
 }

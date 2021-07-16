@@ -2,11 +2,11 @@
 
 This repository contains basic examples of Glue42 enabled applications.
 
-*For more information on **Glue42 Enterprise**, visit the official product site [glue42.com](https://glue42.com/) or see the [product documentation](https://docs.glue42.com).*
+*For more information on **Glue42 Enterprise**, visit the [official Glue42 product site](https://glue42.com/) or see the **Glue42 Enterprise** [documentation](https://docs.glue42.com).*
 
 ## Prerequisites
 
-- Glue42 Enterprise
+- [**Glue42 Enterprise**](https://glue42.com/enterprise/)
 - node
 - npm
 
@@ -24,7 +24,7 @@ Now you will be able to start all example apps from the **Glue42 Enterprise** To
 
 ### Application Management
 
-This is an example application which uses the Application Management API to start and list applications and application instances.
+This example application uses the [Application Management API](https://docs.glue42.com/glue42-concepts/application-management/javascript/index.html) to start and list applications and application instances:
 
 - lists the names of all registered visible applications;
 - lists the instances of the currently running visible applications;
@@ -34,21 +34,23 @@ This is an example application which uses the Application Management API to star
 
 ### Application Preferences
 
+This example demonstrates how to use the [Application Preferences API](https://docs.glue42.com/glue42-concepts/application-preferences/javascript/index.html) to save, update and retrieve custom application preferences for the current user.
+
 ### Channels
 
-This example contains two applications which use the Channels API. You can open more than one instance of the subscriber app to use different channels.
+This example contains two applications which use the [Channels API](https://docs.glue42.com/glue42-concepts/data-sharing-between-apps/channels/javascript/index.html). You can open more than one instance of the subscriber app to use different Channels.
 
 #### Channels Publisher
 
-After selecting a channel, you an publish any data to the current channel or to any other channel.
+After selecting a Channel, you can publish any data to the current Channel or to any other Channel.
 
 #### Channels Subscriber
 
-Select a channel from the Channel Selector UI or join/leave channels programmatically. Get the context of any channel. The context data of the current channel is also displayed in the app.
+Select a Channel from the Channel Selector UI or join/leave Channels programmatically. Get the context of any Channel. The context data of the current Channel is also displayed in the app.
 
 ### Flydown
 
-Demo app demonstrating the flydown window functionality in **Glue42 Enterprise**.
+Demo app demonstrating the [flydown window functionality](https://docs.glue42.com/glue42-concepts/windows/window-management/javascript/index.html#flydown_windows) in **Glue42 Enterprise**.
 
 #### Flydown App
 
@@ -60,25 +62,31 @@ The window that will be used as a flydown window.
 
 ### Intents
 
+This example contains two applications that use the [Intents API](https://docs.glue42.com/glue42-concepts/intents/javascript/index.html).
+
 #### Client List
+
+Select a client to start the Client Portfolio application with the selected client as its context. If the Client Portfolio application is already running, selecting a client will update its context.
 
 #### Client Portfolio
 
+This application is registered as an Intent handler and will be started when you select a client in the Client List application, or if already running, its context will be updated and it will show the selected client's portfolio.
+
 ### Interop Request/Response
 
-This example contains two applications which use an Interop method to communicate.
+This example contains two applications which use the [Interop API](https://docs.glue42.com/glue42-concepts/data-sharing-between-apps/interop/javascript/index.html) to communicate.
 
 #### Interop Request
 
-Registers an Interop method that will show details about a selected company from the Company List app.
+Select a company from the list to [invoke an Interop method](https://docs.glue42.com/glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#method_invocation) registered by the Interop Response app.
 
 #### Interop Response
 
-Select a company from the list to invoke the Interop method that will show details about the selected company in the Company Details app.
+[Registers an Interop method](https://docs.glue42.com/glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#method_registration) that will show details about the selected company in the Interop Request app.
 
 ### Interop Streaming
 
-Basic Interop Streaming example consisting of an Interop Publisher and an Interop Subscriber app.
+Basic [Interop Streaming](https://docs.glue42.com/glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#streaming) example consisting of an Interop Publisher and an Interop Subscriber apps.
 
 #### Interop Publisher
 
@@ -86,11 +94,11 @@ Creates a stream and handles stream subscriptions. Shows publishing stream data 
 
 #### Interop Subscriber
 
-Subscribes to a stream and shows the received stream data.
+Subscribes to a stream and shows the received stream data. You can open more than one Interop Subscriber instance to test various streaming scenarios.
 
 ### Popup
 
-Demo app demonstrating the popup window functionality in **Glue42 Enterprise**.
+Demo app demonstrating the [popup window functionality](https://docs.glue42.com/glue42-concepts/windows/window-management/javascript/index.html#popup_windows) in **Glue42 Enterprise**.
 
 #### Popup App
 
@@ -100,21 +108,37 @@ The app that will trigger the popup window.
 
 The window that will be used as a popup window.
 
-### Pub/Sub Example
+### Pub/Sub
 
-Basic example which publishes messages on a topic and subscribes for messages published on that topic.
+Two applications using the [Pub/Sub API](https://docs.glue42.com/glue42-concepts/data-sharing-between-apps/pub-sub/javascript/index.html) to communicate.
 
-### Shared Contexts Example
+#### Publisher
+
+Publishes data on a topic.
+
+#### Subscriber
+
+Subscribes for data on a topic.
+
+### Shared Contexts
+
+Two applications that use the [Shared Contexts API](https://docs.glue42.com/glue42-concepts/data-sharing-between-apps/shared-contexts/javascript/index.html) to communicate.
 
 #### Client List
 
+Selecting a client in the app updates a shared context object with the client ID.
+
 #### Client Portfolio
+
+Subscribes for context updates and shows the selected client's portfolio based on the updated client ID in the shared context object.
 
 ### Themes
 
-### Window Management Example
+This example demonstrates using the [Themes API](https://docs.glue42.com/glue42-concepts/windows/themes/javascript/index.html) to get all available themes, get the current theme, select a theme and subscribe for theme change events.
 
-Example of controlling the current or other Glue42 Windows.
+### Window Management
+
+Example of controlling the current or other Glue42 Windows using the [Window Management API](https://docs.glue42.com/glue42-concepts/windows/window-management/javascript/index.html).
 
 #### My Window
 

@@ -164,24 +164,6 @@
         ]
     },
     {
-        "name":"interop-response",
-        "title":"Interop Response Demo",
-        "caption": "Glue42 Interop Request/Response Example",
-        "type": "window",
-        "ignoreSavedLayout": true,
-        "details":{
-             "url":"http://localhost:4242/interop-request-response/interop-response/index.html",
-             "mode": "flat",
-             "width": 400,
-             "height": 275,
-             "top": 140,
-             "left": 400
-        },
-        "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
-        }
-    },
-    {
         "name":"interop-request",
         "title":"Interop Request Demo",
         "caption": "Glue42 Interop Request/Response Example",
@@ -194,6 +176,24 @@
              "height": 202,
              "top": 140,
              "left": 140
+        },
+        "customProperties": {
+            "folder": "Glue42 JavaScript Examples"
+        }
+    },
+    {
+        "name":"interop-response",
+        "title":"Interop Response Demo",
+        "caption": "Glue42 Interop Request/Response Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "details":{
+             "url":"http://localhost:4242/interop-request-response/interop-response/index.html",
+             "mode": "flat",
+             "width": 400,
+             "height": 275,
+             "top": 140,
+             "left": 400
         },
         "customProperties": {
             "folder": "Glue42 JavaScript Examples"
