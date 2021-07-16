@@ -1,100 +1,125 @@
-# JavaScript Example Applications
+# JavaScript Examples for Glue42 Enterprise
 
-This is repository contains basic examples of Glue42 enabled applications.
+This repository contains basic examples of Glue42 enabled applications.
 
-*For more information on Glue42 Desktop, visit the official product site [glue42.com](https://glue42.com/) or see the [product documentation](https://docs.glue42.com).*
+*For more information on **Glue42 Enterprise**, visit the official product site [glue42.com](https://glue42.com/) or see the [product documentation](https://docs.glue42.com).*
 
-### Prerequisites
+## Prerequisites
 
-- Glue42 Desktop
+- Glue42 Enterprise
 - node
 - npm
 
-### Setup
+## Setup
 
-- clone the repository
-- copy the `.json` config files from the application folders (look at the configuration locations [below](#configurations-locations))
-- put them in the Glue42 Desktop application configuration folder (`%LocalAppData%\Tick42\GlueDesktop\config\apps`) 
-- open a terminal
-- in the terminal run `npm install` to install all dependencies 
-- run `npm run start` to host the applications
-        
-Now you should be able to start all registered applications from the Glue42 Desktop App Manager Toolbar.
+- Clone the repository.
+- Copy the `glue42-js-examples.json` configuration file and paste it in the **Glue42 Enterprise** application configuration folder (`%LocalAppData%\Tick42\UserData\<ENV>-<REG>\apps` where you must replace `<ENV>-<REG>` with the region and environment folder name used for the deployment of your **Glue42 Enterprise** - e.g., `T42-DEMO`).  
+- Open a command prompt in the base repo directory and run `npm install` to install all dependencies. 
+- Run `npm start` to start a server at port 4242 where the applications will be hosted.
+- Start **Glue42 Enterprise**. 
 
-## Interop Example
+Now you will be able to start all example apps from the **Glue42 Enterprise** Toolbar. All examples are grouped in the "Glue42 JavaScript Examples" folder.
 
-This example contains two applications which use *methods* and *streams* to communicate.
+## Examples
 
-### Instrument Details
+### Application Management
 
-Application which:
+This is an example application which uses the Application Management API to start and list applications and application instances.
 
-- registers *ShowInstrumentDetails* which visualizes the data sent from Instrument list
-- subscribes for *InstrumentPrice* and visualizes the received data
+- lists the names of all registered visible applications;
+- lists the instances of the currently running visible applications;
+- starts application instances;
+- listens for any added or removed applications;
+- listens for any started or stopped instances of applications;
 
-### Instrument List
+### Application Preferences
 
-Application which:
+### Channels
 
-- invokes *ShowInstrumentDetails* when an instrument is clicked
-- creates the stream *InstrumentPrice*
-- accepts different subscribers on different branches and pushes different data to them
+This example contains two applications which use the Channels API. You can open more than one instance of the subscriber app to use different channels.
 
-## Application Management Example
+#### Channels Publisher
 
-This is an example application which uses the Application Management API to start and list applications.
+After selecting a channel, you an publish any data to the current channel or to any other channel.
 
-### App Management Example
+#### Channels Subscriber
 
-Application which:
+Select a channel from the Channel Selector UI or join/leave channels programmatically. Get the context of any channel. The context data of the current channel is also displayed in the app.
 
-- lists the names of all registered applications
-- lists the instances of the currently running applications
-- starts application instances
-- listens for any added or removed applications
-- listens for any started or stopped instances of applications
+### Flydown
 
-## Channels Example
+Demo app demonstrating the flydown window functionality in **Glue42 Enterprise**.
 
-This example contains two applications which use the Channels API.
-You can open two instances of the subscriber app and keep them on different channels and play around with the interactions.
+#### Flydown App
 
-### Channels Publisher App
+The app that will trigger the flydown window.
 
-- lists some symbols
-- publishes symbol name to channel when a symbol is clicked
-- the publisher app in turn becomes a subscriber by showing info coming from the subscriber app
+#### Flydown Window
 
-### Channels Subscriber App
+The window that will be used as a flydown window.
 
-- subscribes to a channel and displays data passed to it
-- the subscriber app becomes a publisher app itself when the **Send back via channels API** button is clicked
+### Intents
 
-## Shared Contexts Example
+#### Client List
 
-This is a basic example of two applications that use the Shared Contexts API to communicate.
+#### Client Portfolio
 
-### Publisher
+### Interop Request/Response
 
-Application which creates the *ExampleContext* context and changes it every second.
+This example contains two applications which use an Interop method to communicate.
 
-### Subscriber
+#### Interop Request
 
-Application which listens for changes in *ExampleContext* and visualizes it.
+Registers an Interop method that will show details about a selected company from the Company List app.
 
-## Streaming Example
+#### Interop Response
 
-Basic example which listens for a stream and logs the received data.
-Make sure you run the Sample Price Publisher app first located at the following link: https://github.com/Tick42/g4e-tutorial/tree/master/support
+Select a company from the list to invoke the Interop method that will show details about the selected company in the Company Details app.
 
-## Pub/Sub Example
+### Interop Streaming
+
+Basic Interop Streaming example consisting of an Interop Publisher and an Interop Subscriber app.
+
+#### Interop Publisher
+
+Creates a stream and handles stream subscriptions. Shows publishing stream data to all subscribers and to a specific stream branch.
+
+#### Interop Subscriber
+
+Subscribes to a stream and shows the received stream data.
+
+### Popup
+
+Demo app demonstrating the popup window functionality in **Glue42 Enterprise**.
+
+#### Popup App
+
+The app that will trigger the popup window.
+
+#### Popup Window
+
+The window that will be used as a popup window.
+
+### Pub/Sub Example
 
 Basic example which publishes messages on a topic and subscribes for messages published on that topic.
 
-## Flydown Example
+### Shared Contexts Example
 
-Demo app showing the flydown window functionality in Glue42 Desktop.
+#### Client List
 
-## Popup Example
+#### Client Portfolio
 
-Demo app showing the popup window functionality in Glue42 Desktop.
+### Themes
+
+### Window Management Example
+
+Example of controlling the current or other Glue42 Windows.
+
+#### My Window
+
+Application demonstrating controlling the current Glue42 Window.
+
+#### Window Manipulation
+
+Application demonstrating opening and controlling Glue42 Windows.

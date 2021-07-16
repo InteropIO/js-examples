@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;"">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/@glue42/theme/dist/t42bootstrap.bundle.css">
+    <title>Themes Demo</title>
+</head>
+
+<body class="container-fluid p-2" style="height: 100%; overflow: overlay;">
+    <div class="card bg-primary mb-2">
+        <h3 class="card-header">Themes Control</h3>
+        <div class="card-body">
+            <h4 class="card-title">Currently selected theme: <span id="selected-theme"></span></h4>
+            <p class="card-text">Select a theme from the menu.</p>
+            <select class="form-control" id="themes-list">
+                <option selected disabled>-Select Theme-</option>
+            </select>
+        </div>
+    </div>
+    <div class="card bg-primary" style="height: calc(100vh - 202px);">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h3 class="mb-0 text-truncate">Theme Changes Log</h3>
+            <button type="button" id="clear-button" class="btn btn-primary">Clear</button>
+        </div>
+        <div id="event-log" class="card-body overflow-auto"></div>
+    </div>
+</body>
+
+<script src="./index.js"></script>
+
+</html>
