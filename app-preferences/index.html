@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/@glue42/theme/dist/t42bootstrap.bundle.css">
+    <title>Application Preferences Demo</title>
+</head>
+
+<body class="container-fluid p-0" style="overflow:overlay">
+    <div class="col p-2">
+        <div class="card bg-primary">
+            <div class="card-body p-2">
+                <div class="valid-feedback mb-2" id="success-alert"></div>
+                <p class="card-text" id="text">
+                    Select font size and color for this text from the dropdown menus.
+                </p>
+                <select class="form-control mb-2" id="font-size" style="max-width: 160px;">
+                    <option selected disabled value="">-Select Font Size-</option>
+                    <option value="10">10</option>
+                    <option value="14">14</option>
+                    <option value="18">18</option>
+                </select>
+                <select class="form-control mb-2" id="text-color" style="max-width: 160px;">
+                    <option selected disabled value="">-Select Text Color-</option>
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="yellow">Yellow</option>
+                </select>
+                <button type="button" id="update-button" class="btn btn-primary mr-2 mb-2">Update</button>
+                <button type="button" id="set-button" class="btn btn-success mr-2 mb-2">Set</button>
+                <button type="button" id="clear-button" class="btn btn-danger mb-2">Clear</button>
+                <p class="card-text mt-2">
+                    Use the "Update" button to update the values only of the selected preferences, leaving the unselected preferences intact.
+                </p> 
+                <p class="card-text">
+                    Use the "Set" button to set all preferences - e.g., if you select font size, but not color, the color preference will be entirely removed.
+                </p>
+                <p class="card-text">
+                    Use the "Clear" button to clear all saved preferences.
+                </p>
+            </div>
+        </div>
+    </div>     
+</body>
+
+<script src="index.js"></script>
+
+</html>
