@@ -10,10 +10,15 @@
 
 <body class="container-fluid p-2" style="overflow: overlay;">
     <div class="card bg-primary mb-2">
+        <div id="no-stream-warning" class="alert alert-danger alert-dismissible m-2 position-absolute d-none">You must create an Interop stream first!
+            <button type="button" id="dismiss-button" class="close">
+                <span>×</span>
+            </button>
+        </div>
         <h3 class="card-header">Active Subscriptions: <span id="subscription-count">0</span></h3>
         <div class="card-body">
             <p class="card-text">
-                Click the <b>Create Stream</b> button to create an Interop stream. 
+                Click the <b>Create Stream</b> button to create an Interop stream.
                 Once the stream has been created, you can click the <b>Close Stream</b> button to close the stream.
             </p>
             <button type="button" id="stream-button" streaming="false" class="btn btn-primary">Create Stream</button>
@@ -25,18 +30,17 @@
             <div class="form-group">
                 <input type="text" class="form-control" id="data-input" aria-describedby="data-help">
                 <small id="data-help" class="form-text text-muted">
-                    Data to publish. Click <b>Publish to All</b> to send the data to all subscribers, 
+                    Data to publish. Click <b>Publish to All</b> to send the data to all subscribers,
                     or <b>Publish to Branch</b> to send it only to the subscribers grouped on the stream branch.
                 </small>
             </div>
             <button type="button" id="publish-all-button" class="btn btn-primary mr-2">Publish to All</button>
             <button type="button" id="publish-branch-button" class="btn btn-success">Publish to Branch</button>
-            <div id="no-stream-warning" class="alert alert-danger mt-3" style="display: none;">You must create an Interop stream first!</div>
         </div>
     </div>
     <div class="card bg-primary" style="min-height: 142px;">
         <h3 class="card-header">Subscription Requests</h3>
-        <div id="subscription-requests" class="card-body px-2 pt-2 pb-0"></div>
+        <div id="subscription-requests" class="card-body px-2 pt-2 pb-0 overflow-auto" style="max-height: 102px;"></div>
     </div>
 </body>
 

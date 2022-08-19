@@ -24,8 +24,8 @@
         <div class="col-6 p-0">
             <div class="card bg-primary mb-2" style="min-height: 115px;">
                 <h3 class="card-header">Received Data</h3>
-                <div class="card-body">
-                    <p id="channel-data" class="card-title"></p>
+                <div class="card-body overflow-auto" style="height: 62px;">
+                    <p id="channel-data" class="m-0"></p>
                 </div>
             </div>
         </div>
@@ -47,19 +47,19 @@
     </div>
     <div class="row m-0">
         <div class="col-12 p-0">
-            <div class="card bg-primary" style="height: 185px;">
+            <div class="card bg-primary">
                 <h3 class="card-header">Get the Context of a Specific Channel</h3>
                 <div class="card-body">
                     <div class="form-group mb-0">
                         <div class="row">
                             <div class="col-6">
                                 <label for="channel-list">Select Channel:</label>
-                                <select class="form-control" id="channel-list-context" style="width: 166px;"></select>
+                                <select id="channel-list-context" class="form-control"  style="width: 166px;"></select>
                                 <button type="button" id="get-context-button" class="btn btn-success my-3">Get Context</button>
                             </div>
                             <div class="col-6">
                                 <h3>Channel Context</h3>
-                                <p id="channel-context"></p>
+                                <p id="channel-context" class="m-0 overflow-auto" style="max-height: 93px"></p>
                             </div>
                         </div>
                     </div>

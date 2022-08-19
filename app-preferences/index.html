@@ -8,12 +8,12 @@
     <title>Application Preferences Demo</title>
 </head>
 
-<body class="container-fluid p-0" style="overflow:overlay">
-    <div class="col p-2">
-        <div class="card bg-primary">
+<body class="container-fluid p-0 vh-100">
+    <div class="col p-2 h-100">
+        <div class="card bg-primary h-100 overflow-auto">
+            <div class="alert alert-success m-2 position-absolute d-none" id="success-alert"></div>
             <div class="card-body p-2">
-                <div class="valid-feedback mb-2" id="success-alert"></div>
-                <p class="card-text" id="text">
+                <p class="card-text" id="text" style="min-height: 54px;">
                     Select font size and color for this text from the dropdown menus.
                 </p>
                 <select class="form-control mb-2" id="font-size" style="max-width: 160px;">
@@ -33,7 +33,7 @@
                 <button type="button" id="clear-button" class="btn btn-danger mb-2">Clear</button>
                 <p class="card-text mt-2">
                     Use the "Update" button to update the values only of the selected preferences, leaving the unselected preferences intact.
-                </p> 
+                </p>
                 <p class="card-text">
                     Use the "Set" button to set all preferences - e.g., if you select font size, but not color, the color preference will be entirely removed.
                 </p>
@@ -42,7 +42,7 @@
                 </p>
             </div>
         </div>
-    </div>     
+    </div>
 </body>
 
 <script src="index.js"></script>

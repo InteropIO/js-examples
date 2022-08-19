@@ -11,7 +11,9 @@
             "top": 100,
             "left": 100,
             "width": 600,
-            "height": 600
+            "height": 600,
+            "minWidth": 400,
+            "minHeight": 400
         },
         "customProperties": {
             "folder": "Glue42 JavaScript Examples"
@@ -29,7 +31,9 @@
             "top": 110,
             "left": 110,
             "width": 400,
-            "height": 402
+            "height": 420,
+            "minWidth": 400,
+            "minHeight": 390
         },
         "customProperties": {
             "folder": "Glue42 JavaScript Examples"
@@ -66,7 +70,7 @@
             "url": "http://localhost:4242/channels/channels-subscriber/index.html",
             "mode": "flat",
             "width": 440,
-            "height": 553,
+            "height": 567,
             "minWidth": 400,
             "minHeight": 400,
             "top": 120,
@@ -126,9 +130,9 @@
             "url": "http://localhost:4242/intents/client-list/index.html",
             "mode": "flat",
             "width": 360,
-            "height": 286,
-            "minWidth": 300,
-            "minHeight": 200,
+            "height": 288,
+            "minWidth": 360,
+            "minHeight": 258,
             "top": 200,
             "left": 200
         },
@@ -146,9 +150,9 @@
             "url": "http://localhost:4242/intents/client-portfolio/index.html",
             "mode": "flat",
             "width": 360,
-            "height": 200,
-            "minWidth": 200,
-            "minHeight": 150,
+            "height": 198,
+            "minWidth": 360,
+            "minHeight": 168,
             "top": 200,
             "left": 600
         },
@@ -174,6 +178,8 @@
              "mode": "flat",
              "width": 230,
              "height": 202,
+             "minWidth": 230,
+             "minHeight": 172,
              "top": 140,
              "left": 140
         },
@@ -191,7 +197,9 @@
              "url":"http://localhost:4242/interop-request-response/interop-response/index.html",
              "mode": "flat",
              "width": 400,
-             "height": 275,
+             "height": 270,
+             "minWidth": 400,
+             "minHeight": 240,
              "top": 140,
              "left": 400
         },
@@ -209,9 +217,9 @@
              "url":"http://localhost:4242/interop-streaming/publisher/index.html",
              "mode": "flat",
              "width": 550,
-             "height": 568,
-             "minWidth": 400,
-             "minHeight": 400,
+             "height": 566,
+             "minWidth": 550,
+             "minHeight": 536,
              "top": 200,
              "left": 200
         },
@@ -229,9 +237,9 @@
              "url":"http://localhost:4242/interop-streaming/subscriber/index.html",
              "mode": "flat",
              "width": 440,
-             "height": 302,
-             "minWidth": 400,
-             "minHeight": 250,
+             "height": 318,
+             "minWidth": 440,
+             "minHeight": 288,
              "top": 200,
              "left": 800
         },

@@ -28,11 +28,11 @@ async function initializeGlue42() {
 
 async function applyPreferences() {
     const { data } = await glue.prefs.get();
-    
+
     if (data) {
         const fontSize = data.fontSize;
         const textColor = data.textColor;
-    
+
         textContainer.style.fontSize = `${fontSize}px` || null;
         textContainer.style.color = textColor || null;
     };
@@ -95,5 +95,5 @@ function showAlert(action) {
     const message = `Preferences successfully ${action}! Refresh or restart the app to apply them.`
 
     successAlert.innerText = message;
-    successAlert.classList.add("d-block");
+    successAlert.classList.remove("d-none");
 };
