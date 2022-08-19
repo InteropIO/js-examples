@@ -14,16 +14,8 @@ async function initializeApp() {
     // Reference to this window.
     const myWindow = glue.windows.my();
 
-    // Bounds of the area around which the popup will appear.
-    const buttonBounds = {
-        left: Math.round(button.getBoundingClientRect().left),
-        top: Math.round(button.getBoundingClientRect().top),
-        width: Math.round(button.getBoundingClientRect().width),
-        height: Math.round(button.getBoundingClientRect().height)
-    };
-
-    button.addEventListener("click", () => { 
-        activatePopup(popup, myWindow, buttonBounds);
+    button.addEventListener("click", () => {
+        activatePopup(popup, myWindow);
     });
 };
 
@@ -32,12 +24,24 @@ async function initializeGlue42() {
     window.glue = await Glue();
 };
 
+function getButtonBounds() {
+    // Bounds of the area around which the popup will appear.
+    const buttonBounds = {
+        left: Math.round(button.getBoundingClientRect().left),
+        top: Math.round(button.getBoundingClientRect().top),
+        width: Math.round(button.getBoundingClientRect().width),
+        height: Math.round(button.getBoundingClientRect().height)
+    };
+
+    return buttonBounds;
+};
+
 /** SHOWING THE POPUP WINDOW **/
-async function activatePopup(popup, myWindow, buttonBounds) {
+async function activatePopup(popup, myWindow) {
     // Popup options.
     const popupOptions = {
         windowId: popup.id,
-        targetBounds: buttonBounds,
+        targetBounds: getButtonBounds(),
         size: {
             width: 250,
             height: 50
