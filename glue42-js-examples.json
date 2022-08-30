@@ -296,8 +296,8 @@
             "mode": "flat",
             "width": 350,
             "height": 250,
-            "minWidth": 300,
-            "minHeight": 200,
+            "minWidth": 350,
+            "minHeight": 220,
             "top": 160,
             "left": 160
         },
@@ -315,9 +315,9 @@
             "url": "http://localhost:4242/pub-sub/subscriber/index.html",
             "mode": "flat",
             "width": 480,
-            "height": 157,
-            "minWidth": 450,
-            "minHeight": 100,
+            "height": 155,
+            "minWidth": 480,
+            "minHeight": 125,
             "top": 160,
             "left": 600
         },
@@ -336,9 +336,9 @@
             "url": "http://localhost:4242/shared-contexts/client-list/index.html",
             "mode": "flat",
             "width": 360,
-            "height": 286,
-            "minWidth": 300,
-            "minHeight": 200,
+            "height": 288,
+            "minWidth": 360,
+            "minHeight": 258,
             "top": 200,
             "left": 200
         },
@@ -356,9 +356,9 @@
             "url": "http://localhost:4242/shared-contexts/client-portfolio/index.html",
             "mode": "flat",
             "width": 360,
-            "height": 200,
-            "minWidth": 200,
-            "minHeight": 150,
+            "height": 198,
+            "minWidth": 360,
+            "minHeight": 168,
             "top": 200,
             "left": 600
         },
@@ -377,9 +377,9 @@
             "url": "http://localhost:4242/themes/index.html",
             "mode": "flat",
             "width": 350,
-            "height": 500,
+            "height": 426,
             "minWidth": 350,
-            "minHeight": 400,
+            "minHeight": 396,
             "top": 200,
             "left": 200
         },
@@ -398,7 +398,9 @@
             "mode": "tab",
             "startLocation": "center",
             "width": 871,
-            "height": 726
+            "height": 722,
+            "minWidth": 871,
+            "minHeight": 692
         },
         "customProperties": {
             "folder": "Glue42 JavaScript Examples"
