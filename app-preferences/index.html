@@ -11,7 +11,13 @@
 <body class="container-fluid p-0 vh-100">
     <div class="col p-2 h-100">
         <div class="card bg-primary h-100 overflow-auto">
-            <div class="alert alert-success m-2 position-absolute d-none" id="success-alert"></div>
+            <div class="alert alert-success m-2 position-absolute align-self-center d-none" id="success-alert"></div>
+            <div class="alert alert-danger alert-dismissible m-2 position-absolute align-self-center d-none" id="no-input-alert">
+                You must select an input value first!
+                <button type="button" id="dismiss-button" class="close">
+                    <span>×</span>
+                </button>
+            </div>
             <div class="card-body p-2">
                 <p class="card-text" id="text" style="min-height: 54px;">
                     Select font size and color for this text from the dropdown menus.

@@ -145,7 +145,7 @@ function getWindowIDs() {
         const message = "No windows have been opened yet!";
 
         showAlert(message, alertState.error);
-    };       
+    };
 };
 
 function extractWindowIDs(windowIDs, window) {
@@ -184,7 +184,7 @@ function selectWindow() {
 
         inputs.windowID.value = "";
     } else {
-        const message = `A window with ID "${windowID}" does not exist!`;
+        const message = `A window with ID "${windowID}" doesn't exist!`;
 
         showAlert(message, alertState.error);
     };
@@ -206,7 +206,7 @@ function resizeWindow() {
         } else {
             // Resizing the selected window.
             selectedWindow.resizeTo(width, height);
-        
+
             inputs.resize.width.value = "";
             inputs.resize.height.value = "";
         };
@@ -219,26 +219,26 @@ function moveWindow() {
     if (windowHasBeenSelected) {
         if (inputs.move.top.value === "" || inputs.move.left.value === "") {
             const message = "You must enter a valid number!";
-    
+
             showAlert(message, alertState.error);
             return;
         };
-    
+
         const top = Number(inputs.move.top.value);
         const left = Number(inputs.move.left.value);
         const isValidTop = !Number.isNaN(top);
         const isValidLeft = !Number.isNaN(left);
-    
+
         if (!isValidTop || !isValidLeft) {
             const message = "You must enter a valid number!";
-    
+
             showAlert(message, alertState.error);
         } else {
             // Moving the selected window.
             selectedWindow.moveTo(top, left);
-        
+
             inputs.move.top.value = "";
-            inputs.move.left.value = "";    
+            inputs.move.left.value = "";
         };
     };
 };
@@ -274,8 +274,8 @@ async function placeWindow() {
 
         // Place the window at the specified location.
         await selectedWindow.place(placementSetings).catch(() => {
-            const message = `The combination of vertical alignment "${verticalAlignment}" and horizontal alignment "${horizontalAlignment}" is currently not supported!`;
-            
+            const message = `The combination of vertical alignment "${verticalAlignment}" and horizontal alignment "${horizontalAlignment}" currently isn't supported!`;
+
             showAlert(message, alertState.error);
         });
     };
@@ -315,7 +315,7 @@ function setTabHeaderVisibility() {
 
     if (windowHasBeenSelected) {
         if (!windowIsTab) {
-            const message = "Cannot manipulate tab header. The selected window is not a tab window!";
+            const message = "Can't manipulate the tab header. The selected window isn't a tab window!";
 
             showAlert(message, alertState.error);
             return;
@@ -343,7 +343,7 @@ function windowAdded(window) {
     const windowName = window.name;
     const windowID = window.id;
     const windowMode = window.mode;
-    const event = "Window Added. " 
+    const event = "Window Added. "
     const details = `Name: "${windowName}", Mode: "${windowMode}", ID: "${windowID}".`;
     const logElement = document.createElement("p");
     const eventElement = document.createElement("span");
@@ -360,7 +360,7 @@ function windowRemoved(window) {
     const windowName = window.name;
     const windowID = window.id;
     const windowMode = window.mode;
-    const event = "Window Removed. " 
+    const event = "Window Removed. "
     const details = `Name: "${windowName}", Mode: "${windowMode}", ID: "${windowID}".`;
     const logElement = document.createElement("p");
     const eventElement = document.createElement("span");

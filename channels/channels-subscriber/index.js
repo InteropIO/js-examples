@@ -55,7 +55,7 @@ function trackCurrentChannel() {
             channelNameElement.innerText = newChannelName;
             channelColorElement.style.backgroundColor = newChannelContext.meta.color;
         } else {
-            // Handle the case where the app is not joined to any channel 
+            // Handle the case where the app is not joined to any channel
             // (e.g., the user has deselected the current channel).
             channelNameElement.innerText = "No Channel";
             channelColorElement.style.backgroundColor = "";
@@ -107,7 +107,7 @@ async function createChannelsMenu() {
     const optionElement = document.createElement("option");
 
     const sortChannelsByName = (a, b) => a.name.localeCompare(b.name);
-    
+
     const createOptionInMenu = (channelContext) => {
         const currentOption = optionElement.cloneNode();
         const channelName = channelContext.name;

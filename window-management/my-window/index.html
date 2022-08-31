@@ -9,15 +9,14 @@
 </head>
 
 <body class="container-fluid p-2" style="overflow:overlay">
-    <!-- Invalid input alert. -->
-    <div id="alert" class="alert alert-danger alert-dismissible fade show alert-sm" style="position: fixed; left: 20vw; right: 20vw; top: 45vh; display: none;">
-        <span></span>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">×</span>
-        </button>
-    </div>
-
     <div class="card bg-primary">
+        <!-- Invalid input alert. -->
+        <div id="alert" class="alert alert-danger alert-dismissible position-absolute m-2 align-self-center d-none">
+            <span id="alert-text"></span>
+            <button type="button" id="dismiss-button" class="close">
+                <span>×</span>
+            </button>
+        </div>
         <h3 class="card-header">Controlling the Current Window</h3>
         <div class="card-body p-1">
             <div class="d-flex">

@@ -8,6 +8,8 @@ let textContainer;
 let selectFontSizeElement;
 let selectTextColorElement;
 let successAlert;
+let noInputAlert;
+let dismissBtn;
 
 /** SET UP THE APPLICATION **/
 window.addEventListener("DOMContentLoaded", initializeApp);
@@ -40,21 +42,25 @@ async function applyPreferences() {
 
 async function updatePreferences() {
     const preferences = getPreferencesData();
-
-    await glue.prefs.update(preferences);
-    showAlert("updated");
+    console.log(preferences)
+    if (preferences) {
+        await glue.prefs.update(preferences);
+        showSuccessAlert("updated");
+    };
 };
 
 async function setPreferences() {
     const preferences = getPreferencesData();
 
-    await glue.prefs.set(preferences);
-    showAlert("set");
+    if (preferences) {
+        await glue.prefs.set(preferences);
+        showSuccessAlert("set");
+    };
 };
 
 async function clearPreferences() {
     await glue.prefs.clear();
-    showAlert("cleared");
+    showSuccessAlert("cleared");
 };
 
 /** DOM ELEMENT MANIPULATIONS */
@@ -67,18 +73,27 @@ function getDOMELements() {
     selectFontSizeElement = document.getElementById("font-size");
     selectTextColorElement = document.getElementById("text-color");
     successAlert = document.getElementById("success-alert");
+    noInputAlert = document.getElementById("no-input-alert");
+    dismissBtn = document.getElementById("dismiss-button");
 };
 
 function handleButtonClicks() {
     buttons.update.addEventListener("click", updatePreferences);
     buttons.set.addEventListener("click", setPreferences);
     buttons.clear.addEventListener("click", clearPreferences);
+
+    dismissBtn.addEventListener("click", hideNoInputAlert);
 };
 
 function getPreferencesData() {
     const preferences = {};
     const fontSize = selectFontSizeElement[selectFontSizeElement.selectedIndex].value;
     const textColor = selectTextColorElement[selectTextColorElement.selectedIndex].value;
+
+    if (fontSize === "" && textColor === "") {
+        showNoInputAlert();
+        return;
+    };
 
     if (fontSize) {
         preferences.fontSize = fontSize;
@@ -91,9 +106,19 @@ function getPreferencesData() {
     return preferences;
 }
 
-function showAlert(action) {
+function showSuccessAlert(action) {
+    hideNoInputAlert();
+
     const message = `Preferences successfully ${action}! Refresh or restart the app to apply them.`
 
     successAlert.innerText = message;
     successAlert.classList.remove("d-none");
+};
+
+function showNoInputAlert() {
+    noInputAlert.classList.remove("d-none");
+};
+
+function hideNoInputAlert() {
+    noInputAlert.classList.add("d-none");
 };

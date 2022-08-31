@@ -48,10 +48,10 @@
         "details": {
             "url": "http://localhost:4242/channels/channels-publisher/index.html",
             "mode": "flat",
-            "width": 517,
-            "height": 594,
-            "minWidth": 500,
-            "minHeight": 400,
+            "width": 468,
+            "height": 598,
+            "minWidth": 468,
+            "minHeight": 568,
             "top": 120,
             "left": 120,
             "allowChannels": true
@@ -69,10 +69,10 @@
         "details": {
             "url": "http://localhost:4242/channels/channels-subscriber/index.html",
             "mode": "flat",
-            "width": 440,
-            "height": 567,
-            "minWidth": 400,
-            "minHeight": 400,
+            "width": 525,
+            "height": 568,
+            "minWidth": 525,
+            "minHeight": 538,
             "top": 120,
             "left": 700,
             "allowChannels": true

@@ -8,17 +8,16 @@
     <title>Window Manipulation Demo</title>
 </head>
 
-<body class="container-fluid px-1 py-2" style="overflow: hidden;">
+<body class="container-fluid p-0 overflow-hidden">
     <!-- Invalid input alert. -->
-    <div id="alert" class="alert alert-danger alert-dismissible fade show" style="position: fixed; left: 20vw; right: 20vw; top: 45vh; display: none;">
+    <div id="alert" class="alert alert-danger alert-dismissible m-2 position-absolute align-self-center d-none">
         <span></span>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">×</span>
+        <button type="button" id="dismiss-button" class="close">
+            <span>×</span>
         </button>
     </div>
-
-    <div class="row m-0">
-        <div class="col-9 px-1  " style="height: calc(100vh - 16px); overflow-y: scroll; overflow-x: hidden;">
+    <div class="d-flex p-2">
+        <div class="col-9 pe-1" style="height: calc(100vh - 16px); overflow-x: hidden; overflow-y: auto;">
             <div class="card bg-primary mb-2">
                 <h3 class="card-header">Opening Windows</h3>
                 <div class="card-body p-2">
@@ -83,7 +82,7 @@
             <div class="card bg-primary">
                 <h3 class="card-header">Controlling a Specific Window</h3>
                 <div class="card-body p-1">
-                    <div class="row m-0">
+                    <div class="d-flex">
                         <div class="card bg-secondary flex-fill m-1">
                             <div class="card-body d-flex flex-column p-2">
                                 <h4 class="card-title">Existing Window IDs</h4>
@@ -109,7 +108,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row m-0">
+                    <div class="d-flex">
                         <div class="card bg-secondary flex-fill m-1">
                             <div class="card-body p-2">
                                 <h4 class="card-title">Resize</h4>
@@ -147,7 +146,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row m-0">
+                    <div class="d-flex">
                         <div class="card bg-secondary flex-fill m-1">
                             <div class="card-body d-flex flex-column p-2">
                                 <h4 class="card-title">Set Title</h4>
@@ -161,7 +160,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                         <div class="card bg-secondary flex-fill m-1">
                             <div class="card-body p-2">
                                 <h4 class="card-title">Maximize, Minimize, Restore</h4>
@@ -170,9 +169,9 @@
                                 <button type="button" id="minimize-button" class="btn btn-primary mr-2">Minimize</button>
                                 <button type="button" id="restore-button" class="btn btn-primary">Restore</button>
                             </div>
-                        </div> 
+                        </div>
                     </div>
-                    <div class="row m-0">
+                    <div class="d-flex">
                         <div class="card bg-secondary flex-fill m-1">
                             <div class="card-body d-flex flex-column p-2">
                                 <h4 class="card-title">Place</h4>
@@ -201,7 +200,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                         <div class="card bg-secondary flex-fill m-1">
                             <div class="card-body d-flex flex-column p-2">
                                 <h4 class="card-title">Hide or Show Tab Header</h4>
@@ -210,12 +209,12 @@
                                     <button type="button" id="tab-header-button" class="btn btn-primary mr-2">Toggle Tab Header Visibility</button>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-3 d-flex px-1" style="height: calc(100vh - 16px);">
+        <div class="col-3 ps-2 d-flex overflow-auto" style="height: calc(100vh - 16px)">
             <div class="card bg-primary flex-grow-1">
                 <div class="card-header d-flex justify-content-between align-items-center py-2">
                     <h3 class="mb-0 text-truncate">Event Log</h3>
