@@ -72,6 +72,7 @@ let selectedWindowMode;
 let windowIDsContainer;
 let logContainer;
 let inputAlert;
+let dismissBtn;
 
 // Reference to the window selected by the user for control.
 let selectedWindow;
@@ -428,6 +429,7 @@ function getDOMElements() {
     windowIDsContainer = document.getElementById("window-ids");
     logContainer = document.getElementById("event-log");
     inputAlert = document.getElementById("alert");
+    dismissBtn = document.getElementById("dismiss-button");
 };
 
 function attachEventHandlers() {
@@ -445,7 +447,7 @@ function attachEventHandlers() {
     buttons.clear.addEventListener("click", handlers.clearLogs);
 
     radioButtons.forEach(button => button.nextElementSibling.addEventListener("click", handlers.selectWindowMode));
-    inputAlert.addEventListener("click", hideAlert);
+    dismissBtn.addEventListener("click", hideAlert);
 };
 
 // Selecting and deselecting radio buttons when choosing a window mode.
@@ -465,11 +467,11 @@ function showAlert(message, state) {
     inputAlert.classList.remove(classToRemove);
     inputAlert.classList.add(state);
     inputAlert.firstElementChild.innerText = message;
-    inputAlert.style.display = "block";
+    inputAlert.classList.remove("d-none");
 };
 
 function hideAlert() {
-    inputAlert.style.display = "none";
+    inputAlert.classList.add("d-none");
 };
 
 function clearLogs() {

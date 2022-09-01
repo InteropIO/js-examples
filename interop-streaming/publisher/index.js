@@ -201,7 +201,7 @@ function createSubscriptionRequestTemplate() {
 
     acceptBtn.innerText = "Accept";
     acceptBtn.setAttribute("type", "button");
-    acceptBtn.classList.add("btn", "btn-primary", "mr-2");
+    acceptBtn.classList.add("btn", "btn-primary", "me-2");
 
     const acceptOnBranchBtn = acceptBtn.cloneNode(true);
 

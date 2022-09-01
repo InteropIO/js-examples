@@ -416,10 +416,10 @@
             "url": "http://localhost:4242/window-management/window-manipulation/index.html",
             "mode": "flat",
             "startLocation": "center",
-            "width": 1155,
-            "height": 667,
-            "minWidth": 800,
-            "minHeight": 500
+            "width": 1086,
+            "height": 660,
+            "minWidth": 1086,
+            "minHeight": 630
         },
         "customProperties": {
             "folder": "Glue42 JavaScript Examples"
