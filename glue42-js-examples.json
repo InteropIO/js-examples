@@ -11,7 +11,9 @@
             "top": 100,
             "left": 100,
             "width": 600,
-            "height": 600
+            "height": 600,
+            "minWidth": 400,
+            "minHeight": 400
         },
         "customProperties": {
             "folder": "Glue42 JavaScript Examples"
@@ -29,7 +31,9 @@
             "top": 110,
             "left": 110,
             "width": 400,
-            "height": 402
+            "height": 420,
+            "minWidth": 400,
+            "minHeight": 390
         },
         "customProperties": {
             "folder": "Glue42 JavaScript Examples"
@@ -44,10 +48,10 @@
         "details": {
             "url": "http://localhost:4242/channels/channels-publisher/index.html",
             "mode": "flat",
-            "width": 517,
-            "height": 594,
-            "minWidth": 500,
-            "minHeight": 400,
+            "width": 468,
+            "height": 598,
+            "minWidth": 468,
+            "minHeight": 568,
             "top": 120,
             "left": 120,
             "allowChannels": true
@@ -65,10 +69,10 @@
         "details": {
             "url": "http://localhost:4242/channels/channels-subscriber/index.html",
             "mode": "flat",
-            "width": 440,
-            "height": 553,
-            "minWidth": 400,
-            "minHeight": 400,
+            "width": 525,
+            "height": 568,
+            "minWidth": 525,
+            "minHeight": 538,
             "top": 120,
             "left": 700,
             "allowChannels": true
@@ -126,9 +130,9 @@
             "url": "http://localhost:4242/intents/client-list/index.html",
             "mode": "flat",
             "width": 360,
-            "height": 286,
-            "minWidth": 300,
-            "minHeight": 200,
+            "height": 288,
+            "minWidth": 360,
+            "minHeight": 258,
             "top": 200,
             "left": 200
         },
@@ -146,9 +150,9 @@
             "url": "http://localhost:4242/intents/client-portfolio/index.html",
             "mode": "flat",
             "width": 360,
-            "height": 200,
-            "minWidth": 200,
-            "minHeight": 150,
+            "height": 198,
+            "minWidth": 360,
+            "minHeight": 168,
             "top": 200,
             "left": 600
         },
@@ -174,6 +178,8 @@
              "mode": "flat",
              "width": 230,
              "height": 202,
+             "minWidth": 230,
+             "minHeight": 172,
              "top": 140,
              "left": 140
         },
@@ -191,7 +197,9 @@
              "url":"http://localhost:4242/interop-request-response/interop-response/index.html",
              "mode": "flat",
              "width": 400,
-             "height": 275,
+             "height": 270,
+             "minWidth": 400,
+             "minHeight": 240,
              "top": 140,
              "left": 400
         },
@@ -209,9 +217,9 @@
              "url":"http://localhost:4242/interop-streaming/publisher/index.html",
              "mode": "flat",
              "width": 550,
-             "height": 568,
-             "minWidth": 400,
-             "minHeight": 400,
+             "height": 566,
+             "minWidth": 550,
+             "minHeight": 536,
              "top": 200,
              "left": 200
         },
@@ -229,9 +237,9 @@
              "url":"http://localhost:4242/interop-streaming/subscriber/index.html",
              "mode": "flat",
              "width": 440,
-             "height": 302,
-             "minWidth": 400,
-             "minHeight": 250,
+             "height": 318,
+             "minWidth": 440,
+             "minHeight": 288,
              "top": 200,
              "left": 800
         },
@@ -288,8 +296,8 @@
             "mode": "flat",
             "width": 350,
             "height": 250,
-            "minWidth": 300,
-            "minHeight": 200,
+            "minWidth": 350,
+            "minHeight": 220,
             "top": 160,
             "left": 160
         },
@@ -307,9 +315,9 @@
             "url": "http://localhost:4242/pub-sub/subscriber/index.html",
             "mode": "flat",
             "width": 480,
-            "height": 157,
-            "minWidth": 450,
-            "minHeight": 100,
+            "height": 155,
+            "minWidth": 480,
+            "minHeight": 125,
             "top": 160,
             "left": 600
         },
@@ -328,9 +336,9 @@
             "url": "http://localhost:4242/shared-contexts/client-list/index.html",
             "mode": "flat",
             "width": 360,
-            "height": 286,
-            "minWidth": 300,
-            "minHeight": 200,
+            "height": 288,
+            "minWidth": 360,
+            "minHeight": 258,
             "top": 200,
             "left": 200
         },
@@ -348,9 +356,9 @@
             "url": "http://localhost:4242/shared-contexts/client-portfolio/index.html",
             "mode": "flat",
             "width": 360,
-            "height": 200,
-            "minWidth": 200,
-            "minHeight": 150,
+            "height": 198,
+            "minWidth": 360,
+            "minHeight": 168,
             "top": 200,
             "left": 600
         },
@@ -369,9 +377,9 @@
             "url": "http://localhost:4242/themes/index.html",
             "mode": "flat",
             "width": 350,
-            "height": 500,
+            "height": 426,
             "minWidth": 350,
-            "minHeight": 400,
+            "minHeight": 396,
             "top": 200,
             "left": 200
         },
@@ -390,7 +398,9 @@
             "mode": "tab",
             "startLocation": "center",
             "width": 871,
-            "height": 726
+            "height": 722,
+            "minWidth": 871,
+            "minHeight": 692
         },
         "customProperties": {
             "folder": "Glue42 JavaScript Examples"
@@ -406,10 +416,10 @@
             "url": "http://localhost:4242/window-management/window-manipulation/index.html",
             "mode": "flat",
             "startLocation": "center",
-            "width": 1155,
-            "height": 667,
-            "minWidth": 800,
-            "minHeight": 500
+            "width": 1086,
+            "height": 660,
+            "minWidth": 1086,
+            "minHeight": 630
         },
         "customProperties": {
             "folder": "Glue42 JavaScript Examples"

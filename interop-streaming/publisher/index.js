@@ -12,6 +12,7 @@ let publishBranchBtn;
 let noStreamWarning;
 let subscriptionRequestsContainter;
 let subscriptionRequestTemplate;
+let dismissBtn;
 
 /** SET UP THE APPLICATION **/
 window.addEventListener("DOMContentLoaded", initializeApp);
@@ -25,6 +26,7 @@ async function initializeApp() {
     streamBtn.addEventListener("click", handleStream);
     publishAllBtn.addEventListener("click", publishToAll);
     publishBranchBtn.addEventListener("click", publishToBranch);
+    dismissBtn.addEventListener("click", hideAlert);
 };
 
 /** INITIALIZE GLUE42 **/
@@ -62,8 +64,8 @@ const subscriptions = {
         acceptOnBranchBtn.addEventListener("click", acceptOnBranchHandler);
         rejectBtn.addEventListener("click", rejectHandler);
 
-        // Subscription requests will fail on the side of the subscriber after 30 seconds (by default) 
-        // if the stream method does not respond within that time frame. 
+        // Subscription requests will fail on the side of the subscriber after 30 seconds (by default)
+        // if the stream method does not respond within that time frame.
         // Set a 30 second timeout to remove the request if it is not accepted or rejected within that period
         // and therefore fails on the side of the subscriber.
         const timeout = setTimeout(removeSubscriptionRequest, 30000, requestElement);
@@ -91,7 +93,7 @@ const subscriptions = {
         function rejectHandler() {
             // Reject the request.
             request.reject();
-            
+
             this.parentNode.remove();
             clearTimeout(timeout);
         };
@@ -108,7 +110,7 @@ function handleStream() {
         createInteropStream();
 
         streamBtn.innerText = "Close Stream";
-        streamBtn.setAttribute("streaming", "true");  
+        streamBtn.setAttribute("streaming", "true");
     } else if (streamState === "true") {
         closeInteropStream();
 
@@ -127,7 +129,6 @@ async function createInteropStream() {
 
     // Creating the stream.
     stream = await glue.interop.createStream(streamName, streamOptions);
-    handleAlert("none");
 };
 
 function closeInteropStream() {
@@ -141,28 +142,26 @@ function closeInteropStream() {
 function publishToAll() {
     if (stream) {
         const dataToPublish = { data: dataInput.value };
-        
+
         // Push data to all stream subscribers.
         stream.push(dataToPublish);
 
-        handleAlert("none");
         dataInput.value = "";
     } else {
-        handleAlert("block");
+        showAlert();
     };
 };
 
 function publishToBranch() {
     if (stream) {
         const dataToPublish = { data: dataInput.value };
-        
+
         // Push data only to the subscribers grouped on the specified stream branch.
         stream.push(dataToPublish, branchName);
-        
+
         dataInput.value = "";
-        handleAlert("none");
     } else {
-        handleAlert("block");
+        showAlert();
     };
 };
 
@@ -176,11 +175,16 @@ function getDOMElements() {
     noStreamWarning = document.getElementById("no-stream-warning");
     subscriptionRequestsContainter = document.getElementById("subscription-requests");
     subscriptionRequestTemplate = createSubscriptionRequestTemplate();
+    dismissBtn = document.getElementById("dismiss-button");
 };
 
-// Show or hide the warning for publishing when the stream has not yet been created.
-function handleAlert(alertState) {
-    noStreamWarning.style.display = alertState;
+// Show and hide the warning for publishing when the stream has not yet been created.
+function showAlert() {
+    noStreamWarning.classList.remove("d-none");
+};
+
+function hideAlert() {
+    noStreamWarning.classList.add("d-none");
 };
 
 // Create a template for the subscription requests.
@@ -197,7 +201,7 @@ function createSubscriptionRequestTemplate() {
 
     acceptBtn.innerText = "Accept";
     acceptBtn.setAttribute("type", "button");
-    acceptBtn.classList.add("btn", "btn-primary", "mr-2");
+    acceptBtn.classList.add("btn", "btn-primary", "me-2");
 
     const acceptOnBranchBtn = acceptBtn.cloneNode(true);
 
@@ -210,7 +214,7 @@ function createSubscriptionRequestTemplate() {
     rejectBtn.innerText = "Reject";
     rejectBtn.classList.remove("btn-primary");
     rejectBtn.classList.add("btn-danger");
-    
+
     template.append(textHolder, acceptBtn, acceptOnBranchBtn, rejectBtn);
 
     return template;

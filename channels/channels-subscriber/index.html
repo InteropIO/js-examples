@@ -6,17 +6,15 @@
     <link rel="stylesheet" href="../../node_modules/@glue42/theme/dist/t42bootstrap.bundle.css">
     <title>Channels Subscriber Demo</title>
 </head>
-<body class="container-fluid p-2" style="overflow:overlay">
+<body class="container-fluid p-2">
     <div class="row m-0">
         <div class="col-6 p-0">
-            <div class="card bg-primary mb-2 mr-2" style="min-height: 115px;">
+            <div class="card bg-primary mb-2 me-2" style="min-height: 115px;">
                 <h3 class="card-header">Current Channel</h3>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-12 px-0 d-flex align-items-center">
-                            <h2 id="channel-name" class="mb-0 mr-3 px-2">No Channel</h2>
-                            <div id="channel-color" style="min-width: 50px; width: 50px; height: 25px; border-radius: 5px;"></div>
-                        </div>
+                    <div class="col-12 px-0 d-flex align-items-center">
+                        <h2 id="channel-name" class="mb-0 me-3 text-nowrap">No Channel</h2>
+                        <div id="channel-color" style="min-width: 50px; width: 50px; height: 25px; border-radius: 5px;"></div>
                     </div>
                 </div>
             </div>
@@ -24,44 +22,36 @@
         <div class="col-6 p-0">
             <div class="card bg-primary mb-2" style="min-height: 115px;">
                 <h3 class="card-header">Received Data</h3>
-                <div class="card-body">
-                    <p id="channel-data" class="card-title"></p>
+                <div class="card-body overflow-auto" style="height: 62px;">
+                    <p id="channel-data" class="m-0 overflow-auto" style="height: 36px;"></p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row m-0">
-        <div class="col-12 p-0">
-            <div class="card bg-primary mb-2">
-                <h3 class="card-header">Join or Leave Channels Programmatically</h3>
-                <div class="card-body">
-                    <div class="form-group mb-0">
-                        <label for="channel-list">Select Channel to Join:</label>
-                        <select class="form-control" id="channel-list-join" style="width: 166px;"></select>
-                        <button type="button" id="join-button" class="btn btn-primary mt-3 mr-2">Join Selected Channel</button>
-                        <button type="button" id="leave-button" class="btn btn-warning mt-3">Leave Current Channel</button>
+    <div class="card bg-primary mb-2">
+        <h3 class="card-header">Join or Leave Channels Programmatically</h3>
+        <div class="card-body">
+            <div class="form-group mb-0">
+                <label for="channel-list">Select Channel to Join:</label>
+                <select class="form-control" id="channel-list-join" style="width: 166px;"></select>
+                <button type="button" id="join-button" class="btn btn-primary mt-3 me-2">Join Selected Channel</button>
+                <button type="button" id="leave-button" class="btn btn-warning mt-3">Leave Current Channel</button>
+            </div>
+        </div>
+    </div>
+    <div class="card bg-primary">
+        <h3 class="card-header">Get the Context of a Specific Channel</h3>
+        <div class="card-body">
+            <div class="form-group mb-0">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="channel-list">Select Channel:</label>
+                        <select id="channel-list-context" class="form-control"  style="width: 166px;"></select>
+                        <button type="button" id="get-context-button" class="btn btn-success my-3">Get Context</button>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row m-0">
-        <div class="col-12 p-0">
-            <div class="card bg-primary" style="height: 185px;">
-                <h3 class="card-header">Get the Context of a Specific Channel</h3>
-                <div class="card-body">
-                    <div class="form-group mb-0">
-                        <div class="row">
-                            <div class="col-6">
-                                <label for="channel-list">Select Channel:</label>
-                                <select class="form-control" id="channel-list-context" style="width: 166px;"></select>
-                                <button type="button" id="get-context-button" class="btn btn-success my-3">Get Context</button>
-                            </div>
-                            <div class="col-6">
-                                <h3>Channel Context</h3>
-                                <p id="channel-context"></p>
-                            </div>
-                        </div>
+                    <div class="col-6">
+                        <h3>Channel Context</h3>
+                        <p id="channel-context" class="m-0 overflow-auto" style="height: 90px"></p>
                     </div>
                 </div>
             </div>

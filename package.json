@@ -4,7 +4,7 @@
     "description": "Example Glue42 enabled JavaScript applications.",
     "main": "index.js",
     "scripts": {
-        "start": "http-server -p 4242"
+        "start": "http-server -p 4242 -c-1"
     },
     "dependencies": {
         "@glue42/theme": "^4.0.5",

@@ -46,6 +46,8 @@ const handlers = {
 
 let tabIDsContainer;
 let invalidInputAlert;
+let alertText;
+let dismissBtn;
 
 // Reference to the current window.
 let myWindow;
@@ -84,7 +86,7 @@ function resizeWindow() {
     } else {
         // Resizing the current window.
         myWindow.resizeTo(width, height);
-    
+
         inputs.resize.width.value = "";
         inputs.resize.height.value = "";
     };
@@ -110,9 +112,9 @@ function moveWindow() {
     } else {
         // Moving the current window.
         myWindow.moveTo(top, left);
-    
+
         inputs.move.top.value = "";
-        inputs.move.left.value = "";    
+        inputs.move.left.value = "";
     };
 };
 
@@ -139,8 +141,8 @@ async function placeWindow() {
 
     // Place the window at the specified location.
     await myWindow.place(placementSetings).catch(() => {
-        const message = `The combination of vertical alignment "${verticalAlignment}" and horizontal alignment "${horizontalAlignment}" is currently not supported!`;
-        
+        const message = `The combination of vertical alignment "${verticalAlignment}" and horizontal alignment "${horizontalAlignment}" currently isn't supported!`;
+
         showAlert(message);
     });
 };
@@ -205,7 +207,7 @@ function attachTabToWindow() {
         const tab = glue.windows.findById(tabID);
 
         if (!tab) {
-            const message = `A tab with ID "${tabID}" does not exist!`;
+            const message = `A tab with ID "${tabID}" doesn't exist!`;
 
             showAlert(message);
             return;
@@ -243,7 +245,7 @@ function detachTabFromWindow() {
         const tab = glue.windows.findById(tabID);
 
         if (!tab) {
-            const message = `A tab with ID "${tabID}" does not exist!`;
+            const message = `A tab with ID "${tabID}" doesn't exist!`;
             showAlert(message);
             return;
         };
@@ -252,7 +254,7 @@ function detachTabFromWindow() {
         const isTabAttached = myWindow.tabs.includes(tab);
 
         if (!isTabAttached) {
-            const message = "The tab is not in the tab group of this window!";
+            const message = "The tab isn't in the tab group of this window!";
 
             showAlert(message);
             return;
@@ -272,7 +274,7 @@ function detachTabFromWindow() {
         tab.detachTab(detachOptions)
             .catch(() => {
                 const message = `Error detaching tab with ID "${tabID}"!`;
-                
+
                 showAlert(message);
             });
     } else {
@@ -310,6 +312,8 @@ function getDOMElements() {
     // Other.
     tabIDsContainer = document.getElementById("tab-ids");
     invalidInputAlert = document.getElementById("alert");
+    alertText = document.getElementById("alert-text");
+    dismissBtn = document.getElementById("dismiss-button");
 };
 
 function attachEventHandlers() {
@@ -325,14 +329,14 @@ function attachEventHandlers() {
     buttons.attachTab.addEventListener("click", handlers.attachTabToWindow);
     buttons.detachTab.addEventListener("click", handlers.detachTabFromWindow);
 
-    invalidInputAlert.addEventListener("click", hideAlert);
+    dismissBtn.addEventListener("click", hideAlert);
 };
 
 function showAlert(message) {
-    invalidInputAlert.firstElementChild.innerText = message;
-    invalidInputAlert.style.display = "block";
+    alertText.innerText = message;
+    invalidInputAlert.classList.remove("d-none");
 };
 
 function hideAlert() {
-    invalidInputAlert.style.display = "none";
+    invalidInputAlert.classList.add("d-none");
 };
