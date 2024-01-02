@@ -3,63 +3,63 @@ let instanceElementTemplate;
 let appContainer;
 let instanceContainer;
 
-/** SET UP THE APPLICATION **/
+/** SET UP THE APP **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
     // Create DOM element templates for the apps and instances.
     createListElementTemplates();
-    
+
     appContainer = document.getElementById("app-container");
     instanceContainer = document.getElementById("instance-list");
 
-    // Initialize the Glue42 library.
-    await initializeGlue42().catch(console.error);
+    // Initialize the `@interopio/desktop` library.
+    await initializeIOConnect().catch(console.error);
 
     // Handle adding and removing apps and instances.
     setupAppAndInstanceEvents();
-    
-    // Start the selected app from the "Availbale Applications" list.
+
+    // Start the selected app from the "Available Apps" list.
     appContainer.addEventListener("click", openApp);
 };
 
-/** INITIALIZE GLUE42 **/
-async function initializeGlue42() {
-    // Initializing the Glue42 library with `appManager:"full"`
-    // in order to be able to use the complete Application Management API.
-    window.glue = await Glue({ appManager: "full" });
+/** INITIALIZE io.Connect **/
+async function initializeIOConnect() {
+    // Initializing the `@interopio/desktop` with `appManager:"full"`
+    // in order to be able to use the complete App Management API.
+    window.io = await IODesktop({ appManager: "full" });
 };
 
 /** HANDLE APP & INSTANCE EVENTS TO UPDATE THE LISTS **/
 function setupAppAndInstanceEvents() {
     // The callback passed to the `onAppAdded()` method will fire
-    // every time an application definition is added.
-    glue.appManager.onAppAdded(updateAppList);
+    // every time an app definition is added.
+    io.appManager.onAppAdded(updateAppList);
 
     // The callback passed to the `onAppRemoved()` method will fire
-    // every time an application definition is removed.
-    glue.appManager.onAppRemoved(updateAppList);
+    // every time an app definition is removed.
+    io.appManager.onAppRemoved(updateAppList);
 
     // The callback passed to the `onInstanceStarted()` method will fire
-    // every time an application instance is started.
-    glue.appManager.onInstanceStarted(addInstanceToList);
+    // every time an app instance is started.
+    io.appManager.onInstanceStarted(addInstanceToList);
 
     // The callback passed to the `onInstanceStopped()` method will fire
-    // every time an application instance is stopped.
-    glue.appManager.onInstanceStopped(removeInstanceFromList);
+    // every time an app instance is stopped.
+    io.appManager.onInstanceStopped(removeInstanceFromList);
 };
 
 /** HELPER FUNCTIONS **/
 function openApp(event) {
-    const appName = event.target.id; 
+    const appName = event.target.id;
 
-    // Start an application by name.
-    glue.appManager.application(appName).start();
+    // Start an app by name.
+    io.appManager.application(appName).start();
 };
 
 function updateAppList(app) {
-    // The application object has useful properties for identifying
-    // or sorting applications - `name`, `title`, `hidden`, `instances`, etc. 
+    // The app object has useful properties for identifying
+    // or sorting apps - `name`, `title`, `hidden`, `instances`, etc.
     const appToRemove = document.getElementById(app.name);
 
     // Show only the apps visible in the App Manager.
@@ -67,7 +67,7 @@ function updateAppList(app) {
         // If an app is not in the list, add it, otherwise - remove it.
         if (!appToRemove) {
             const appToAdd = appElementTemplate.cloneNode(true);
-    
+
             appToAdd.id = app.name;
             appToAdd.textContent = app.title;
             appContainer.appendChild(appToAdd);
@@ -88,14 +88,14 @@ function addInstanceToList(instance) {
             const instanceToAdd = instanceElementTemplate.cloneNode(true);
             const instanceNameElement = instanceToAdd.querySelector("span[name='instance']");
             const instanceCountElement = instanceToAdd.querySelector("span[name='count']");
-    
+
             instanceToAdd.id = `${instance.application.name}-instance`;
             instanceNameElement.innerText = instance.application.title;
             instanceCountElement.innerText = instance.application.instances.length;
             instanceContainer.appendChild(instanceToAdd);
         } else {
             const instanceCountElement = existingInstanceElement.querySelector("span[name='count']");
-            
+
             instanceCountElement.innerText = instance.application.instances.length;
         };
     };
@@ -105,10 +105,10 @@ function removeInstanceFromList(instance) {
     if (instance.application.hidden === false) {
         const instanceToRemove = document.getElementById(`${instance.application.name}-instance`);
 
-        // Get the current number of the application instances.
+        // Get the current number of the app instances.
         const instanceCount = instance.application.instances.length;
 
-        // If this is the last application instance, remove it from the list,
+        // If this is the last app instance, remove it from the list,
         // otherwise - decrement its count.
         if (instanceCount === 0) {
             instanceToRemove.remove();
@@ -122,7 +122,7 @@ function removeInstanceFromList(instance) {
 function createListElementTemplates() {
     appElementTemplate = document.createElement("button");
     appElementTemplate.classList.add("list-group-item", "list-group-item-action");
-    
+
     instanceElementTemplate = document.createElement("li");
     instanceElementTemplate.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
 

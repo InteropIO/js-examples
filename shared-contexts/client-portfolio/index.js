@@ -7,35 +7,35 @@ const contextName = "SelectedClient";
 let clientNameElement;
 let portfolioContainer;
 
-/** SET UP THE APPLICATION **/
+/** SET UP THE APP **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
     clientNameElement = document.getElementById("client-name");
     portfolioContainer = document.getElementById("portfolio-table");
 
-    // Initialize the Glue42 library.
-    await initializeGlue42().catch(console.error);
+    // Initialize the `@interopio/desktop` library.
+    await initializeIOConnect().catch(console.error);
 
     const clientID = await getInitialContext();
     console.log(clientID)
     displayPortfolio(clientID);
 
-    glue.contexts.subscribe(contextName, handleContextUpdate)
+    io.contexts.subscribe(contextName, handleContextUpdate)
 };
 
-/** INITIALIZE GLUE42 **/
-async function initializeGlue42() {
-    window.glue = await Glue();
+/** INITIALIZE io.Connect **/
+async function initializeIOConnect() {
+    window.io = await IODesktop();
 };
 
 async function getInitialContext() {
-    const contexts = await glue.contexts.all();
+    const contexts = await io.contexts.all();
     const doesExist = contexts.includes(contextName);
 
     if (doesExist) {
-        const { clientID } = await glue.contexts.get(contextName);
-        
+        const { clientID } = await io.contexts.get(contextName);
+
         return clientID;
     };
 };

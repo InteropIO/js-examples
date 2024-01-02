@@ -16,28 +16,28 @@ const companies = [
         instrument: "AAPL"
     },
     {
-        name: "Tick42 JSC",
-        displayName: "Tick42",
-        instrument: "TICK"
+        name: "interop.io",
+        displayName: "interop.io",
+        instrument: "INTEROP"
     }
 ];
 
 // Name of the Interop method to invoke.
 const methodName = "ShowCompanyDetails";
 
-/** SET UP THE APPLICATION **/
+/** SET UP THE APP **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
-    // Initialize the Glue42 library.
-    await initializeGlue42().catch(console.error);
+    // Initialize the `@interopio/desktop` library.
+    await initializeIOConnect().catch(console.error);
 
     document.body.addEventListener("click", invokeInteropMethod);
 };
 
-/** INITIALIZE GLUE42 **/
-async function initializeGlue42() {
-    window.glue = await Glue();
+/** INITIALIZE io.Connect **/
+async function initializeIOConnect() {
+    window.io = await IODesktop();
 };
 
 // Function for invoking the Interop method when a button is clicked.
@@ -51,6 +51,6 @@ function invokeInteropMethod(event) {
         const arguments = { company, instrument };
 
         // Invoking an Interop method by name and passing arguments for the invocation.
-        glue.interop.invoke(methodName, arguments);
+        io.interop.invoke(methodName, arguments);
     };
 };

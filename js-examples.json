@@ -1,8 +1,8 @@
 [
     {
         "name": "app-management",
-        "title": "Application Management Demo",
-        "caption": "Glue42 Application Management Example",
+        "title": "App Management Demo",
+        "caption": "App Management Example",
         "type": "window",
         "ignoreSavedLayout": true,
         "details": {
@@ -16,13 +16,13 @@
             "minHeight": 400
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
         }
     },
     {
         "name": "app-preferences",
-        "title": "Application Preferences Demo",
-        "caption": "Glue42 Application Preferences Example",
+        "title": "App Preferences Demo",
+        "caption": "App Preferences Example",
         "type": "window",
         "ignoreSavedLayout": true,
         "details": {
@@ -36,13 +36,13 @@
             "minHeight": 390
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
         }
     },
     {
         "name": "channels-publisher",
         "title": "Channels Publisher Demo",
-        "caption": "Glue42 Channels Example",
+        "caption": "Channels Example",
         "type": "window",
         "ignoreSavedLayout": true,
         "details": {
@@ -57,13 +57,13 @@
             "allowChannels": true
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
         }
     },
     {
         "name": "channels-subscriber",
         "title": "Channels Subscriber Demo",
-        "caption": "Glue42 Channels Example",
+        "caption": "Channels Example",
         "type": "window",
         "ignoreSavedLayout": true,
         "details": {
@@ -78,13 +78,13 @@
             "allowChannels": true
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
         }
     },
     {
         "name":"flydown-demo",
         "title":"Flydown Demo",
-        "caption": "Glue42 Flydown Example",
+        "caption": "Flydown Example",
         "type": "window",
         "ignoreSavedLayout": true,
         "details":{
@@ -98,7 +98,7 @@
             "maxHeight": 300
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
         }
     },
     {
@@ -123,7 +123,7 @@
     {
         "name": "intents-client-list",
         "title": "Intents Client List Demo",
-        "caption": "Glue42 Intents Example",
+        "caption": "Intents Example",
         "type": "window",
         "ignoreSavedLayout": true,
         "details": {
@@ -137,13 +137,13 @@
             "left": 200
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
         }
     },
     {
         "name": "intents-client-portfolio",
         "title": "Intents Client Portfolio Demo",
-        "caption": "Glue42 Intents Example",
+        "caption": "Intents Example",
         "type": "window",
         "ignoreSavedLayout": true,
         "details": {
@@ -157,7 +157,7 @@
             "left": 600
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
         },
         "intents": [
             {
@@ -170,7 +170,7 @@
     {
         "name":"interop-request",
         "title":"Interop Request Demo",
-        "caption": "Glue42 Interop Request/Response Example",
+        "caption": "Interop Request/Response Example",
         "type": "window",
         "ignoreSavedLayout": true,
         "details":{
@@ -184,13 +184,13 @@
              "left": 140
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
         }
     },
     {
         "name":"interop-response",
         "title":"Interop Response Demo",
-        "caption": "Glue42 Interop Request/Response Example",
+        "caption": "Interop Request/Response Example",
         "type": "window",
         "ignoreSavedLayout": true,
         "details":{
@@ -204,13 +204,13 @@
              "left": 400
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
         }
     },
     {
         "name":"interop-stream-publisher",
         "title":"Interop Stream Publisher Demo",
-        "caption": "Glue42 Interop Streaming Example",
+        "caption": "Interop Streaming Example",
         "type": "window",
         "ignoreSavedLayout": true,
         "details":{
@@ -224,13 +224,13 @@
              "left": 200
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
         }
     },
     {
         "name":"interop-stream-subscriber",
         "title":"Interop Stream Subscriber Demo",
-        "caption": "Glue42 Interop Streaming Example",
+        "caption": "Interop Streaming Example",
         "type": "window",
         "ignoreSavedLayout": true,
         "details":{
@@ -244,7 +244,7 @@
              "left": 800
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
         }
     },
     {
@@ -263,7 +263,7 @@
             "maxHeight": 300
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
         }
     },
     {
@@ -288,7 +288,7 @@
     {
         "name": "pub-sub-publisher",
         "title": "Pub/Sub Publisher Demo",
-        "caption": "Glue42 Pub/Sub Example",
+        "caption": "Pub/Sub Example",
         "type": "window",
         "ignoreSavedLayout": true,
         "details": {
@@ -302,13 +302,13 @@
             "left": 160
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
         }
     },
     {
         "name": "pub-sub-subscriber",
         "title": "Pub/Sub Subscriber Demo",
-        "caption": "Glue42 Pub/Sub Example",
+        "caption": "Pub/Sub Example",
         "type": "window",
         "ignoreSavedLayout": true,
         "details": {
@@ -322,13 +322,53 @@
             "left": 600
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
+        }
+    },
+    {
+        "name": "search-bar",
+        "title": "Search Bar",
+        "caption": "io.Connect Search Example",
+        "type": "window",
+        "ignoreSavedLayout": true,
+        "ignoreFromLayouts": true,
+        "allowMultiple": false,
+        "details": {
+            "url": "http://localhost:4242/search/search-bar/index.html",
+            "mode": "frameless",
+            "showInTaskbar": false,
+            "placement": {
+                "snapped": true,
+                "verticalAlignment": "center",
+                "horizontalAlignment": "center",
+                "width": 405,
+                "height": 38
+            }
+        },
+        "customProperties": {
+            "folder": "JavaScript Examples"
+        }
+    },
+    {
+        "name": "search-provider",
+        "title": "Search Provider",
+        "caption": "io.Connect Search Example",
+        "type": "window",
+        "allowMultiple": false,
+        "hidden": true,
+        "autoStart": true,
+        "service": true,
+        "details": {
+            "url": "http://localhost:4242/search/search-provider/index.html"
+        },
+        "customProperties": {
+            "folder": "JavaScript Examples"
         }
     },
     {
         "name": "shared-contexts-client-list",
         "title": "Shared Contexts Client List Demo",
-        "caption": "Glue42 Shared Contexts Example",
+        "caption": "Shared Contexts Example",
         "type": "window",
         "ignoreSavedLayout": true,
         "allowMultiple": false,
@@ -343,13 +383,13 @@
             "left": 200
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
         }
     },
     {
         "name": "shared-contexts-client-portfolio",
         "title": "Shared Contexts Client Portfolio Demo",
-        "caption": "Glue42 Shared Contexts Example",
+        "caption": "Shared Contexts Example",
         "type": "window",
         "ignoreSavedLayout": true,
         "details": {
@@ -363,13 +403,13 @@
             "left": 600
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
         }
     },
     {
         "name": "themes-demo",
         "title": "Themes Demo",
-        "caption": "Glue42 Themes Example",
+        "caption": "Themes Example",
         "type": "window",
         "ignoreSavedLayout": true,
         "allowMultiple": false,
@@ -384,13 +424,13 @@
             "left": 200
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
         }
     },
     {
         "name": "my-window",
         "title": "My Window Demo",
-        "caption": "Glue42 Window Management Example",
+        "caption": "Window Management Example",
         "type": "window",
         "ignoreSavedLayout": true,
         "details": {
@@ -403,13 +443,13 @@
             "minHeight": 692
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
         }
     },
     {
         "name": "window-manipulation",
         "title": "Window Manipulation Demo",
-        "caption": "Glue42 Window Management Example",
+        "caption": "Window Management Example",
         "type": "window",
         "ignoreSavedLayout": true,
         "details": {
@@ -422,7 +462,7 @@
             "minHeight": 630
         },
         "customProperties": {
-            "folder": "Glue42 JavaScript Examples"
+            "folder": "JavaScript Examples"
         }
     }
 ]

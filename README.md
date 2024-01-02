@@ -1,44 +1,44 @@
-# JavaScript Examples for Glue42 Enterprise
+# JavaScript Examples for io.Connect Desktop
 
-This repository contains basic examples of Glue42 enabled applications.
+This repository contains basic examples of io.Connect enabled apps.
 
-*For more information on **Glue42 Enterprise**, visit the [official Glue42 product site](https://glue42.com/) or see the **Glue42 Enterprise** [documentation](https://docs.glue42.com).*
+*For more information on **io.Connect Desktop**, visit the [official io.Connect product site](https://interop.io/products/io-connect/) or see the **io.Connect Desktop** [documentation](https://docs.interop.io/).*
 
 ## Prerequisites
 
-- [**Glue42 Enterprise**](https://glue42.com/enterprise/)
+- [**io.Connect Desktop**](https://interop.io/products/io-connect/)
 - node
 - npm
 
 ## Setup
 
 - Clone the repository.
-- Copy the `glue42-js-examples.json` configuration file and paste it in the **Glue42 Enterprise** application configuration folder (`%LocalAppData%\Tick42\UserData\<ENV>-<REG>\apps` where you must replace `<ENV>-<REG>` with the region and environment folder name used for the deployment of your **Glue42 Enterprise** - e.g., `T42-DEMO`).  
-- Open a command prompt in the base repo directory and run `npm install` to install all dependencies. 
-- Run `npm start` to start a server at port 4242 where the applications will be hosted.
-- Start **Glue42 Enterprise**. 
+- Copy the `js-examples.json` configuration file and paste it in the **io.Connect Desktop** app configuration folder located at `%LocalAppData%\interop.io\io.Connect Desktop\<ENV>-<REG>\apps`, where `<ENV>-<REG>` represents the environment and region of **io.Connect Desktop** (e.g., DEMO-INTEROP.IO).
+- Open a command prompt in the base repo directory and run `npm install` to install all dependencies.
+- Run `npm start` to start a server at port 4242 where the apps will be hosted.
+- Start **io.Connect Desktop**.
 
-Now you will be able to start all example apps from the **Glue42 Enterprise** Toolbar. All examples are grouped in the "Glue42 JavaScript Examples" folder.
+Now you will be able to start all example apps from the **io.Connect Desktop** launcher. All examples are grouped in the "JavaScript Examples" folder.
 
 ## Examples
 
-### Application Management
+### App Management
 
-This example application uses the [Application Management API](https://docs.glue42.com/glue42-concepts/application-management/javascript/index.html) to start and list applications and application instances:
+This example app uses the [App Management API](https://docs.interop.io/desktop/capabilities/app-management/javascript/index.html) to start and list apps and app instances:
 
-- lists the names of all registered visible applications;
-- lists the instances of the currently running visible applications;
-- starts application instances;
-- listens for any added or removed applications;
-- listens for any started or stopped instances of applications;
+- lists the names of all registered visible apps;
+- lists the instances of the currently running visible apps;
+- starts app instances;
+- listens for any added or removed apps;
+- listens for any started or stopped instances of apps;
 
-### Application Preferences
+### App Preferences
 
-This example demonstrates how to use the [Application Preferences API](https://docs.glue42.com/glue42-concepts/application-preferences/javascript/index.html) to save, update and retrieve custom application preferences for the current user.
+This example demonstrates how to use the [App Preferences API](https://docs.interop.io/desktop/capabilities/app-preferences/javascript/index.html) to save, update and retrieve custom app preferences for the current user.
 
 ### Channels
 
-This example contains two applications which use the [Channels API](https://docs.glue42.com/glue42-concepts/data-sharing-between-apps/channels/javascript/index.html). You can open more than one instance of the subscriber app to use different Channels.
+This example contains two apps which use the [Channels API](https://docs.interop.io/desktop/capabilities/data-sharing/channels/javascript/index.html). You can open more than one instance of the subscriber app to use different Channels.
 
 #### Channels Publisher
 
@@ -50,7 +50,7 @@ Select a Channel from the Channel Selector UI or join/leave Channels programmati
 
 ### Flydown
 
-Demo app demonstrating the [flydown window functionality](https://docs.glue42.com/glue42-concepts/windows/window-management/javascript/index.html#flydown_windows) in **Glue42 Enterprise**.
+App demonstrating the [flydown window functionality](https://docs.interop.io/desktop/capabilities/windows/window-management/javascript/index.html#flydown_windows) in **io.Connect Desktop**.
 
 #### Flydown App
 
@@ -62,31 +62,31 @@ The window that will be used as a flydown window.
 
 ### Intents
 
-This example contains two applications that use the [Intents API](https://docs.glue42.com/glue42-concepts/intents/javascript/index.html).
+This example contains two apps that use the [Intents API](https://docs.interop.io/desktop/capabilities/intents/javascript/index.html).
 
 #### Client List
 
-Select a client to start the Client Portfolio application with the selected client as its context. If the Client Portfolio application is already running, selecting a client will update its context.
+Select a client to start the Client Portfolio app with the selected client as its context. If the Client Portfolio app is already running, selecting a client will update its context.
 
 #### Client Portfolio
 
-This application is registered as an Intent handler and will be started when you select a client in the Client List application, or if already running, its context will be updated and it will show the selected client's portfolio.
+This app is registered as an Intent handler and will be started when you select a client in the Client List app, or if already running, its context will be updated and it will show the selected client's portfolio.
 
 ### Interop Request/Response
 
-This example contains two applications which use the [Interop API](https://docs.glue42.com/glue42-concepts/data-sharing-between-apps/interop/javascript/index.html) to communicate.
+This example contains two apps which use the [Interop API](https://docs.interop.io/desktop/capabilities/data-sharing/interop/javascript/index.html) to communicate.
 
 #### Interop Request
 
-Select a company from the list to [invoke an Interop method](https://docs.glue42.com/glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#method_invocation) registered by the Interop Response app.
+Select a company from the list to [invoke an Interop method](https://docs.interop.io/desktop/capabilities/data-sharing/interop/javascript/index.html#method_invocation) registered by the Interop Response app.
 
 #### Interop Response
 
-[Registers an Interop method](https://docs.glue42.com/glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#method_registration) that will show details about the selected company in the Interop Request app.
+[Registers an Interop method](https://docs.interop.io/desktop/capabilities/data-sharing/interop/javascript/index.html#method_registration) that will show details about the selected company in the Interop Request app.
 
 ### Interop Streaming
 
-Basic [Interop Streaming](https://docs.glue42.com/glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#streaming) example consisting of an Interop Publisher and an Interop Subscriber apps.
+Basic [Interop Streaming](https://docs.interop.io/desktop/capabilities/data-sharing/interop/javascript/index.html#streaming) example consisting of an Interop Publisher and an Interop Subscriber apps.
 
 #### Interop Publisher
 
@@ -98,7 +98,7 @@ Subscribes to a stream and shows the received stream data. You can open more tha
 
 ### Popup
 
-Demo app demonstrating the [popup window functionality](https://docs.glue42.com/glue42-concepts/windows/window-management/javascript/index.html#popup_windows) in **Glue42 Enterprise**.
+App demonstrating the [popup window functionality](https://docs.interop.io/desktop/capabilities/windows/window-management/javascript/index.html#popup_windows) in **io.Connect Desktop**.
 
 #### Popup App
 
@@ -110,7 +110,7 @@ The window that will be used as a popup window.
 
 ### Pub/Sub
 
-Two applications using the [Pub/Sub API](https://docs.glue42.com/glue42-concepts/data-sharing-between-apps/pub-sub/javascript/index.html) to communicate.
+Two apps using the [Pub/Sub API](https://docs.interop.io/desktop/capabilities/data-sharing/pub-sub/javascript/index.html) to communicate.
 
 #### Publisher
 
@@ -120,9 +120,21 @@ Publishes data on a topic.
 
 Subscribes for data on a topic.
 
+### Search
+
+Two apps using the [Search API](https://docs.interop.io/desktop/capabilities/search/javascript/index.html) to register a search provider and create search queries.
+
+#### Search Bar
+
+Open the Search Bar from the **io.Connect Desktop** launcher or by pressing `CTRL + SHIFT + S`. Type and press the "Search" button or `Enter` to search. Press `Esc` or the "Close" button to hide the Search Bar. The Search Bar will hide also when it loses focus. Selecting an action from the results, will execute it; selecting a Workspace, will open it; selecting a client, will open the **io.Connect Desktop** Client Contact demo app showing info about the selected client.
+
+#### Search Provider
+
+Starts automatically as a hidden service app and registers itself as a search provider for actions, Workspaces and clients. Registers a shortcut for opening the Search bar and Interop methods for executing actions when the user clicks a result in the Search Bar.
+
 ### Shared Contexts
 
-Two applications that use the [Shared Contexts API](https://docs.glue42.com/glue42-concepts/data-sharing-between-apps/shared-contexts/javascript/index.html) to communicate.
+Two apps that use the [Shared Contexts API](https://docs.interop.io/desktop/capabilities/data-sharing/shared-contexts/javascript/index.html) to communicate.
 
 #### Client List
 
@@ -134,16 +146,16 @@ Subscribes for context updates and shows the selected client's portfolio based o
 
 ### Themes
 
-This example demonstrates using the [Themes API](https://docs.glue42.com/glue42-concepts/windows/themes/javascript/index.html) to get all available themes, get the current theme, select a theme and subscribe for theme change events.
+This example demonstrates using the [Themes API](https://docs.interop.io/desktop/capabilities/windows/themes/javascript/index.html) to get all available themes, get the current theme, select a theme and subscribe for theme change events.
 
 ### Window Management
 
-Example of controlling the current or other Glue42 Windows using the [Window Management API](https://docs.glue42.com/glue42-concepts/windows/window-management/javascript/index.html).
+Example of controlling the current or other io.Connect Windows using the [Window Management API](https://docs.interop.io/desktop/capabilities/windows/window-management/javascript/index.html).
 
 #### My Window
 
-Application demonstrating controlling the current Glue42 Window.
+App demonstrating controlling the current io.Connect Window.
 
 #### Window Manipulation
 
-Application demonstrating opening and controlling Glue42 Windows.
+App demonstrating opening and controlling io.Connect Windows.

@@ -2,23 +2,23 @@
 const topic = "Time";
 let startPublishingBtn;
 
-/** SET UP THE APPLICATION **/
+/** SET UP THE APP **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
     startPublishingBtn = document.getElementById("button");
 
-    // Initialize the Glue42 library.
-    await initializeGlue42().catch(console.error);
+    // Initialize the `@interopio/desktop` library.
+    await initializeIOConnect().catch(console.error);
 
     startPublishingBtn.addEventListener("click", handlePublishing);
 };
 
-/** INITIALIZE GLUE42 **/
-async function initializeGlue42() {
-    // Initializing the Glue42 library with `bus: true`
+/** INITIALIZE io.Connect **/
+async function initializeIOConnect() {
+    // Initializing the `@interopio/desktop` with `bus: true`
     // in order to be able to use the Pub/Sub API.
-    window.glue = await Glue({ bus: true });
+    window.io = await IODesktop({ bus: true });
 };
 
 /** HANDLE PUBLISHING MESSAGES AT A SET INTERVAL */
@@ -50,7 +50,7 @@ function startPublishing() {
         };
 
         // Publish a message on a specific topic.
-        glue.bus.publish(topic, data);
+        io.bus.publish(topic, data);
     };
 
     interval = setInterval(publishAtInterval, 1000);

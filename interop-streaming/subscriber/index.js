@@ -5,22 +5,22 @@ let subscription;
 let subscriptionBtn;
 let dataElement;
 
-/** SET UP THE APPLICATION **/
+/** SET UP THE APP **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
     subscriptionBtn = document.getElementById("subscription-button");
     dataElement = document.getElementById("data");
 
-    // Initialize the Glue42 library.
-    await initializeGlue42().catch(console.error);
+    // Initialize the `@interopio/desktop` library.
+    await initializeIOConnect().catch(console.error);
 
     subscriptionBtn.addEventListener("click", handleSubscription);
 };
 
-/** INITIALIZE GLUE42 **/
-async function initializeGlue42() {
-    window.glue = await Glue();
+/** INITIALIZE io.Connect **/
+async function initializeIOConnect() {
+    window.io = await IODesktop();
 };
 
 /** CREATE OR CLOSE THE SUBSCRIPTION **/
@@ -29,7 +29,7 @@ function handleSubscription() {
 
     if (subscriptionState === "false") {
         subscriptionBtn.setAttribute("subscribed", "true");
-        subscribeToStream();  
+        subscribeToStream();
     } else if (subscriptionState === "true" && subscription) {
         closeSubscription();
     };
@@ -42,7 +42,7 @@ const subscriptions = {
     },
     onData: (streamData) => {
         const receivedData = streamData.data;
-    
+
         dataElement.innerText = JSON.stringify(receivedData);
     },
     onClosed: () => {
@@ -67,7 +67,7 @@ async function subscribeToStream() {
     };
 
     // Creating the stream subscription.
-    subscription = await glue.interop.subscribe(streamName, subscriptionParams)
+    subscription = await io.interop.subscribe(streamName, subscriptionParams)
         .catch(subscriptions.onFailed);
 };
 

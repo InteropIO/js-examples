@@ -9,35 +9,35 @@ let portfolioContainer;
 // Holds the context of the current window.
 let context;
 
-/** SET UP THE APPLICATION **/
+/** SET UP THE APP **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
     clientNameElement = document.getElementById("client-name");
     portfolioContainer = document.getElementById("portfolio-table");
 
-    // Initialize the Glue42 library.
-    await initializeGlue42().catch(console.error);
+    // Initialize the `@interopio/desktop` library.
+    await initializeIOConnect().catch(console.error);
 
     // Get the context of this window.
-    context = glue.windows.my().context;
+    context = io.windows.my().context;
     const clientID = context.data?.clientID;
 
     displayPortfolio(clientID);
-    
-    // Add an Intent listener to handle an intent request targeted at this application.
-    glue.intents.addIntentListener(intent, updateContext);
+
+    // Add an Intent listener to handle an intent request targeted at this app.
+    io.intents.addIntentListener(intent, updateContext);
 };
 
-/** INITIALIZE GLUE42 **/
-async function initializeGlue42() {
-    window.glue = await Glue();
+/** INITIALIZE io.Connect **/
+async function initializeIOConnect() {
+    window.io = await IODesktop();
 };
 
 // Handler for the Intent listener. Receives the new context from the raised Intent.
 function updateContext(newContext) {
     const clientID = newContext.data.clientID;
-    
+
     displayPortfolio(clientID);
 };
 

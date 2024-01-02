@@ -56,8 +56,8 @@ const handlers = {
     selectWindowMode
 };
 
-// Handlers for Glue42 Window events.
-const Glue42EventHandlers = {
+// Handlers for io.Connect Window events.
+const IOConnectEventHandlers = {
     windowAdded,
     windowRemoved
 };
@@ -77,21 +77,23 @@ let dismissBtn;
 // Reference to the window selected by the user for control.
 let selectedWindow;
 
-/** SET UP THE APPLICATION **/
+/** SET UP THE APP **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
     getDOMElements();
 
-    // Initialize the Glue42 library.
-    await initializeGlue42().catch(console.error);
+    // Initialize the `@interopio/desktop` library.
+    await initializeIOConnect().catch(console.error);
     attachEventHandlers();
-    handleGlue42WindowEvents();
+    handleIOConnectWindowEvents();
 };
 
-/** INITIALIZE GLUE42 **/
-async function initializeGlue42() {
-    window.glue = await Glue();
+/** INITIALIZE io.Connect **/
+async function initializeIOConnect() {
+    const config = { appManager: "full" };
+
+    window.io = await IODesktop(config);
 };
 
 /** EVENT HANDLERS **/
@@ -125,7 +127,7 @@ async function openWindow() {
     };
 
     // Opening a new window.
-    await glue.windows.open(name, URL, windowOptions)
+    await io.windows.open(name, URL, windowOptions)
         .catch(() => {
             // Handles only the case where a window with the specified name has already been opened.
             const message = `A window with name "${name}" already exists!`;
@@ -135,8 +137,8 @@ async function openWindow() {
 };
 
 function getWindowIDs() {
-    // Get all Glue42 Windows.
-    const windowIDs = glue.windows.list()
+    // Get all io.Connect Windows.
+    const windowIDs = io.windows.list()
         .reduce(extractWindowIDs, []);
 
     if (windowIDs.length > 0) {
@@ -153,10 +155,10 @@ function extractWindowIDs(windowIDs, window) {
     const windowID = window.id;
 
     // Get the current window.
-    const currentWindowID = glue.windows.my().id;
+    const currentWindowID = io.windows.my().id;
 
-    // Exclude the IDs of the current window and the embedded shell application.
-    const isTargetedID = window.isVisible && windowID !== currentWindowID && window.name !== "glue42-application-manager";
+    // Exclude the IDs of the current window and the embedded shell app.
+    const isTargetedID = window.isVisible && windowID !== currentWindowID && !window.application.isShell;
 
     if (isTargetedID) {
         windowIDs.push(windowID);
@@ -175,8 +177,8 @@ function selectWindow() {
         return;
     };
 
-    // Finding a Glue42 Window by its ID.
-    selectedWindow = glue.windows.findById(windowID);
+    // Finding a io.Connect Window by its ID.
+    selectedWindow = io.windows.findById(windowID);
 
     if (selectedWindow) {
         const message = "Window selected successfully! You can now control the selected window."
@@ -332,12 +334,12 @@ function setTabHeaderVisibility() {
     };
 };
 
-/** GLUE42 WINDOW EVENTS **/
-function handleGlue42WindowEvents() {
-    // Listen for window added events which fire when a new Glue42 Window has been created.
-    glue.windows.onWindowAdded(Glue42EventHandlers.windowAdded);
-    // Listen for window removed events which fire when a Glue42 Window has been closed.
-    glue.windows.onWindowRemoved(Glue42EventHandlers.windowRemoved);
+/** io.Connect WINDOW EVENTS **/
+function handleIOConnectWindowEvents() {
+    // Listen for window added events which fire when a new io.Connect Window has been created.
+    io.windows.onWindowAdded(IOConnectEventHandlers.windowAdded);
+    // Listen for window removed events which fire when a io.Connect Window has been closed.
+    io.windows.onWindowRemoved(IOConnectEventHandlers.windowRemoved);
 };
 
 function windowAdded(window) {

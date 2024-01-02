@@ -11,25 +11,25 @@ let successAlert;
 let noInputAlert;
 let dismissBtn;
 
-/** SET UP THE APPLICATION **/
+/** SET UP THE APP **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
     getDOMELements();
     handleButtonClicks();
-    // Initialize the Glue42 library.
-    await initializeGlue42().catch(console.error);
+    // Initialize the `@interopio/desktop` library.
+    await initializeIOConnect().catch(console.error);
 
     await applyPreferences();
 };
 
-/** INITIALIZE GLUE42 **/
-async function initializeGlue42() {
-    window.glue = await Glue();
+/** INITIALIZE io.Connect **/
+async function initializeIOConnect() {
+    window.io = await IODesktop();
 };
 
 async function applyPreferences() {
-    const { data } = await glue.prefs.get();
+    const { data } = await io.prefs.get();
 
     if (data) {
         const fontSize = data.fontSize;
@@ -44,7 +44,7 @@ async function updatePreferences() {
     const preferences = getPreferencesData();
     console.log(preferences)
     if (preferences) {
-        await glue.prefs.update(preferences);
+        await io.prefs.update(preferences);
         showSuccessAlert("updated");
     };
 };
@@ -53,13 +53,13 @@ async function setPreferences() {
     const preferences = getPreferencesData();
 
     if (preferences) {
-        await glue.prefs.set(preferences);
+        await io.prefs.set(preferences);
         showSuccessAlert("set");
     };
 };
 
 async function clearPreferences() {
-    await glue.prefs.clear();
+    await io.prefs.clear();
     showSuccessAlert("cleared");
 };
 

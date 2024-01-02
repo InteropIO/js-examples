@@ -1,27 +1,27 @@
-/** SET UP THE APPLICATION **/
+/** SET UP THE APP **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
-    // Initialize the Glue42 library.
-    await initializeGlue42().catch(console.error);
+    // Initialize the `@interopio/desktop` library.
+    await initializeIOConnect().catch(console.error);
 
     // Reference to the window which will be used as a popup.
-    const popup = glue.windows.find("popup-window");
+    const popup = io.windows.find("popup-window");
 
     // Reference to the button which will trigger the popup when clicked.
     const button = document.getElementById("button");
 
     // Reference to this window.
-    const myWindow = glue.windows.my();
+    const myWindow = io.windows.my();
 
     button.addEventListener("click", () => {
         activatePopup(popup, myWindow);
     });
 };
 
-/** INITIALIZE GLUE42 **/
-async function initializeGlue42() {
-    window.glue = await Glue();
+/** INITIALIZE io.Connect **/
+async function initializeIOConnect() {
+    window.io = await IODesktop();
 };
 
 function getButtonBounds() {

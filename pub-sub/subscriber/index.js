@@ -5,30 +5,30 @@ let hoursElement;
 let minutesElement;
 let secondsElement;
 
-/** SET UP THE APPLICATION **/
+/** SET UP THE APP **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
     hoursElement = document.getElementById("hours");
     minutesElement = document.getElementById("minutes");
     secondsElement = document.getElementById("seconds");
-    
-    // Initialize the Glue42 library.
-    await initializeGlue42().catch(console.error);
+
+    // Initialize the `@interopio/desktop` library.
+    await initializeIOConnect().catch(console.error);
 
     subscribeForMessages();
 };
 
-/** INITIALIZE GLUE42 **/
-async function initializeGlue42() {
-    // Initializing the Glue42 library with `bus: true`
+/** INITIALIZE io.Connect **/
+async function initializeIOConnect() {
+    // Initializing the `@interopio/desktop` with `bus: true`
     // in order to be able to use the Pub/Sub API.
-    window.glue = await Glue({ bus: true });
+    window.io = await IODesktop({ bus: true });
 };
 
 /** SUBSCRIBE FOR MESSAGES ON A SPECIFIC TOPIC **/
 function subscribeForMessages() {
-    glue.bus.subscribe(topic, handleData);
+    io.bus.subscribe(topic, handleData);
 };
 
 // Handle the data recieved from the messages.
