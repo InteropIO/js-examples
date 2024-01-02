@@ -4,36 +4,36 @@ let themesListElement;
 let clearBtn;
 let logContainer;
 
-/** SET UP THE APPLICATION **/
+/** SET UP THE APP **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
     getDOMElements();
 
-    // Get the initially selected theme before the initialization of the Glue42 library.
-    if (window.glue42gd) {
-        htmlElement.classList.add(glue42gd.theme);
+    // Get the initially selected theme before the initialization of the `@interopio/desktop`.
+    if (window.iodesktop) {
+        htmlElement.classList.add(iodesktop.theme);
     };
 
-    // Initialize the Glue42 library.
-    await initializeGlue42().catch(console.error);
+    // Initialize the `@interopio/desktop` library.
+    await initializeIOConnect().catch(console.error);
     await createThemesMenu();
     attachEventHandlers();
-    handleGlue42WindowEvents();
+    handleIOConnectWindowEvents();
 };
 
-/** INITIALIZE GLUE42 **/
-async function initializeGlue42() {
-    window.glue = await Glue();
+/** INITIALIZE io.Connect **/
+async function initializeIOConnect() {
+    window.io = await IODesktop();
 };
 
-/** GLUE42 THEMES EVENTS */
-function handleGlue42WindowEvents() {
+/** io.Connect THEMES EVENTS */
+function handleIOConnectWindowEvents() {
     const handleThemeChanges = async (theme) => {
         if (theme.name === htmlElement.classList[0]) {
             return;
         };
-        
+
         const logElement = document.createElement("p");
         const date = new Date();
         const timestamp = `${(`0${date.getHours()}`).slice(-2)}:${(`0${date.getMinutes()}`).slice(-2)}:${(`0${date.getSeconds()}`).slice(-2)}`;
@@ -43,7 +43,7 @@ function handleGlue42WindowEvents() {
     };
 
     // Handle theme changes.
-    glue.themes.onChanged(handleThemeChanges);
+    io.themes.onChanged(handleThemeChanges);
 };
 
 /** EVENT HANDLERS */
@@ -51,13 +51,13 @@ async function selectTheme() {
     const selectedTheme = this[this.selectedIndex].value;
 
     // Select a theme.
-    await glue.themes.select(selectedTheme);
-    
+    await io.themes.select(selectedTheme);
+
     htmlElement.classList = "";
     htmlElement.classList.add(selectedTheme);
 
     // Get the currently selected theme.
-    const currentTheme = await glue.themes.getCurrent();
+    const currentTheme = await io.themes.getCurrent();
 
     selectedThemeElement.innerText = currentTheme.displayName;
 };
@@ -73,7 +73,7 @@ function getDOMElements() {
 
 async function createThemesMenu() {
     // Get a list of all available themes.
-    const themes = await glue.themes.list();
+    const themes = await io.themes.list();
     const optionElement = document.createElement("option");
 
     const createOptionsInMenu = (theme) => {

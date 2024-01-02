@@ -52,24 +52,24 @@ let dismissBtn;
 // Reference to the current window.
 let myWindow;
 
-/** SET UP THE APPLICATION **/
+/** SET UP THE APP **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
     getDOMElements();
 
-    // Initialize the Glue42 library.
-    await initializeGlue42().catch(console.error);
+    // Initialize the `@interopio/desktop` library.
+    await initializeIOConnect().catch(console.error);
 
     // Reference to this window.
-    myWindow = glue.windows.my();
+    myWindow = io.windows.my();
 
     attachEventHandlers();
 };
 
-/** INITIALIZE GLUE42 **/
-async function initializeGlue42() {
-    window.glue = await Glue();
+/** INITIALIZE io.Connect **/
+async function initializeIOConnect() {
+    window.io = await IODesktop();
 };
 
 /** EVENT HANDLERS **/
@@ -173,8 +173,8 @@ function setTabHeaderVisibility() {
 };
 
 function getTabIDs() {
-    // Get all Glue42 windows.
-    const tabIDs = glue.windows.list()
+    // Get all io.Connect Windows.
+    const tabIDs = io.windows.list()
         .reduce(extractTabIDs, []);
 
     if (tabIDs.length > 0) {
@@ -203,8 +203,8 @@ function attachTabToWindow() {
     const tabID = inputs.tabID.value;
 
     if (tabID !== "") {
-        // Find a Glue42 Window by ID.
-        const tab = glue.windows.findById(tabID);
+        // Find a io.Connect Window by ID.
+        const tab = io.windows.findById(tabID);
 
         if (!tab) {
             const message = `A tab with ID "${tabID}" doesn't exist!`;
@@ -242,7 +242,7 @@ function detachTabFromWindow() {
 
     if (tabID !== "") {
         // Find a window by ID.
-        const tab = glue.windows.findById(tabID);
+        const tab = io.windows.findById(tabID);
 
         if (!tab) {
             const message = `A tab with ID "${tabID}" doesn't exist!`;

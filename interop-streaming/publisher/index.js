@@ -14,14 +14,14 @@ let subscriptionRequestsContainter;
 let subscriptionRequestTemplate;
 let dismissBtn;
 
-/** SET UP THE APPLICATION **/
+/** SET UP THE APP **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
     getDOMElements();
 
-    // Initialize the Glue42 library.
-    await initializeGlue42().catch(console.error);
+    // Initialize the `@interopio/desktop` library.
+    await initializeIOConnect().catch(console.error);
 
     streamBtn.addEventListener("click", handleStream);
     publishAllBtn.addEventListener("click", publishToAll);
@@ -29,9 +29,9 @@ async function initializeApp() {
     dismissBtn.addEventListener("click", hideAlert);
 };
 
-/** INITIALIZE GLUE42 **/
-async function initializeGlue42() {
-    window.glue = await Glue();
+/** INITIALIZE io.Connect **/
+async function initializeIOConnect() {
+    window.io = await IODesktop();
 };
 
 /** SUBSCRIPTION AND SUBSCRIPTION REQUEST HANDLERS **/
@@ -58,7 +58,7 @@ const subscriptions = {
         const acceptOnBranchBtn = requestButtons[1];
         const rejectBtn = requestButtons[2];
 
-        requestTextElement.innerText = `Received subscription request by application instance with ID: "${isntanceID}"`;
+        requestTextElement.innerText = `Received subscription request by app instance with ID: "${isntanceID}"`;
 
         acceptBtn.addEventListener("click", acceptHandler);
         acceptOnBranchBtn.addEventListener("click", acceptOnBranchHandler);
@@ -128,7 +128,7 @@ async function createInteropStream() {
     };
 
     // Creating the stream.
-    stream = await glue.interop.createStream(streamName, streamOptions);
+    stream = await io.interop.createStream(streamName, streamOptions);
 };
 
 function closeInteropStream() {

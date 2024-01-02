@@ -1,9 +1,9 @@
-/** SET UP THE APPLICATION **/
+/** SET UP THE APP **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
-    // Initialize the Glue42 library.
-    await initializeGlue42().catch(console.error);
+    // Initialize the `@interopio/desktop` library.
+    await initializeIOConnect().catch(console.error);
 
     // Reference to the visual flydown zones in the app.
     const zones = {
@@ -40,7 +40,7 @@ async function initializeApp() {
             height: Math.round(zones.bottom.getBoundingClientRect().height)
         }
     };
-    
+
     // Unique flydown trigger zone identifiers.
     const zoneIDs = {
         left: "leftZone",
@@ -53,18 +53,18 @@ async function initializeApp() {
     createFlydownWindow(zonesBounds, zoneIDs);
 };
 
-/** INITIALIZE GLUE42 **/
-async function initializeGlue42() {
-    window.glue = await Glue();
+/** INITIALIZE io.Connect **/
+async function initializeIOConnect() {
+    window.io = await IODesktop();
 };
 
 /** CREATE A FLYDOWN **/
 async function createFlydownWindow(zonesBounds, zoneIDs) {
     //Reference to the window that will be used as a flydown.
-    const flydown = glue.windows.find("flydown-window");
-    
+    const flydown = io.windows.find("flydown-window");
+
     // Reference to this window.
-    const myWindow = glue.windows.my();
+    const myWindow = io.windows.my();
 
     // Options object for the flydown.
     const flydownOptions = {
@@ -98,7 +98,7 @@ async function createFlydownWindow(zonesBounds, zoneIDs) {
             }
         ]
     };
-    
+
     // Creating the flydown window.
     await myWindow.createFlydown(flydownOptions);
     console.log(`Flydown created at ${new Date().toLocaleTimeString()}.`);

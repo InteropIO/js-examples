@@ -2,7 +2,7 @@ let companyElement;
 let instrumentElement;
 let priceElement;
 
-/** SET UP THE APPLICATION **/
+/** SET UP THE APP **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
@@ -10,16 +10,16 @@ async function initializeApp() {
     instrumentElement = document.getElementById("instrument");
     priceElement = document.getElementById("price");
 
-    // Initialize the Glue42 library.
-    await initializeGlue42().catch(console.error);
+    // Initialize the `@interopio/desktop` library.
+    await initializeIOConnect().catch(console.error);
 
     // Register an Interop method that will show details about a selected instrument.
     registerInteropMethod();
 };
 
-/** INITIALIZE GLUE42 **/
-async function initializeGlue42() {
-    window.glue = await Glue();
+/** INITIALIZE io.Connect **/
+async function initializeIOConnect() {
+    window.io = await IODesktop();
 };
 
 function registerInteropMethod() {
@@ -33,7 +33,7 @@ function registerInteropMethod() {
 
     // Registering an Interop method by passing a method definition and a callback
     // that will be executed when the registered Interop method is invoked.
-    glue.interop.register(methoDefinition, showInstrumentDetails);
+    io.interop.register(methoDefinition, showInstrumentDetails);
 };
 
 function showInstrumentDetails(args) {

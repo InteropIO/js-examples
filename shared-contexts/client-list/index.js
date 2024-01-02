@@ -2,35 +2,35 @@ const contextName = "SelectedClient";
 
 let clientsTable;
 
-/** SET UP THE APPLICATION **/
+/** SET UP THE APP **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
-    // Initialize the Glue42 library.
-    await initializeGlue42().catch(console.error);
+    // Initialize the `@interopio/desktop` library.
+    await initializeIOConnect().catch(console.error);
     await createContext();
     // Destroy the context when the window is about to be closed.
-    glue.windows.my().onClosing(async () => await glue.contexts.destroy(contextName));
-    
+    io.windows.my().onClosing(async () => await io.contexts.destroy(contextName));
+
     clientsTable = document.getElementById("clients-table");
     clientsTable.addEventListener("click", openPortfolio);
 };
 
-/** INITIALIZE GLUE42 **/
-async function initializeGlue42() {
-    window.glue = await Glue();
+/** INITIALIZE io.Connect **/
+async function initializeIOConnect() {
+    window.io = await IODesktop();
 };
 
 // Create an initial context if it doesn't already exist.
 async function createContext() {
-    const contexts = await glue.contexts.all();
+    const contexts = await io.contexts.all();
     const doesExist = contexts.includes(contextName);
 
     if (doesExist) {
         return;
     } else {
         // Set an initial context.
-        await glue.contexts.set(contextName, { clientID: "" });
+        await io.contexts.set(contextName, { clientID: "" });
     };
 };
 
@@ -45,5 +45,5 @@ async function openPortfolio(event) {
     const update = { clientID };
 
     // Update the context with the ID of the selected client.
-    await glue.contexts.update(contextName, update);
+    await io.contexts.update(contextName, update);
 };

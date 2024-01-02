@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../node_modules/@interopio/theme-demo-apps/dist/io.applications.css">
+        <script src="../../node_modules/@interopio/search-api/dist/search-api.umd.js"></script>
+        <title>Search App</title>
+    </head>
+
+    <body style="-webkit-app-region: drag; background-color: transparent; overflow: hidden;">
+        <div id="search-bar" style="border-radius: 17px;">
+            <input class="form-control search-input" type="text" placeholder="Type and press &ldquo;Enter&rdquo; to search" id="search-field" style="width: 309px; display: inline; border-radius: 15px; margin-top: 3px; margin-bottom: 3px; margin-left: 3px; -webkit-app-region: no-drag">
+            <button class="btn btn-primary" id="search-btn" style="vertical-align: baseline; border-radius: 15px; width: 60px; padding: 0; margin: 0; -webkit-app-region: no-drag">Search</button>
+            <button class="btn btn-danger" id="close-btn" style="border-radius: 12px; width: 24px; margin-bottom: 2px; padding-left: 0; padding-right: 2px; height: 24px; line-height: 0; -webkit-app-region: no-drag">x</button>
+        </div>
+        <div class="list-group" id="results-section" style="border-radius: 10px; margin-top: 2px; padding-left: 10px; padding-right: 10px; padding-bottom: 5px; height: 282px; -webkit-app-region: no-drag" display="none"></div>
+    </body>
+
+    <script src="index.js"></script>
+
+</html>
