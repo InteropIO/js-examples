@@ -25,8 +25,8 @@ async function initializeApp() {
 
     displayPortfolio(clientID);
 
-    // Add an Intent listener to handle an intent request targeted at this app.
-    io.intents.addIntentListener(intent, updateContext);
+    // Register this app as an Intent handler to handle intent requests targeted at this app.
+    io.intents.register(intent, updateContext);
 };
 
 /** INITIALIZE io.Connect **/
