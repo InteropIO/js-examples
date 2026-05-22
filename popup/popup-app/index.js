@@ -7,6 +7,10 @@ async function initializeApp() {
 
     // Reference to the window which will be used as a popup.
     const popup = io.windows.find("popup-window");
+    if (!popup) {
+        console.error("Popup window wasn't found. Make sure the popup-window app is registered and running.");
+        return;
+    }
 
     // Reference to the button which will trigger the popup when clicked.
     const button = document.getElementById("button");
@@ -15,7 +19,7 @@ async function initializeApp() {
     const myWindow = io.windows.my();
 
     button.addEventListener("click", () => {
-        activatePopup(popup, myWindow);
+        activatePopup(popup, myWindow, button);
     });
 };
 
@@ -24,7 +28,7 @@ async function initializeIOConnect() {
     window.io = await IODesktop();
 };
 
-function getButtonBounds() {
+function getButtonBounds(button) {
     // Bounds of the area around which the popup will appear.
     const buttonBounds = {
         left: Math.round(button.getBoundingClientRect().left),
@@ -37,11 +41,11 @@ function getButtonBounds() {
 };
 
 /** SHOWING THE POPUP WINDOW **/
-async function activatePopup(popup, myWindow) {
+async function activatePopup(popup, myWindow, button) {
     // Popup options.
     const popupOptions = {
         windowId: popup.id,
-        targetBounds: getButtonBounds(),
+        targetBounds: getButtonBounds(button),
         size: {
             width: 250,
             height: 50

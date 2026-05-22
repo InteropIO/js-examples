@@ -275,7 +275,7 @@
         "autoStart": true,
         "details":{
             "url":"http://localhost:4242/popup/popup-window/index.html",
-            "mode": "html",
+            "mode": "frameless",
             "hidden": true,
             "hasMoveAreas": false,
             "hasSizeAreas": false,
