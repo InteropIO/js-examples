@@ -82,14 +82,14 @@
         }
     },
     {
-        "name":"flydown-demo",
-        "title":"Flydown Demo",
+        "name": "flydown-demo",
+        "title": "Flydown Demo",
         "caption": "Flydown Example",
         "type": "window",
         "ignoreSavedLayout": true,
-        "details":{
-            "url":"http://localhost:4242/flydown/flydown-app/index.html",
-            "mode": "html",
+        "details": {
+            "url": "http://localhost:4242/flydown/flydown-app/index.html",
+            "mode": "flat",
             "top": 250,
             "left": 300,
             "minWidth": 400,
@@ -102,22 +102,16 @@
         }
     },
     {
-        "name":"flydown-window",
-        "title":"Flydown",
+        "name": "flydown-window",
+        "title": "Flydown",
         "type": "window",
         "ignoreSavedLayout": true,
         "hidden": true,
         "autoStart": true,
-        "details":{
-            "url":"http://localhost:4242/flydown/flydown-window/index.html",
-            "mode": "html",
-            "hidden": true,
-            "hasMoveAreas": false,
-            "hasSizeAreas": false,
-            "allowClose": false,
-            "allowMinimize": false,
-            "allowMaximize": false,
-            "allowCollapse": false
+        "details": {
+            "url": "http://localhost:4242/flydown/flydown-window/index.html",
+            "mode": "frameless",
+            "hidden": true
         }
     },
     {
@@ -163,98 +157,100 @@
             {
                 "name": "DisplayPortfolio",
                 "displayName": "Show Client Portfolio",
-                "contexts": ["Client"]
+                "contexts": [
+                    "Client"
+                ]
             }
         ]
     },
     {
-        "name":"interop-request",
-        "title":"Interop Request Demo",
+        "name": "interop-request",
+        "title": "Interop Request Demo",
         "caption": "Interop Request/Response Example",
         "type": "window",
         "ignoreSavedLayout": true,
-        "details":{
-             "url":"http://localhost:4242/interop-request-response/interop-request/index.html",
-             "mode": "flat",
-             "width": 230,
-             "height": 202,
-             "minWidth": 230,
-             "minHeight": 172,
-             "top": 140,
-             "left": 140
+        "details": {
+            "url": "http://localhost:4242/interop-request-response/interop-request/index.html",
+            "mode": "flat",
+            "width": 230,
+            "height": 202,
+            "minWidth": 230,
+            "minHeight": 172,
+            "top": 140,
+            "left": 140
         },
         "customProperties": {
             "folder": "JavaScript Examples"
         }
     },
     {
-        "name":"interop-response",
-        "title":"Interop Response Demo",
+        "name": "interop-response",
+        "title": "Interop Response Demo",
         "caption": "Interop Request/Response Example",
         "type": "window",
         "ignoreSavedLayout": true,
-        "details":{
-             "url":"http://localhost:4242/interop-request-response/interop-response/index.html",
-             "mode": "flat",
-             "width": 400,
-             "height": 270,
-             "minWidth": 400,
-             "minHeight": 240,
-             "top": 140,
-             "left": 400
+        "details": {
+            "url": "http://localhost:4242/interop-request-response/interop-response/index.html",
+            "mode": "flat",
+            "width": 400,
+            "height": 270,
+            "minWidth": 400,
+            "minHeight": 240,
+            "top": 140,
+            "left": 400
         },
         "customProperties": {
             "folder": "JavaScript Examples"
         }
     },
     {
-        "name":"interop-stream-publisher",
-        "title":"Interop Stream Publisher Demo",
+        "name": "interop-stream-publisher",
+        "title": "Interop Stream Publisher Demo",
         "caption": "Interop Streaming Example",
         "type": "window",
         "ignoreSavedLayout": true,
-        "details":{
-             "url":"http://localhost:4242/interop-streaming/publisher/index.html",
-             "mode": "flat",
-             "width": 550,
-             "height": 566,
-             "minWidth": 550,
-             "minHeight": 536,
-             "top": 200,
-             "left": 200
+        "details": {
+            "url": "http://localhost:4242/interop-streaming/publisher/index.html",
+            "mode": "flat",
+            "width": 550,
+            "height": 566,
+            "minWidth": 550,
+            "minHeight": 536,
+            "top": 200,
+            "left": 200
         },
         "customProperties": {
             "folder": "JavaScript Examples"
         }
     },
     {
-        "name":"interop-stream-subscriber",
-        "title":"Interop Stream Subscriber Demo",
+        "name": "interop-stream-subscriber",
+        "title": "Interop Stream Subscriber Demo",
         "caption": "Interop Streaming Example",
         "type": "window",
         "ignoreSavedLayout": true,
-        "details":{
-             "url":"http://localhost:4242/interop-streaming/subscriber/index.html",
-             "mode": "flat",
-             "width": 440,
-             "height": 318,
-             "minWidth": 440,
-             "minHeight": 288,
-             "top": 200,
-             "left": 800
+        "details": {
+            "url": "http://localhost:4242/interop-streaming/subscriber/index.html",
+            "mode": "flat",
+            "width": 440,
+            "height": 318,
+            "minWidth": 440,
+            "minHeight": 288,
+            "top": 200,
+            "left": 800
         },
         "customProperties": {
             "folder": "JavaScript Examples"
         }
     },
     {
-        "name":"popup-demo",
-        "title":"Popup Demo",
+        "name": "popup-demo",
+        "title": "Popup Demo",
         "type": "window",
         "ignoreSavedLayout": true,
-        "details":{
-            "url":"http://localhost:4242/popup/popup-app/index.html",
-            "mode": "html",
+        "details": {
+            "url": "http://localhost:4242/popup/popup-app/index.html",
+            "mode": "flat",
             "top": 200,
             "left": 200,
             "minWidth": 400,
@@ -267,22 +263,16 @@
         }
     },
     {
-        "name":"popup-window",
-        "title":"Popup",
+        "name": "popup-window",
+        "title": "Popup",
         "type": "window",
         "ignoreSavedLayout": true,
         "hidden": true,
         "autoStart": true,
-        "details":{
-            "url":"http://localhost:4242/popup/popup-window/index.html",
-            "mode": "html",
-            "hidden": true,
-            "hasMoveAreas": false,
-            "hasSizeAreas": false,
-            "allowClose": false,
-            "allowMinimize": false,
-            "allowMaximize": false,
-            "allowCollapse": false
+        "details": {
+            "url": "http://localhost:4242/popup/popup-window/index.html",
+            "mode": "frameless",
+            "hidden": true
         }
     },
     {

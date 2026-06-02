@@ -1,15 +1,15 @@
 /** SET UP THE APP **/
 window.addEventListener("DOMContentLoaded", initializeApp);
 
+// Reference to the button which will trigger the popup when clicked.
+const button = document.getElementById("button");
+
 async function initializeApp() {
     // Initialize the `@interopio/desktop` library.
     await initializeIOConnect().catch(console.error);
 
     // Reference to the window which will be used as a popup.
     const popup = io.windows.find("popup-window");
-
-    // Reference to the button which will trigger the popup when clicked.
-    const button = document.getElementById("button");
 
     // Reference to this window.
     const myWindow = io.windows.my();
@@ -33,6 +33,8 @@ function getButtonBounds() {
         height: Math.round(button.getBoundingClientRect().height)
     };
 
+    console.log("Button bounds:", buttonBounds);
+
     return buttonBounds;
 };
 
@@ -47,7 +49,7 @@ async function activatePopup(popup, myWindow) {
             height: 50
         },
         targetLocation: "top",
-        verticalOffset: 150
+        verticalOffset: 200
     };
 
     // Activate the popup.

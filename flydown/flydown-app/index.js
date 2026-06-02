@@ -2,6 +2,13 @@
 window.addEventListener("DOMContentLoaded", initializeApp);
 
 async function initializeApp() {
+
+    if (!iodesktop.isAdvancedMode) {
+        console.log("Flydown windows aren't supported in the default platform mode. Switch to the advanced mode to use this demo.");
+
+        return;
+    };
+
     // Initialize the `@interopio/desktop` library.
     await initializeIOConnect().catch(console.error);
 
@@ -74,7 +81,7 @@ async function createFlydownWindow(zonesBounds, zoneIDs) {
             height: 50
         },
         horizontalOffset: 10,
-        verticalOffset: 10,
+        verticalOffset: 50,
         zones: [
             {
                 id: zoneIDs.left,
